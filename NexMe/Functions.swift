@@ -1,0 +1,40 @@
+//
+//  Functions.swift
+//  NexMe
+//
+//  Created by Vinicius Nadin on 10/09/17.
+//  Copyright © 2017 Vinicius Nadin. All rights reserved.
+//
+
+import Firebase
+
+func handleError(error: Error) -> String {
+    if (error as NSError).code == -1009 {
+        return "Cadê sua internet que estava aqui?"
+    }
+    
+    if (error as NSError).code == -1001 {
+        return "Servidor com problemas. =/ Logo voltamos!"
+    }
+    
+    if let errCode = AuthErrorCode(rawValue: error._code){
+        switch errCode{
+        case .invalidEmail:
+            return "Por favor inserir um endereço de email valido!!"
+        case .userNotFound:
+            return "Usuario nao encontrado!!"
+        case .wrongPassword:
+            return "Senha incorreta!!"
+        case .emailAlreadyInUse:
+            return "Este email já esta sendo usado!!"
+        default:
+            return "\(error)"
+        }
+    }
+    
+    return "\(error)"
+}
+
+func negate(bool: Bool) -> Bool {
+    return !bool
+}

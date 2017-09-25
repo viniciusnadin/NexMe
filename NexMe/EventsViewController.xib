@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsViewController" customModule="NexMe" customModuleProvider="target">
+            <connections>
+                <outlet property="menuButton" destination="6Mv-1B-cD2" id="b0g-NJ-oy7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11A-PS-bCa">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mv-1B-cD2">
+                            <rect key="frame" x="8" y="24" width="39" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="39" id="YBe-Qk-aiq"/>
+                                <constraint firstAttribute="height" constant="37" id="hU4-4J-YfY"/>
+                            </constraints>
+                            <state key="normal" image="icon-menu"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURITIBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ita-JE-93p">
+                            <rect key="frame" x="111" y="35" width="99" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="99" id="ZLI-qR-2rv"/>
+                                <constraint firstAttribute="height" constant="14" id="btR-aF-CZ5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.70373968909999995" green="0.1052729907" blue="0.0060801585690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="ita-JE-93p" firstAttribute="centerX" secondItem="11A-PS-bCa" secondAttribute="centerX" id="Hbb-lV-4eT"/>
+                        <constraint firstItem="6Mv-1B-cD2" firstAttribute="leading" secondItem="11A-PS-bCa" secondAttribute="leading" constant="8" id="WN9-t6-vYf"/>
+                        <constraint firstAttribute="height" constant="68" id="jry-bn-qFW"/>
+                        <constraint firstAttribute="bottom" secondItem="ita-JE-93p" secondAttribute="bottom" constant="19" id="qHv-ZE-0C1"/>
+                        <constraint firstItem="6Mv-1B-cD2" firstAttribute="top" secondItem="11A-PS-bCa" secondAttribute="top" constant="24" id="yNH-Z1-BrR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="11A-PS-bCa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6Nn-9R-xzG"/>
+                <constraint firstItem="11A-PS-bCa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i1Z-FN-fCu"/>
+                <constraint firstAttribute="trailing" secondItem="11A-PS-bCa" secondAttribute="trailing" id="xMf-H3-9nq"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-menu" width="19" height="15"/>
+    </resources>
+</document>
