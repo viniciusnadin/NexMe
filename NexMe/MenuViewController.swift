@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class MenuViewController: UIViewController {
-
+    let imagePicker = ImagePicker()
     let viewModel: MenuViewModel
     
     @IBOutlet weak var eventsButton: UIButton!
@@ -19,10 +19,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var closeMenuButton: UIButton!
     
-    
-//    @IBOutlet weak var profileImageView: UIImageView!
-//    @IBOutlet weak var emailLabel: UILabel!
-//    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var avatar: UIImageView!
     
     init(viewModel: MenuViewModel) {
         self.viewModel = viewModel
@@ -35,7 +33,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.viewDidLoad()
+        self.viewModel.viewDidLoad()
     }
     
     override func viewDidLoad() {
@@ -56,7 +54,48 @@ class MenuViewController: UIViewController {
         self.profileButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentProfile()
         }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.viewModel.name.asObservable()
+            .bind(to: nameLabel.rx.text)
+        .addDisposableTo(self.viewModel.disposeBag)
+
     }
     
+    @IBAction func editAvatarButtonTouched(_ sender: UIButton) {
+        imagePicker.pickImageFromViewController(viewController: self) { result in
+            print(result.description)
+            do {
+                let image = try result.getValue()
+                self.avatar.image = image
+                self.viewModel.uploadImage(image: image)
+            } catch {
+                print(error)
+            }
+        }
+    }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

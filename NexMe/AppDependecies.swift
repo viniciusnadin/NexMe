@@ -54,6 +54,10 @@ struct AppDependecies {
     func presentUI() {
         if useCases.userIsSignedIn {
             self.mainRouter.presentMain()
+            self.store.deleteCurrentUser()
+            self.useCases.fetchUser(completion: { (result) in
+                print(result)
+            })
         } else {
             self.signInRouter.presentSignIn()
         }

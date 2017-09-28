@@ -17,4 +17,5 @@ target 'NexMe' do
   pod "Hero"
   pod 'SlideMenuControllerSwift'
   pod 'Unbox'
+  pod 'SwiftyJSON'
 end

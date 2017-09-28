@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.configureBinds()
         self.configureLayouts()
+        self.viewModel.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +46,15 @@ class ProfileViewController: UIViewController {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
         }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.editButton.rx.tap.subscribe(onNext: {
+            self.viewModel.editProfile()
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.viewModel.name.asObservable()
+            .bind(to: nameLabel.rx.text)
+            .addDisposableTo(viewModel.disposeBag)
+        
     }
     
     func configureLayouts() {

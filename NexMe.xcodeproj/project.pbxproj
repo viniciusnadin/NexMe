@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46D1F7C51D8001582D1 /* Parsers.swift */; };
+		D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46F1F7C636C001582D1 /* ImagePicker.swift */; };
 		D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A371F4F603000CDCE28 /* AppDelegate.swift */; };
 		D5B16A3F1F4F603000CDCE28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */; };
 		D5B16A421F4F603000CDCE28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */; };
@@ -46,17 +48,15 @@
 		D5B16A9F1F6757BB00CDCE28 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A9E1F6757BB00CDCE28 /* User.swift */; };
 		D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA01F6758C700CDCE28 /* Avatar.swift */; };
 		D5B16AA51F6758EE00CDCE28 /* PersistenceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA41F6758EE00CDCE28 /* PersistenceInterface.swift */; };
-		D5B16AA71F67590400CDCE28 /* AccessTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA61F67590400CDCE28 /* AccessTokens.swift */; };
-		D5B16AA91F67594D00CDCE28 /* ApplicationInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA81F67594D00CDCE28 /* ApplicationInfoModel.swift */; };
-		D5B16AAB1F67597700CDCE28 /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AAA1F67597700CDCE28 /* ApplicationInfo.swift */; };
 		D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AAC1F6759A700CDCE28 /* FileStore.swift */; };
-		D5B16AAF1F675A3600CDCE28 /* AccessTokensModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AAE1F675A3600CDCE28 /* AccessTokensModel.swift */; };
 		DA6D942B45B748EF085324B3 /* Pods_NexMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A0D8DFCE32235C0A5B0940 /* Pods_NexMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		08510A995199D887E588B119 /* Pods-NexMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NexMe/Pods-NexMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6A0D8DFCE32235C0A5B0940 /* Pods_NexMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D59CD46D1F7C51D8001582D1 /* Parsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsers.swift; sourceTree = "<group>"; };
+		D59CD46F1F7C636C001582D1 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5B16A341F4F603000CDCE28 /* NexMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NexMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B16A371F4F603000CDCE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,11 +98,7 @@
 		D5B16A9E1F6757BB00CDCE28 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5B16AA01F6758C700CDCE28 /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		D5B16AA41F6758EE00CDCE28 /* PersistenceInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceInterface.swift; sourceTree = "<group>"; };
-		D5B16AA61F67590400CDCE28 /* AccessTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokens.swift; sourceTree = "<group>"; };
-		D5B16AA81F67594D00CDCE28 /* ApplicationInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationInfoModel.swift; sourceTree = "<group>"; };
-		D5B16AAA1F67597700CDCE28 /* ApplicationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationInfo.swift; sourceTree = "<group>"; };
 		D5B16AAC1F6759A700CDCE28 /* FileStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStore.swift; sourceTree = "<group>"; };
-		D5B16AAE1F675A3600CDCE28 /* AccessTokensModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokensModel.swift; sourceTree = "<group>"; };
 		F502E155D99BD417B542A471 /* Pods-NexMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-NexMe/Pods-NexMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +184,7 @@
 			children = (
 				D5B16A4B1F4F62A800CDCE28 /* AppDependecies.swift */,
 				D5B16A4D1F4F63E900CDCE28 /* UseCases.swift */,
+				D59CD46D1F7C51D8001582D1 /* Parsers.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -246,6 +243,7 @@
 		D5B16A6E1F65CE4F00CDCE28 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D59CD46F1F7C636C001582D1 /* ImagePicker.swift */,
 				D5B16AAC1F6759A700CDCE28 /* FileStore.swift */,
 				D5B16A6B1F65CE3D00CDCE28 /* Result.swift */,
 				D5B16A6F1F65D2DC00CDCE28 /* Functions.swift */,
@@ -306,10 +304,8 @@
 		D5B16A961F67576B00CDCE28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D5B16AAE1F675A3600CDCE28 /* AccessTokensModel.swift */,
 				D5B16A971F67577400CDCE28 /* UserModel.swift */,
 				D5B16A991F67578600CDCE28 /* AvatarModel.swift */,
-				D5B16AA81F67594D00CDCE28 /* ApplicationInfoModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,8 +313,6 @@
 		D5B16A9D1F6757AD00CDCE28 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				D5B16AAA1F67597700CDCE28 /* ApplicationInfo.swift */,
-				D5B16AA61F67590400CDCE28 /* AccessTokens.swift */,
 				D5B16A9E1F6757BB00CDCE28 /* User.swift */,
 				D5B16AA01F6758C700CDCE28 /* Avatar.swift */,
 			);
@@ -476,13 +470,11 @@
 				D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */,
 				D5B16A7C1F660EF100CDCE28 /* MenuViewController.swift in Sources */,
 				D5B16A9C1F67579A00CDCE28 /* Store.swift in Sources */,
-				D5B16AAB1F67597700CDCE28 /* ApplicationInfo.swift in Sources */,
 				D5B16A7F1F660F0900CDCE28 /* MenuNavigationController.swift in Sources */,
 				D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */,
-				D5B16AA91F67594D00CDCE28 /* ApplicationInfoModel.swift in Sources */,
 				D5B16A831F660F3A00CDCE28 /* MenuViewModel.swift in Sources */,
+				D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
-				D5B16AAF1F675A3600CDCE28 /* AccessTokensModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,
 				D5B16A8F1F674A6500CDCE28 /* ProfileViewController.swift in Sources */,
 				D5B16A981F67577400CDCE28 /* UserModel.swift in Sources */,
@@ -491,13 +483,13 @@
 				D5B16A731F660CC600CDCE28 /* MainRouter.swift in Sources */,
 				D5B16A5A1F4F66A300CDCE28 /* SignInViewModel.swift in Sources */,
 				D5B16A541F4F65D200CDCE28 /* SignInRouter.swift in Sources */,
+				D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */,
 				D5B16A571F4F662D00CDCE28 /* SignInViewController.swift in Sources */,
 				D5B16A4E1F4F63E900CDCE28 /* UseCases.swift in Sources */,
 				D5B16A701F65D2DC00CDCE28 /* Functions.swift in Sources */,
 				D5B16A6A1F61C17700CDCE28 /* SignUpRouter.swift in Sources */,
 				D5B16A9A1F67578600CDCE28 /* AvatarModel.swift in Sources */,
 				D5B16AA51F6758EE00CDCE28 /* PersistenceInterface.swift in Sources */,
-				D5B16AA71F67590400CDCE28 /* AccessTokens.swift in Sources */,
 				D5B16A9F1F6757BB00CDCE28 /* User.swift in Sources */,
 				D5B16A6C1F65CE3D00CDCE28 /* Result.swift in Sources */,
 				D5B16A8B1F66121500CDCE28 /* EventsRouter.swift in Sources */,

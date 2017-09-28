@@ -47,6 +47,7 @@ PODS:
     - RxSwift (~> 3.4)
   - RxSwift (3.5.0)
   - SlideMenuControllerSwift (3.0.1)
+  - SwiftyJSON (3.1.4)
   - Unbox (2.5.0)
 
 DEPENDENCIES:
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SlideMenuControllerSwift
+  - SwiftyJSON
   - Unbox
 
 SPEC CHECKSUMS:
@@ -78,8 +80,9 @@ SPEC CHECKSUMS:
   RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
   RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
 
-PODFILE CHECKSUM: 000ff4b9f181fcfba37443d8221d194994f4992d
+PODFILE CHECKSUM: cda8b37955e66f70c3e91daa35c8792f4633ab15
 
 COCOAPODS: 1.2.0

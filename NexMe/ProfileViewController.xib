@@ -54,7 +54,7 @@
                         <constraint firstItem="m6r-Rt-hDa" firstAttribute="top" secondItem="Vtb-Nl-gkq" secondAttribute="top" constant="24" id="pyL-t9-eHu"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="Wog-2f-93h">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Wog-2f-93h">
                     <rect key="frame" x="16" y="84" width="64" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="Kaf-KM-lBb"/>
@@ -99,6 +99,6 @@
     </objects>
     <resources>
         <image name="icon-menu" width="19" height="15"/>
-        <image name="profileImage" width="150" height="150"/>
+        <image name="userProfile" width="114" height="114"/>
     </resources>
 </document>

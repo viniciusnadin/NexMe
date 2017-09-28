@@ -13,11 +13,25 @@ class ProfileViewModel {
     var router: ProfileRouter!
     var disposeBag = DisposeBag()
     
+    let name = Variable<String>("")
+    let email = Variable<String>("")
+    let avatarImageURL = Variable<URL?>(nil)
+    
+    func viewDidLoad() {
+        if let user = useCases.getCurrentUser() {
+            name.value = user.name.capitalized
+            email.value = user.email
+            self.avatarImageURL.value = user.avatar?.original
+        }
+    }
+    
     func presentProfile() {
         self.router.presentProfile()
     }
     
-//    func loadUser
+    func editProfile() {
+        
+    }
     
     
 }
