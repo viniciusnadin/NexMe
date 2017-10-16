@@ -39,14 +39,12 @@ class SignUpRouter {
         viewController = SignUpViewController(viewModel: viewModel)
         viewController.isHeroEnabled = true
         viewController.heroModalAnimationType = .push(direction: HeroDefaultAnimationType.Direction.left)
-        presentingViewController.hero_replaceViewController(with: viewController)
-    }
-    
-    func presentSignIn(){
-        self.signInRouter.presentSignInFromViewController(presentingViewController: self.viewController)
+        presentingViewController.present(viewController, animated: true, completion: nil)
     }
     
     func dismissSignUp() {
-        self.viewController.dismiss(animated: true, completion: nil)
+        self.viewController.isHeroEnabled = true
+        self.viewController.heroModalAnimationType = .pull(direction: HeroDefaultAnimationType.Direction.right)
+        self.viewController.hero_dismissViewController()
     }
 }
