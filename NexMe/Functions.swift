@@ -22,11 +22,13 @@ func handleError(error: Error) -> String {
         case .invalidEmail:
             return "Por favor inserir um endereço de email valido!!"
         case .userNotFound:
-            return "Usuario nao encontrado!!"
+            return "Usuario não encontrado!!"
         case .wrongPassword:
             return "Senha incorreta!!"
         case .emailAlreadyInUse:
             return "Este email já esta sendo usado!!"
+        case .weakPassword:
+            return "Senha precisa ter mais que 5 digitos!!"
         default:
             return "\(error)"
         }

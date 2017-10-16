@@ -34,7 +34,9 @@ final class UseCases {
                     failure(error!)
                 }
                 else {
-                    success()
+                    self.fetchUser(completion: { (result) in
+                        success()
+                    })
                 }
             })
         }
@@ -100,20 +102,37 @@ final class UseCases {
                 if error != nil {
                     failure(error!)
                 }
-                let updateProfileImage = ["profileImage" : metadata?.downloadURL()?.absoluteString as Any]
+                let updateProfileImage = ["original" : metadata?.downloadURL()?.absoluteString as Any]
                 let userId = Auth.auth().currentUser?.uid
-                 let usersReference = Database.database().reference().child("users").child(userId!)
+                 let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
                 usersReference.updateChildValues(updateProfileImage)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 success()
             })
         }
     }
+    
+    func fetchAvatar(completion: @escaping (Result<UIImage>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            if let url = self.getCurrentUser()?.avatar?.original{
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    failure(error!)
+                }
+                let image = UIImage(data: data!)
+                success(image!)
+                }.resume()
+            }
+            else{
+                success(UIImage())
+            }
+        }
+    }
 
     
     
     func getCurrentUser() -> User? {
-        return store.getCurrentUser()
+        return self.store.getCurrentUser()
     }
     
     

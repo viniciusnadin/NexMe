@@ -15,13 +15,14 @@ class MenuViewModel {
     let disposeBag = DisposeBag()
     let name = Variable<String>("")
     let email = Variable<String>("")
-//    let avatarImageURL = Variable<URL?>(nil)
+    let successFullSignOut = Variable<Bool>(false)
+    let avatarImageURL = Variable<URL?>(nil)
     
     func viewDidLoad() {
         if let user = useCases.getCurrentUser() {
             name.value = user.name.capitalized
             email.value = user.email
-//            self.avatarImageURL.value = user.avatar?.original
+            self.avatarImageURL.value = user.avatar?.original
         }
     }
     

@@ -29,7 +29,13 @@ class SignInRouter {
         viewModel.router = self
         
         viewController = SignInViewController(viewModel: viewModel)
-        window.rootViewController = viewController
+        if window.rootViewController == nil {
+            window.rootViewController = viewController
+        } else {
+            viewController.isHeroEnabled = true
+            viewController.heroModalAnimationType = .zoomOut
+            window.rootViewController?.hero_replaceViewController(with: viewController)
+        }
     }
     
     func presentSignUp(){
@@ -48,6 +54,6 @@ class SignInRouter {
     }
     
     func presentMain() {
-        mainRouter.presentMain()
+        self.mainRouter.presentMain()
     }
 }

@@ -23,13 +23,13 @@ class MainRouter {
     func presentMain() {
         SlideMenuOptions.contentViewScale = 1
         SlideMenuOptions.leftViewWidth = UIScreen.main.bounds.size.width - 40
-        
         viewController = MenuNavigationController(mainViewController: eventsRouter.getViewController(), leftMenuViewController: menuRouter.getViewController())
-        window.rootViewController = viewController
-        
-//        viewController.isHeroEnabled = true
-//        viewController.heroModalAnimationType = .push(direction: HeroDefaultAnimationType.Direction.right)
-//        presentingViewController.hero_replaceViewController(with: viewController)
-
+        if window.rootViewController == nil {
+            window.rootViewController = viewController
+        } else {
+            viewController.isHeroEnabled = true
+            viewController.heroModalAnimationType = .zoom
+            window.rootViewController?.hero_replaceViewController(with: viewController)
+        }
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Pastel
+import PopupDialog
 
 class SignUpViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var titleView: UIView!
     
     
     init(viewModel: SignUpViewModel) {
@@ -36,33 +38,53 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
+        let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
+        self.view.addGestureRecognizer(tapOnView)
     }
     
     deinit {
-        print("ASDUFAGYSDFGYAGYSDGYASDYGF")
+        print("LOG - DEINITING SIGNUP VIEW CONTROLLER")
     }
     
     override func viewWillLayoutSubviews() {
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
         self.setPastelView()
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     func setPastelView() {
-        let pastelView = PastelView(frame: self.view.bounds)
+        self.signUpButton.backgroundColor = UIColor(red: 175/255, green: 58/255, blue: 143/255, alpha: 0.8)
+        self.signUpButton.layer.cornerRadius = 4
+        
+        let pastelView = PastelView(frame: self.titleView.bounds)
         pastelView.startPastelPoint = .bottomLeft
         pastelView.endPastelPoint = .topRight
         pastelView.animationDuration = 3.0
-        pastelView.setColors([UIColor(red: 27/255, green: 206/255, blue: 223/255, alpha: 1.0), UIColor(red: 91/255, green: 36/255, blue: 122/255, alpha: 1.0)])
+        pastelView.setColors([UIColor(red: 98/255, green: 39/255, blue: 116/255, alpha: 1.0), UIColor(red: 197/255, green: 51/255, blue: 100/255, alpha: 1.0)])
         pastelView.startAnimation()
-        view.insertSubview(pastelView, at: 0)
+        self.titleView.insertSubview(pastelView, at: 0)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
     }
     
     func configureBinds() {
         self.signInButton.rx.tap.subscribe(onNext: {
-            self.viewModel.signIn()
+            self.viewModel.close()
         }).addDisposableTo(self.viewModel.disposeBag)
         
         viewModel.loading.asObservable().map(negate)
@@ -74,6 +96,7 @@ class SignUpViewController: UIViewController {
             .addDisposableTo(viewModel.disposeBag)
         
         signUpButton.rx.tap.subscribe(onNext: {
+            self.dismissKeyboard()
             self.viewModel.tryToSignUp()
         }).addDisposableTo(viewModel.disposeBag)
         
@@ -89,10 +112,38 @@ class SignUpViewController: UIViewController {
             .bind(to: self.viewModel.password)
         .addDisposableTo(self.viewModel.disposeBag)
         
+        self.viewModel.successFullSignUp.asObservable().bind { (verify) in
+            if verify {
+                self.viewModel.close()
+            }
+        }.addDisposableTo(self.viewModel.disposeBag)
+        
         self.viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
         }).addDisposableTo(viewModel.disposeBag)
+        
+        self.viewModel.successMessage.asObservable().filter({!$0.isEmpty})
+            .subscribe(onNext: { message in
+                let pop2 = PopupDialog(title: "Concluido", message: message, image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
+                    self.viewModel.successFullSignUp.value = true
+                })
+                self.present(pop2, animated: true, completion: nil)
+            }).addDisposableTo(viewModel.disposeBag)
     }
 
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.nameTextField {
+            self.emailTextField.becomeFirstResponder()
+        } else if textField == self.emailTextField {
+            self.passwordTextField.becomeFirstResponder()
+        }else if textField == passwordTextField {
+            dismissKeyboard()
+            viewModel.tryToSignUp()
+        }
+        return false
+    }
 }

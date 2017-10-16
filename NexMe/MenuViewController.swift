@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PopupDialog
 
 class MenuViewController: UIViewController {
     let imagePicker = ImagePicker()
@@ -24,6 +25,7 @@ class MenuViewController: UIViewController {
     
     init(viewModel: MenuViewModel) {
         self.viewModel = viewModel
+        self.viewModel.viewDidLoad()
         super.init(nibName: String("MenuViewController"), bundle: nil)
     }
     
@@ -33,12 +35,11 @@ class MenuViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.viewModel.viewDidLoad()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureViews()
+        //        configureViews()
         self.configureBinds()
     }
     
@@ -48,17 +49,36 @@ class MenuViewController: UIViewController {
         }).addDisposableTo(self.viewModel.disposeBag)
         
         self.signOutButton.rx.tap.subscribe(onNext: {
-            self.viewModel.signOut()
+            let pop2 = PopupDialog(title: "Até logo!", message: "Aguardamos o seu retorno :)", image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
+                self.viewModel.successFullSignOut.value = true
+            })
+            self.present(pop2, animated: true, completion: nil)
         }).addDisposableTo(self.viewModel.disposeBag)
         
         self.profileButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentProfile()
         }).addDisposableTo(self.viewModel.disposeBag)
         
+        
+        self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
+                self.viewModel.useCases.fetchAvatar(completion: { (avatar) in
+                    DispatchQueue.main.async {
+                        do{
+                            self.avatar.image = try avatar.getValue()
+                        }catch{}
+                    }
+                })
+        }).addDisposableTo(viewModel.disposeBag)
+        
+        self.viewModel.successFullSignOut.asObservable().bind { (verify) in
+            if verify {
+                self.viewModel.signOut()
+            }
+            }.addDisposableTo(self.viewModel.disposeBag)
+        
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
-        .addDisposableTo(self.viewModel.disposeBag)
-
+            .addDisposableTo(self.viewModel.disposeBag)
     }
     
     @IBAction func editAvatarButtonTouched(_ sender: UIButton) {
@@ -73,7 +93,7 @@ class MenuViewController: UIViewController {
             }
         }
     }
-
+    
     
     
     
