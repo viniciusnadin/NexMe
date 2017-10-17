@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UsersViewController" customModule="NexMe" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wcm-ct-K94">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVv-X0-Fl2">
+                            <rect key="frame" x="8" y="24" width="39" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="39" id="wUr-it-vQF"/>
+                                <constraint firstAttribute="height" constant="37" id="yBo-XJ-IlZ"/>
+                            </constraints>
+                            <state key="normal" image="icon-menu"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USUARIOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sO5-wI-AuQ">
+                            <rect key="frame" x="111" y="35" width="99" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="99" id="FGU-rt-aMk"/>
+                                <constraint firstAttribute="height" constant="14" id="bXe-bN-tx4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="GVv-X0-Fl2" firstAttribute="leading" secondItem="Wcm-ct-K94" secondAttribute="leading" constant="8" id="RKt-kr-SCf"/>
+                        <constraint firstItem="GVv-X0-Fl2" firstAttribute="top" secondItem="Wcm-ct-K94" secondAttribute="top" constant="24" id="T2H-L0-ot7"/>
+                        <constraint firstItem="sO5-wI-AuQ" firstAttribute="centerX" secondItem="Wcm-ct-K94" secondAttribute="centerX" id="ZuR-TN-k4c"/>
+                        <constraint firstAttribute="bottom" secondItem="sO5-wI-AuQ" secondAttribute="bottom" constant="19" id="apa-XU-4oj"/>
+                        <constraint firstAttribute="height" constant="68" id="vG1-3D-4pc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Wcm-ct-K94" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="848-6C-7un"/>
+                <constraint firstItem="Wcm-ct-K94" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="M7z-fH-VaQ"/>
+                <constraint firstItem="Wcm-ct-K94" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s2u-Up-DRU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-menu" width="19" height="15"/>
+    </resources>
+</document>

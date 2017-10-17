@@ -1,39 +1,38 @@
 //
-//  ProfileRouter.swift
+//  UsersRouter.swift
 //  NexMe
 //
-//  Created by Vinicius Nadin on 11/09/17.
+//  Created by Vinicius Nadin on 17/10/17.
 //  Copyright © 2017 Vinicius Nadin. All rights reserved.
 //
 
 import UIKit
 
-class ProfileRouter {
+class UsersRouter {
     let useCases: UseCases!
     let window: UIWindow!
-    var viewController : ProfileViewController!
+    var viewController : UsersViewController!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
         self.window = window
     }
     
-    func presentProfile() {
-        let viewModel = ProfileViewModel()
+    func presentUserSearch() {
+        let viewModel = UsersViewModel()
         viewModel.useCases = self.useCases
         viewModel.router = self
         
-        self.viewController = ProfileViewController(viewModel: viewModel)
+        self.viewController = UsersViewController(viewModel: viewModel)
         self.window.rootViewController = self.viewController
     }
     
     func getViewController() -> UIViewController {
-        let viewModel = ProfileViewModel()
+        let viewModel = UsersViewModel()
         viewModel.router = self
         viewModel.useCases = self.useCases
-        self.viewController = ProfileViewController(viewModel: viewModel)
+        self.viewController = UsersViewController(viewModel: viewModel)
         return self.viewController
     }
-    
     
 }

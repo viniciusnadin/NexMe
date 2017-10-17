@@ -19,4 +19,5 @@ target 'NexMe' do
   pod 'Unbox'
   pod 'SwiftyJSON'
   pod 'Kingfisher', '~> 4.0'
+  
 end

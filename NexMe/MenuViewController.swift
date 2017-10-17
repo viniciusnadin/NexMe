@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import PopupDialog
 import Kingfisher
+import SlideMenuControllerSwift
 
 class MenuViewController: UIViewController {
     let imagePicker = ImagePicker()
@@ -20,6 +21,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var closeMenuButton: UIButton!
+    @IBOutlet weak var usersButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatar: UIImageView!
@@ -40,7 +42,6 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        configureViews()
         self.configureBinds()
     }
     
@@ -60,6 +61,13 @@ class MenuViewController: UIViewController {
             self.viewModel.presentProfile()
         }).addDisposableTo(self.viewModel.disposeBag)
         
+        self.usersButton.rx.tap.subscribe(onNext: {
+            self.viewModel.presentUsersSearch()
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.closeMenuButton.rx.tap.subscribe(onNext: {
+            self.slideMenuController()?.closeLeft()
+        }).addDisposableTo(self.viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
             self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
@@ -69,7 +77,7 @@ class MenuViewController: UIViewController {
             if verify {
                 self.viewModel.signOut()
             }
-            }.addDisposableTo(self.viewModel.disposeBag)
+        }.addDisposableTo(self.viewModel.disposeBag)
         
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)

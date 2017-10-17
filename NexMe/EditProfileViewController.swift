@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class EditProfileViewController: UIViewController {
     
@@ -15,23 +16,19 @@ class EditProfileViewController: UIViewController {
     
     // MARK :- Outlets
     @IBOutlet weak var informationsView: UIView!
-    
-    
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     // MARK :- Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.configureBinds()
+        self.viewModel.viewDidLoad()
     }
     
-    override func viewWillLayoutSubviews() {
-        self.informationsView.layer.masksToBounds = true
-        
-        self.informationsView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        self.informationsView.layer.shadowColor = UIColor.black.cgColor
-        self.informationsView.layer.shadowOpacity = 0.2
-        self.informationsView.layer.shadowRadius = 1.3
-        self.informationsView.layer.shadowPath = UIBezierPath(rect: self.informationsView.bounds).cgPath
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +43,21 @@ class EditProfileViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureBinds() {
+        self.viewModel.name.asObservable()
+            .bind(to: nameLabel.rx.text)
+            .addDisposableTo(viewModel.disposeBag)
+        
+        self.viewModel.email.asObservable()
+            .bind(to: emailLabel.rx.text)
+            .addDisposableTo(viewModel.disposeBag)
+        
+        self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
+            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
+        }).addDisposableTo(viewModel.disposeBag)
+
     }
 
 }

@@ -17,16 +17,16 @@ class ProfileViewController: UIViewController {
     
     // MARK :- Outlets
     @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
 
     // MARK :- Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
-        self.configureLayouts()
         self.viewModel.viewDidLoad()
     }
 
@@ -48,12 +48,12 @@ class ProfileViewController: UIViewController {
             self.slideMenuController()?.openLeft()
         }).addDisposableTo(self.viewModel.disposeBag)
         
-        self.editButton.rx.tap.subscribe(onNext: {
-            self.viewModel.editProfile()
-        }).addDisposableTo(self.viewModel.disposeBag)
-        
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
+            .addDisposableTo(viewModel.disposeBag)
+        
+        self.viewModel.email.asObservable()
+            .bind(to: emailLabel.rx.text)
             .addDisposableTo(viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
@@ -63,10 +63,10 @@ class ProfileViewController: UIViewController {
         
     }
     
-    func configureLayouts() {
-        self.editButton.layer.borderWidth = 1
-        self.editButton.layer.borderColor = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1).cgColor
-        self.editButton.layer.cornerRadius = 5
-    }
+//    func configureLayouts() {
+//        self.editButton.layer.borderWidth = 1
+//        self.editButton.layer.borderColor = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1).cgColor
+//        self.editButton.layer.cornerRadius = 5
+//    }
 
 }

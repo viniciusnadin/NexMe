@@ -29,9 +29,5 @@ class ProfileViewModel {
         self.router.presentProfile()
     }
     
-    func editProfile() {
-        self.router.presentEditProfile()
-    }
-    
     
 }
