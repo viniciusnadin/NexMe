@@ -192,20 +192,20 @@
 		D5B16A361F4F603000CDCE28 /* NexMe */ = {
 			isa = PBXGroup;
 			children = (
-				D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */,
 				D5B16AA21F6758DE00CDCE28 /* App */,
 				D5B16A9D1F6757AD00CDCE28 /* Entities */,
 				D5B16A951F67576700CDCE28 /* Store */,
-				D5B16A9B1F67579A00CDCE28 /* Store.swift */,
 				D5B16A6D1F65CE4400CDCE28 /* Dependencies */,
 				D5B16A601F5F6B3300CDCE28 /* Helpers */,
+				D5B16A491F4F623300CDCE28 /* UI */,
+				D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */,
+				D5B16A9B1F67579A00CDCE28 /* Store.swift */,
 				D5B16A371F4F603000CDCE28 /* AppDelegate.swift */,
 				D5B16A5B1F4F6B8C00CDCE28 /* ViewController.swift */,
 				D5B16A5C1F4F6B8C00CDCE28 /* Main.storyboard */,
-				D5B16A491F4F623300CDCE28 /* UI */,
-				D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */,
 				D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */,
 				D5B16A431F4F603000CDCE28 /* Info.plist */,
+				D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */,
 			);
 			path = NexMe;
 			sourceTree = "<group>";
