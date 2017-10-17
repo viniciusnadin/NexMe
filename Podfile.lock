@@ -41,6 +41,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
   - Hero (0.3.6)
+  - Kingfisher (4.1.1)
   - Pastel (0.3.0)
   - PopupDialog (0.5.4)
   - RxCocoa (3.5.0):
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Hero
+  - Kingfisher (~> 4.0)
   - Pastel
   - PopupDialog (~> 0.5)
   - RxCocoa
@@ -75,6 +77,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
+  Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
   Pastel: 738740c84f2b15bbcd96ebe99c4e6c2f5dd42262
   PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
@@ -83,6 +86,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
 
-PODFILE CHECKSUM: cda8b37955e66f70c3e91daa35c8792f4633ab15
+PODFILE CHECKSUM: 77fc5a1ed7c7b7ea172672914317526c08c86711
 
 COCOAPODS: 1.2.0

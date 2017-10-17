@@ -12,6 +12,7 @@ class ProfileRouter {
     let useCases: UseCases!
     let window: UIWindow!
     var viewController : ProfileViewController!
+    var editProfileRouter: EditProfileRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
@@ -33,5 +34,9 @@ class ProfileRouter {
         viewModel.useCases = self.useCases
         self.viewController = ProfileViewController(viewModel: viewModel)
         return self.viewController
+    }
+    
+    func presentEditProfile(){
+        self.editProfileRouter.presentEditProfileFromViewController(presentingViewController: self.viewController)
     }
 }

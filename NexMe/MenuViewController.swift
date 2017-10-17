@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PopupDialog
+import Kingfisher
 
 class MenuViewController: UIViewController {
     let imagePicker = ImagePicker()
@@ -61,13 +62,7 @@ class MenuViewController: UIViewController {
         
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
-                self.viewModel.useCases.fetchAvatar(completion: { (avatar) in
-                    DispatchQueue.main.async {
-                        do{
-                            self.avatar.image = try avatar.getValue()
-                        }catch{}
-                    }
-                })
+            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
         }).addDisposableTo(viewModel.disposeBag)
         
         self.viewModel.successFullSignOut.asObservable().bind { (verify) in
@@ -83,7 +78,6 @@ class MenuViewController: UIViewController {
     
     @IBAction func editAvatarButtonTouched(_ sender: UIButton) {
         imagePicker.pickImageFromViewController(viewController: self) { result in
-            print(result.description)
             do {
                 let image = try result.getValue()
                 self.avatar.image = image

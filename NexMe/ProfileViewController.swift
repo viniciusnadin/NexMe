@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Kingfisher
 
 class ProfileViewController: UIViewController {
     
@@ -55,17 +56,17 @@ class ProfileViewController: UIViewController {
             .bind(to: nameLabel.rx.text)
             .addDisposableTo(viewModel.disposeBag)
         
+        self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
+            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
+        }).addDisposableTo(viewModel.disposeBag)
+        
+        
     }
     
     func configureLayouts() {
         self.editButton.layer.borderWidth = 1
         self.editButton.layer.borderColor = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1).cgColor
         self.editButton.layer.cornerRadius = 5
-        
-        self.avatar.layer.cornerRadius = 30
-        self.avatar.translatesAutoresizingMaskIntoConstraints = false
-        self.avatar.clipsToBounds = true
-        self.avatar.contentMode = .scaleToFill
     }
 
 }

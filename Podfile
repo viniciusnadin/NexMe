@@ -18,4 +18,5 @@ target 'NexMe' do
   pod 'SlideMenuControllerSwift'
   pod 'Unbox'
   pod 'SwiftyJSON'
+  pod 'Kingfisher', '~> 4.0'
 end
