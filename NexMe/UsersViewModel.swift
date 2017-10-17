@@ -12,6 +12,8 @@ class UsersViewModel {
     var useCases: UseCases!
     var router: UsersRouter!
     var disposeBag = DisposeBag()
+    let textEntry = Variable<String>("")
+    let users = Variable<[User]>([])
     
     func viewDidLoad() {
         //do-something
@@ -20,4 +22,11 @@ class UsersViewModel {
     func presentUsersSearch() {
         
     }
+    
+    func searchUser() {
+        self.useCases.searchUserByName(name: self.textEntry.value) { (users) in
+            print("\(users)")
+        }
+    }
+    
 }

@@ -55,7 +55,7 @@ final class UseCases {
                     }
                     let userReference = Database.database().reference().child("users").child(uid)
                     let values = ["name":name.lowercased(), "email":email]
-                
+                    
                     userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                         if err != nil {
                             failure(err!)
@@ -104,7 +104,7 @@ final class UseCases {
                 }
                 let updateProfileImage = ["original" : metadata?.downloadURL()?.absoluteString as Any]
                 let userId = Auth.auth().currentUser?.uid
-                 let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
+                let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
                 usersReference.updateChildValues(updateProfileImage)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 success()
@@ -115,20 +115,46 @@ final class UseCases {
     func fetchAvatar(completion: @escaping (Result<UIImage>) -> Void) {
         deliver(completion: completion) { success, failure in
             if let url = self.getCurrentUser()?.avatar?.original{
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil {
-                    failure(error!)
-                }
-                let image = UIImage(data: data!)
-                success(image!)
-                }.resume()
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    if error != nil {
+                        failure(error!)
+                    }
+                    let image = UIImage(data: data!)
+                    success(image!)
+                    }.resume()
             }
             else{
                 success(UIImage())
             }
         }
     }
-
+    
+    func searchUserByName(name: String, completion: @escaping (Result<[User]>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            let searchUserDispatch = DispatchGroup()
+            var arrayUsers = [User]()
+            Database.database().reference().child("users").queryOrdered(byChild: "name").queryStarting(atValue: name.lowercased()).queryEnding(atValue: name.lowercased()+"\u{f8ff}").observeSingleEvent(of: .value, with: { (snapShot) in
+                    for value in snapShot.value as! NSMutableDictionary{
+                        do {
+                            searchUserDispatch.enter()
+                            let data = value.value as! NSMutableDictionary
+                            data.setObject(value.key, forKey: "id" as NSCopying)
+                            let data2 = data as NSDictionary
+                            let user = try parseUser(data: data2 as! UnboxableDictionary)
+                            arrayUsers.append(user)
+                            searchUserDispatch.leave()
+                        } catch {
+                            failure(error)
+                        }
+                    }
+                    searchUserDispatch.notify(queue: .main, execute: {
+                        success(arrayUsers)
+                    })
+            })
+        }
+    }
+    
+    
     
     
     func getCurrentUser() -> User? {

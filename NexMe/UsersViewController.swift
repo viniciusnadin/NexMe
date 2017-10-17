@@ -12,16 +12,19 @@ class UsersViewController: UIViewController {
     
     // MARK :- Properties
     var viewModel: UsersViewModel!
-
+    
+    // MARK :- Outlets
+    @IBOutlet weak var menuButton: UIButton!
+    
+    
+    // MARK :- Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.configureBinds()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     init(viewModel: UsersViewModel) {
@@ -33,15 +36,34 @@ class UsersViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func configureBinds() {
+        self.menuButton.rx.tap.subscribe(onNext: {
+            self.viewModel.searchUser()
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        
     }
-    */
 
 }
+
+extension UsersViewController: UITableViewDelegate{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

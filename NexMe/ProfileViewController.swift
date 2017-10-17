@@ -43,6 +43,7 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK :- Methods
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
