@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */; };
+		D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */; };
+		D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */; };
+		D54F44031F969C74004328D8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44011F969C74004328D8 /* EditProfileViewController.swift */; };
+		D54F44041F969C74004328D8 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54F44021F969C74004328D8 /* EditProfileViewController.xib */; };
+		D54F44061F96B22F004328D8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44051F96B22F004328D8 /* CardView.swift */; };
+		D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44081F96BF0F004328D8 /* UsersViewController.swift */; };
+		D54F440B1F96BF0F004328D8 /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54F44091F96BF0F004328D8 /* UsersViewController.xib */; };
+		D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F440C1F96BF1A004328D8 /* UsersViewModel.swift */; };
+		D54F440F1F96BF42004328D8 /* UsersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F440E1F96BF42004328D8 /* UsersRouter.swift */; };
 		D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46D1F7C51D8001582D1 /* Parsers.swift */; };
 		D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46F1F7C636C001582D1 /* ImagePicker.swift */; };
 		D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A371F4F603000CDCE28 /* AppDelegate.swift */; };
@@ -14,7 +24,6 @@
 		D5B16A421F4F603000CDCE28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */; };
 		D5B16A4C1F4F62A800CDCE28 /* AppDependecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A4B1F4F62A800CDCE28 /* AppDependecies.swift */; };
 		D5B16A4E1F4F63E900CDCE28 /* UseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A4D1F4F63E900CDCE28 /* UseCases.swift */; };
-		D5B16A501F4F651F00CDCE28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A4F1F4F651F00CDCE28 /* GoogleService-Info.plist */; };
 		D5B16A541F4F65D200CDCE28 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A531F4F65D200CDCE28 /* SignInRouter.swift */; };
 		D5B16A571F4F662D00CDCE28 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A551F4F662C00CDCE28 /* SignInViewController.swift */; };
 		D5B16A581F4F662D00CDCE28 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A561F4F662D00CDCE28 /* SignInViewController.xib */; };
@@ -55,6 +64,16 @@
 /* Begin PBXFileReference section */
 		08510A995199D887E588B119 /* Pods-NexMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NexMe/Pods-NexMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6A0D8DFCE32235C0A5B0940 /* Pods_NexMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
+		D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		D54F44011F969C74004328D8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D54F44021F969C74004328D8 /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
+		D54F44051F96B22F004328D8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D54F44081F96BF0F004328D8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		D54F44091F96BF0F004328D8 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
+		D54F440C1F96BF1A004328D8 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		D54F440E1F96BF42004328D8 /* UsersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRouter.swift; sourceTree = "<group>"; };
 		D59CD46D1F7C51D8001582D1 /* Parsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsers.swift; sourceTree = "<group>"; };
 		D59CD46F1F7C636C001582D1 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5B16A341F4F603000CDCE28 /* NexMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NexMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +83,6 @@
 		D5B16A431F4F603000CDCE28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B16A4B1F4F62A800CDCE28 /* AppDependecies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependecies.swift; sourceTree = "<group>"; };
 		D5B16A4D1F4F63E900CDCE28 /* UseCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseCases.swift; sourceTree = "<group>"; };
-		D5B16A4F1F4F651F00CDCE28 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B16A531F4F65D200CDCE28 /* SignInRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
 		D5B16A551F4F662C00CDCE28 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D5B16A561F4F662D00CDCE28 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
@@ -131,6 +149,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D54F43FC1F969C0B004328D8 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */,
+				D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */,
+				D54F44011F969C74004328D8 /* EditProfileViewController.swift */,
+				D54F44021F969C74004328D8 /* EditProfileViewController.xib */,
+			);
+			name = Edit;
+			sourceTree = "<group>";
+		};
+		D54F44071F96BEF7004328D8 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				D54F440E1F96BF42004328D8 /* UsersRouter.swift */,
+				D54F440C1F96BF1A004328D8 /* UsersViewModel.swift */,
+				D54F44081F96BF0F004328D8 /* UsersViewController.swift */,
+				D54F44091F96BF0F004328D8 /* UsersViewController.xib */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
 		D5B16A2B1F4F603000CDCE28 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +192,7 @@
 		D5B16A361F4F603000CDCE28 /* NexMe */ = {
 			isa = PBXGroup;
 			children = (
+				D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */,
 				D5B16AA21F6758DE00CDCE28 /* App */,
 				D5B16A9D1F6757AD00CDCE28 /* Entities */,
 				D5B16A951F67576700CDCE28 /* Store */,
@@ -165,7 +206,6 @@
 				D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */,
 				D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */,
 				D5B16A431F4F603000CDCE28 /* Info.plist */,
-				D5B16A4F1F4F651F00CDCE28 /* GoogleService-Info.plist */,
 			);
 			path = NexMe;
 			sourceTree = "<group>";
@@ -192,6 +232,7 @@
 		D5B16A511F4F65A100CDCE28 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D54F44071F96BEF7004328D8 /* Users */,
 				D5B16A8C1F674A5600CDCE28 /* Profile */,
 				D5B16A751F660EC700CDCE28 /* Menu */,
 				D5B16A741F660EC000CDCE28 /* Events */,
@@ -227,6 +268,7 @@
 		D5B16A601F5F6B3300CDCE28 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D54F44051F96B22F004328D8 /* CardView.swift */,
 				D5B16A611F5F6B7500CDCE28 /* PopupDialog.swift */,
 			);
 			name = Helpers;
@@ -285,6 +327,7 @@
 		D5B16A8C1F674A5600CDCE28 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D54F43FC1F969C0B004328D8 /* Edit */,
 				D5B16A911F674A6E00CDCE28 /* ProfileRouter.swift */,
 				D5B16A931F674A8600CDCE28 /* ProfileViewModel.swift */,
 				D5B16A8D1F674A6500CDCE28 /* ProfileViewController.swift */,
@@ -399,14 +442,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B16A901F674A6500CDCE28 /* ProfileViewController.xib in Resources */,
+				D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */,
+				D54F44041F969C74004328D8 /* EditProfileViewController.xib in Resources */,
 				D5B16A581F4F662D00CDCE28 /* SignInViewController.xib in Resources */,
+				D54F440B1F96BF0F004328D8 /* UsersViewController.xib in Resources */,
 				D5B16A5E1F4F6B8D00CDCE28 /* Main.storyboard in Resources */,
 				D5B16A421F4F603000CDCE28 /* LaunchScreen.storyboard in Resources */,
 				D5B16A3F1F4F603000CDCE28 /* Assets.xcassets in Resources */,
 				D5B16A661F61C11100CDCE28 /* SignUpViewController.xib in Resources */,
 				D5B16A871F66120200CDCE28 /* EventsViewController.xib in Resources */,
 				D5B16A7D1F660EF100CDCE28 /* MenuViewController.xib in Resources */,
-				D5B16A501F4F651F00CDCE28 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,13 +511,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B16A621F5F6B7500CDCE28 /* PopupDialog.swift in Sources */,
+				D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */,
 				D5B16A861F66120200CDCE28 /* EventsViewController.swift in Sources */,
 				D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */,
 				D5B16A7C1F660EF100CDCE28 /* MenuViewController.swift in Sources */,
 				D5B16A9C1F67579A00CDCE28 /* Store.swift in Sources */,
+				D54F44061F96B22F004328D8 /* CardView.swift in Sources */,
 				D5B16A7F1F660F0900CDCE28 /* MenuNavigationController.swift in Sources */,
 				D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */,
 				D5B16A831F660F3A00CDCE28 /* MenuViewModel.swift in Sources */,
+				D54F44031F969C74004328D8 /* EditProfileViewController.swift in Sources */,
 				D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,
@@ -481,9 +529,11 @@
 				D5B16A811F660F1600CDCE28 /* MenuRouter.swift in Sources */,
 				D5B16A921F674A6E00CDCE28 /* ProfileRouter.swift in Sources */,
 				D5B16A731F660CC600CDCE28 /* MainRouter.swift in Sources */,
+				D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */,
 				D5B16A5A1F4F66A300CDCE28 /* SignInViewModel.swift in Sources */,
 				D5B16A541F4F65D200CDCE28 /* SignInRouter.swift in Sources */,
 				D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */,
+				D54F440F1F96BF42004328D8 /* UsersRouter.swift in Sources */,
 				D5B16A571F4F662D00CDCE28 /* SignInViewController.swift in Sources */,
 				D5B16A4E1F4F63E900CDCE28 /* UseCases.swift in Sources */,
 				D5B16A701F65D2DC00CDCE28 /* Functions.swift in Sources */,
@@ -496,8 +546,10 @@
 				D5B16A5D1F4F6B8C00CDCE28 /* ViewController.swift in Sources */,
 				D5B16A681F61C12300CDCE28 /* SignUpViewModel.swift in Sources */,
 				D5B16A651F61C11100CDCE28 /* SignUpViewController.swift in Sources */,
+				D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */,
 				D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */,
 				D5B16A4C1F4F62A800CDCE28 /* AppDependecies.swift in Sources */,
+				D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

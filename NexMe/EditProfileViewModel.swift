@@ -1,16 +1,16 @@
 //
-//  ProfileViewModel.swift
+//  EditProfileViewModel.swift
 //  NexMe
 //
-//  Created by Vinicius Nadin on 11/09/17.
+//  Created by Vinicius Nadin on 17/10/17.
 //  Copyright © 2017 Vinicius Nadin. All rights reserved.
 //
 
 import RxSwift
 
-class ProfileViewModel {
+class EditProfileViewModel {
     var useCases: UseCases!
-    var router: ProfileRouter!
+    var router: EditProfileRouter!
     var disposeBag = DisposeBag()
     
     let name = Variable<String>("")
@@ -24,10 +24,5 @@ class ProfileViewModel {
             self.avatarImageURL.value = user.avatar?.original
         }
     }
-    
-    func presentProfile() {
-        self.router.presentProfile()
-    }
-    
-    
 }
+

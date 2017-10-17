@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PopupDialog
+import Kingfisher
+import SlideMenuControllerSwift
 
 class MenuViewController: UIViewController {
     let imagePicker = ImagePicker()
@@ -19,6 +21,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var closeMenuButton: UIButton!
+    @IBOutlet weak var usersButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatar: UIImageView!
@@ -39,7 +42,6 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        configureViews()
         self.configureBinds()
     }
     
@@ -59,22 +61,23 @@ class MenuViewController: UIViewController {
             self.viewModel.presentProfile()
         }).addDisposableTo(self.viewModel.disposeBag)
         
+        self.usersButton.rx.tap.subscribe(onNext: {
+            self.viewModel.presentUsersSearch()
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.closeMenuButton.rx.tap.subscribe(onNext: {
+            self.slideMenuController()?.closeLeft()
+        }).addDisposableTo(self.viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
-                self.viewModel.useCases.fetchAvatar(completion: { (avatar) in
-                    DispatchQueue.main.async {
-                        do{
-                            self.avatar.image = try avatar.getValue()
-                        }catch{}
-                    }
-                })
+            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
         }).addDisposableTo(viewModel.disposeBag)
         
         self.viewModel.successFullSignOut.asObservable().bind { (verify) in
             if verify {
                 self.viewModel.signOut()
             }
-            }.addDisposableTo(self.viewModel.disposeBag)
+        }.addDisposableTo(self.viewModel.disposeBag)
         
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
@@ -83,7 +86,6 @@ class MenuViewController: UIViewController {
     
     @IBAction func editAvatarButtonTouched(_ sender: UIButton) {
         imagePicker.pickImageFromViewController(viewController: self) { result in
-            print(result.description)
             do {
                 let image = try result.getValue()
                 self.avatar.image = image

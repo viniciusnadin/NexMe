@@ -39,6 +39,10 @@ class MenuViewModel {
         self.router.presentProfile()
     }
     
+    func presentUsersSearch() {
+        self.router.presentUserSearch()
+    }
+    
     func uploadImage(image: UIImage) {
         let data = UIImageJPEGRepresentation(image, 1.0)!
         self.useCases.uploadAvatar(avatar: data) { (result) in
