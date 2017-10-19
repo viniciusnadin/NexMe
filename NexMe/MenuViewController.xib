@@ -13,6 +13,9 @@
         <array key="Gilroy-Bold.otf">
             <string>Gilroy-Bold</string>
         </array>
+        <array key="Gilroy-Regular.otf">
+            <string>Gilroy-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController" customModule="NexMe" customModuleProvider="target">
@@ -41,77 +44,14 @@
                         <color key="titleColor" red="0.76425682106598991" green="0.76425682106598991" blue="0.76425682106598991" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmX-gI-etC">
-                    <rect key="frame" x="0.0" y="204" width="320" height="276"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXn-hf-zty">
-                            <rect key="frame" x="8" y="8" width="304" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="2Dg-ZD-0M2"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
-                            <state key="normal" title="Eventos">
-                                <color key="titleColor" red="0.43599302029999998" green="0.43599302029999998" blue="0.43599302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6t-Mu-XY7">
-                            <rect key="frame" x="8" y="152" width="304" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="2AD-I8-SEF"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
-                            <state key="normal" title="Sair">
-                                <color key="titleColor" red="0.89126098155975342" green="0.3545563817024231" blue="0.39968371391296387" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVe-12-m6p">
-                            <rect key="frame" x="8" y="56" width="304" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="461-Tc-0tj"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
-                            <state key="normal" title="Minha Conta">
-                                <color key="titleColor" red="0.43599302029999998" green="0.43599302029999998" blue="0.43599302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXj-LP-lE6">
-                            <rect key="frame" x="8" y="104" width="304" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="19A-9N-zzt"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
-                            <state key="normal" title="Usuarios">
-                                <color key="titleColor" red="0.43599302029999998" green="0.43599302029999998" blue="0.43599302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="mXj-LP-lE6" firstAttribute="top" secondItem="sVe-12-m6p" secondAttribute="bottom" constant="8" id="6NO-nr-k2C"/>
-                        <constraint firstItem="NXn-hf-zty" firstAttribute="leading" secondItem="bmX-gI-etC" secondAttribute="leading" constant="8" id="7bC-tP-8T6"/>
-                        <constraint firstAttribute="trailing" secondItem="mXj-LP-lE6" secondAttribute="trailing" constant="8" id="C8q-tX-U3z"/>
-                        <constraint firstAttribute="trailing" secondItem="sVe-12-m6p" secondAttribute="trailing" constant="8" id="JHv-qQ-AJP"/>
-                        <constraint firstItem="e6t-Mu-XY7" firstAttribute="top" secondItem="mXj-LP-lE6" secondAttribute="bottom" constant="8" id="SUs-P6-OcY"/>
-                        <constraint firstItem="mXj-LP-lE6" firstAttribute="leading" secondItem="bmX-gI-etC" secondAttribute="leading" constant="8" id="Tki-Wz-dku"/>
-                        <constraint firstItem="e6t-Mu-XY7" firstAttribute="leading" secondItem="bmX-gI-etC" secondAttribute="leading" constant="8" id="XYf-tn-m3l"/>
-                        <constraint firstAttribute="trailing" secondItem="e6t-Mu-XY7" secondAttribute="trailing" constant="8" id="bQl-7v-kqu"/>
-                        <constraint firstAttribute="trailing" secondItem="NXn-hf-zty" secondAttribute="trailing" constant="8" id="bsS-Di-BCC"/>
-                        <constraint firstItem="sVe-12-m6p" firstAttribute="leading" secondItem="bmX-gI-etC" secondAttribute="leading" constant="8" id="pgN-UZ-Oe1"/>
-                        <constraint firstItem="NXn-hf-zty" firstAttribute="top" secondItem="bmX-gI-etC" secondAttribute="top" constant="8" id="xuW-Ct-8OI"/>
-                        <constraint firstItem="sVe-12-m6p" firstAttribute="top" secondItem="NXn-hf-zty" secondAttribute="bottom" constant="8" id="z7d-bc-Ty0"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usuario" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6I-Zf-jPW">
-                    <rect key="frame" x="20" y="137" width="280" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="NJr-AR-ea3"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="19"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usuario" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6I-Zf-jPW">
+                    <rect key="frame" x="100" y="82" width="216" height="24.5"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="21"/>
                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7G6-vD-4NU">
-                    <rect key="frame" x="120" y="36" width="80" height="100"/>
+                    <rect key="frame" x="16" y="44" width="80" height="100"/>
                     <subviews>
                         <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userProfile" translatesAutoresizingMaskIntoConstraints="NO" id="qrw-6h-rjA">
                             <rect key="frame" x="5" y="16" width="69" height="69"/>
@@ -152,26 +92,82 @@
                         <constraint firstAttribute="height" constant="100" id="xuS-lE-eYu"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXn-hf-zty">
+                    <rect key="frame" x="23" y="170" width="281" height="32"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="20"/>
+                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Eventos" image="calendar">
+                        <color key="titleColor" red="0.90980392156862744" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6t-Mu-XY7">
+                    <rect key="frame" x="23" y="341" width="281" height="32"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="20"/>
+                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Sair" image="logout">
+                        <color key="titleColor" red="0.8901960784313725" green="0.3529411764705882" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXj-LP-lE6">
+                    <rect key="frame" x="23" y="284" width="281" height="32"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="20"/>
+                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Usuarios" image="user">
+                        <color key="titleColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NexMe 0.6.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1K-IF-RLu">
+                    <rect key="frame" x="16" y="450" width="288" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="1CA-t2-oiE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="13"/>
+                    <color key="textColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVe-12-m6p">
+                    <rect key="frame" x="23" y="227" width="281" height="32"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="20"/>
+                    <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Minha Conta" image="settings">
+                        <color key="titleColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="bmX-gI-etC" secondAttribute="trailing" id="1Kz-F9-H23"/>
-                <constraint firstItem="bmX-gI-etC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="204" id="8nj-0j-RJD"/>
+                <constraint firstItem="mXj-LP-lE6" firstAttribute="top" secondItem="sVe-12-m6p" secondAttribute="bottom" constant="25" id="0gW-3d-nza"/>
+                <constraint firstAttribute="trailing" secondItem="NXn-hf-zty" secondAttribute="trailing" constant="16" id="1jf-wF-evC"/>
+                <constraint firstItem="NXn-hf-zty" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="5Ko-xy-rM8"/>
+                <constraint firstItem="e6t-Mu-XY7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="8oC-uH-LLm"/>
                 <constraint firstAttribute="trailing" secondItem="X2r-RC-e74" secondAttribute="trailing" constant="20" id="9ct-m6-lQC"/>
-                <constraint firstItem="l6I-Zf-jPW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="ErK-ln-Cqc"/>
-                <constraint firstAttribute="trailing" secondItem="l6I-Zf-jPW" secondAttribute="trailing" constant="20" id="F3Z-qg-sfF"/>
-                <constraint firstItem="l6I-Zf-jPW" firstAttribute="top" secondItem="7G6-vD-4NU" secondAttribute="bottom" constant="1" id="J67-lo-6cs"/>
+                <constraint firstItem="sVe-12-m6p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="GKp-tU-WAe"/>
+                <constraint firstAttribute="trailing" secondItem="e6t-Mu-XY7" secondAttribute="trailing" constant="16" id="JSM-8W-oSC"/>
+                <constraint firstItem="sVe-12-m6p" firstAttribute="top" secondItem="NXn-hf-zty" secondAttribute="bottom" constant="25" id="TpX-cl-Cyz"/>
+                <constraint firstItem="e6t-Mu-XY7" firstAttribute="top" secondItem="mXj-LP-lE6" secondAttribute="bottom" constant="25" id="WKo-2X-vBE"/>
                 <constraint firstItem="X2r-RC-e74" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="cHe-o0-7tM"/>
-                <constraint firstAttribute="bottom" secondItem="bmX-gI-etC" secondAttribute="bottom" id="dib-vd-xQD"/>
-                <constraint firstItem="7G6-vD-4NU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="36" id="hYK-QI-GJX"/>
-                <constraint firstItem="bmX-gI-etC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kjM-Wq-IBu"/>
-                <constraint firstItem="7G6-vD-4NU" firstAttribute="centerX" secondItem="bmX-gI-etC" secondAttribute="centerX" id="pij-qg-AP1"/>
+                <constraint firstItem="7G6-vD-4NU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="dNm-3w-HZZ"/>
+                <constraint firstItem="l6I-Zf-jPW" firstAttribute="centerY" secondItem="ply-fx-Orf" secondAttribute="centerY" id="dyF-wY-4fW"/>
+                <constraint firstItem="NXn-hf-zty" firstAttribute="top" secondItem="7G6-vD-4NU" secondAttribute="bottom" constant="26" id="e4v-Nf-hgz"/>
+                <constraint firstAttribute="bottom" secondItem="p1K-IF-RLu" secondAttribute="bottom" constant="10" id="en7-sH-2KW"/>
+                <constraint firstItem="7G6-vD-4NU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="hYK-QI-GJX"/>
+                <constraint firstAttribute="trailing" secondItem="l6I-Zf-jPW" secondAttribute="trailing" constant="4" id="hkB-iD-qvQ"/>
+                <constraint firstAttribute="trailing" secondItem="mXj-LP-lE6" secondAttribute="trailing" constant="16" id="kog-fJ-NWz"/>
+                <constraint firstAttribute="trailing" secondItem="p1K-IF-RLu" secondAttribute="trailing" constant="16" id="ndr-bD-Beu"/>
+                <constraint firstItem="mXj-LP-lE6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="wfz-oL-DjB"/>
+                <constraint firstItem="l6I-Zf-jPW" firstAttribute="leading" secondItem="7G6-vD-4NU" secondAttribute="trailing" constant="4" id="xSh-WQ-s8k"/>
+                <constraint firstItem="p1K-IF-RLu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="yLP-vq-MBI"/>
+                <constraint firstAttribute="trailing" secondItem="sVe-12-m6p" secondAttribute="trailing" constant="16" id="zeA-9d-KBc"/>
             </constraints>
         </view>
     </objects>
     <resources>
+        <image name="calendar" width="32" height="32"/>
         <image name="iconExit" width="22" height="22"/>
         <image name="icon_picture_profile" width="24" height="24"/>
+        <image name="logout" width="32" height="32"/>
+        <image name="settings" width="32" height="32"/>
+        <image name="user" width="32" height="32"/>
         <image name="userProfile" width="114" height="114"/>
     </resources>
 </document>
