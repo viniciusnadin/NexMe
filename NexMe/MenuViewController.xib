@@ -9,6 +9,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gilroy-Bold.otf">
+            <string>Gilroy-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController" customModule="NexMe" customModuleProvider="target">
             <connections>
@@ -44,6 +49,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="2Dg-ZD-0M2"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
                             <state key="normal" title="Eventos">
                                 <color key="titleColor" red="0.43599302029999998" green="0.43599302029999998" blue="0.43599302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -53,8 +59,9 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="2AD-I8-SEF"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
                             <state key="normal" title="Sair">
-                                <color key="titleColor" red="0.43599302026395936" green="0.43599302026395936" blue="0.43599302026395936" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.89126098155975342" green="0.3545563817024231" blue="0.39968371391296387" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVe-12-m6p">
@@ -62,6 +69,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="461-Tc-0tj"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
                             <state key="normal" title="Minha Conta">
                                 <color key="titleColor" red="0.43599302029999998" green="0.43599302029999998" blue="0.43599302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -71,6 +79,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="19A-9N-zzt"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
                             <state key="normal" title="Usuarios">
                                 <color key="titleColor" red="0.43599302029999998" green="0.43599302029999998" blue="0.43599302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -97,7 +106,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="NJr-AR-ea3"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="19"/>
                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

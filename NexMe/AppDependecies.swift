@@ -27,6 +27,7 @@ struct AppDependecies {
     let profileRouter: ProfileRouter
     let editProfileRouter: EditProfileRouter
     let usersRouter: UsersRouter
+    let userDetailRouter: UserDetailRouter
     
     init(window: UIWindow) {
         self.window = window
@@ -43,11 +44,13 @@ struct AppDependecies {
         self.profileRouter = ProfileRouter(useCases: self.useCases, window: self.window)
         self.editProfileRouter = EditProfileRouter(useCases: self.useCases, window: self.window)
         self.usersRouter = UsersRouter(useCases: self.useCases, window: self.window)
+        self.userDetailRouter = UserDetailRouter(useCases: self.useCases, window: self.window)
         
         // Routing
         self.signInRouter.mainRouter = mainRouter
         self.signInRouter.signUpRouter = self.signUpRouter
         self.signUpRouter.signInRouter = self.signInRouter
+        self.usersRouter.userDetailRouter = self.userDetailRouter
         self.menuRouter.eventsRouter = self.eventsRouter
         self.menuRouter.signInRouter = self.signInRouter
         self.menuRouter.profileRouter = self.profileRouter
@@ -59,10 +62,10 @@ struct AppDependecies {
     func presentUI() {
         if useCases.userIsSignedIn {
             self.mainRouter.presentMain()
-//            self.store.deleteCurrentUser()
-//            self.useCases.fetchUser(completion: { (result) in
-//                print(result)
-//            })
+            self.store.deleteCurrentUser()
+            self.useCases.fetchUser(completion: { (result) in
+                print(result)
+            })
         } else {
             self.signInRouter.presentSignIn()
         }

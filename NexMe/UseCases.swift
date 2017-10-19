@@ -106,12 +106,14 @@ final class UseCases {
                 let userId = Auth.auth().currentUser?.uid
                 let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
                 usersReference.updateChildValues(updateProfileImage)
+                self.getUpdatedCurrentUser()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 success()
             })
         }
     }
     
+    // DELETE
     func fetchAvatar(completion: @escaping (Result<UIImage>) -> Void) {
         deliver(completion: completion) { success, failure in
             if let url = self.getCurrentUser()?.avatar?.original{
@@ -133,8 +135,14 @@ final class UseCases {
         deliver(completion: completion) { success, failure in
             let searchUserDispatch = DispatchGroup()
             var arrayUsers = [User]()
+            let userId = Auth.auth().currentUser?.uid
             Database.database().reference().child("users").queryOrdered(byChild: "name").queryStarting(atValue: name.lowercased()).queryEnding(atValue: name.lowercased()+"\u{f8ff}").observeSingleEvent(of: .value, with: { (snapShot) in
-                    for value in snapShot.value as! NSMutableDictionary{
+                guard let values = (snapShot.value as? NSMutableDictionary) else {
+                    success(arrayUsers)
+                    return
+                }
+                for value in values{
+                    if !((value.key as! String) == userId) {
                         do {
                             searchUserDispatch.enter()
                             let data = value.value as! NSMutableDictionary
@@ -147,9 +155,10 @@ final class UseCases {
                             failure(error)
                         }
                     }
-                    searchUserDispatch.notify(queue: .main, execute: {
-                        success(arrayUsers)
-                    })
+                }
+                searchUserDispatch.notify(queue: .main, execute: {
+                    success(arrayUsers)
+                })
             })
         }
     }
@@ -159,6 +168,13 @@ final class UseCases {
     
     func getCurrentUser() -> User? {
         return self.store.getCurrentUser()
+    }
+    
+    func getUpdatedCurrentUser(){
+        self.store.deleteCurrentUser()
+        self.fetchUser(completion: { (user) in
+            //nothing
+        })
     }
     
     
