@@ -16,9 +16,6 @@
         <array key="Gilroy-Medium.otf">
             <string>Gilroy-Medium</string>
         </array>
-        <array key="Gilroy-Regular.otf">
-            <string>Gilroy-Regular</string>
-        </array>
         <array key="Gilroy-SemiBold.otf">
             <string>Gilroy-SemiBold</string>
         </array>
@@ -50,13 +47,13 @@
                             <state key="normal" image="left"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joao Kleber Machado" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfz-rn-P0T">
-                            <rect key="frame" x="52" y="32.5" width="228" height="20"/>
-                            <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="17"/>
+                            <rect key="frame" x="52" y="33.5" width="228" height="19"/>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.15868747229999999" green="0.2182204425" blue="0.30320093040000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="jfz-rn-P0T" secondAttribute="trailing" constant="40" id="6ZC-i8-7n6"/>
                         <constraint firstItem="cZm-bA-LCr" firstAttribute="top" secondItem="v2h-cX-wPl" secondAttribute="top" constant="24" id="Agt-tj-OdC"/>
