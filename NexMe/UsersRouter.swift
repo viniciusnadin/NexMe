@@ -12,6 +12,7 @@ class UsersRouter {
     let useCases: UseCases!
     let window: UIWindow!
     var viewController : UsersViewController!
+    var userDetailRouter: UserDetailRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
@@ -33,6 +34,10 @@ class UsersRouter {
         viewModel.useCases = self.useCases
         self.viewController = UsersViewController(viewModel: viewModel)
         return self.viewController
+    }
+    
+    func presentUserDetail(user: User){
+        userDetailRouter.presentUserDetailFromViewController(presentingViewController: self.viewController, user: user)
     }
     
 }

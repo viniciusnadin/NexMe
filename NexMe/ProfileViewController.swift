@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var cardView: UIView!
     
 
     // MARK :- Life Cicle
@@ -28,6 +29,16 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.configureBinds()
         self.viewModel.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        cardView.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        cardView.layer.cornerRadius = 3.0
+        cardView.layer.masksToBounds = false
+        cardView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        cardView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cardView.layer.shadowOpacity = 0.8
     }
 
     override func didReceiveMemoryWarning() {
