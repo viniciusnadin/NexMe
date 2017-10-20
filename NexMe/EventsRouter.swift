@@ -36,4 +36,8 @@ class EventsRouter {
         return viewController
     }
     
+    func presentNewEvent() {
+        
+    }
+    
 }

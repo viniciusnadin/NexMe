@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D500D3191F99810C00FBDB8E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3181F99810C00FBDB8E /* Event.swift */; };
+		D500D31B1F9985EB00FBDB8E /* EventCategorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */; };
 		D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */; };
 		D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */; };
 		D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */; };
@@ -70,6 +72,8 @@
 /* Begin PBXFileReference section */
 		08510A995199D887E588B119 /* Pods-NexMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NexMe/Pods-NexMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6A0D8DFCE32235C0A5B0940 /* Pods_NexMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D500D3181F99810C00FBDB8E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategorie.swift; sourceTree = "<group>"; };
 		D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 			children = (
 				D5B16A9E1F6757BB00CDCE28 /* User.swift */,
 				D5B16AA01F6758C700CDCE28 /* Avatar.swift */,
+				D500D3181F99810C00FBDB8E /* Event.swift */,
+				D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -588,11 +594,13 @@
 				D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,
+				D500D31B1F9985EB00FBDB8E /* EventCategorie.swift in Sources */,
 				D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */,
 				D5B16A8F1F674A6500CDCE28 /* ProfileViewController.swift in Sources */,
 				D5B16A981F67577400CDCE28 /* UserModel.swift in Sources */,
 				D5B16A811F660F1600CDCE28 /* MenuRouter.swift in Sources */,
 				D5B16A921F674A6E00CDCE28 /* ProfileRouter.swift in Sources */,
+				D500D3191F99810C00FBDB8E /* Event.swift in Sources */,
 				D5B16A731F660CC600CDCE28 /* MainRouter.swift in Sources */,
 				D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */,
 				D5B16A5A1F4F66A300CDCE28 /* SignInViewModel.swift in Sources */,

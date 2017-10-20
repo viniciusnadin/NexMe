@@ -18,6 +18,7 @@ class EventsViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var newEventButton: UIButton!
     
     
     init(viewModel: EventsViewModel) {
@@ -44,7 +45,11 @@ class EventsViewController: UIViewController {
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
-        }).addDisposableTo(viewModel.disposeBag)
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.newEventButton.rx.tap.subscribe(onNext: {
+            self.viewModel.newEvent()
+        }).addDisposableTo(self.viewModel.disposeBag)
     }
 
 }

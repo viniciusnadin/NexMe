@@ -20,4 +20,8 @@ class EventsViewModel {
         self.router.presentEvents()
     }
     
+    func newEvent() {
+        self.router.presentNewEvent()
+    }
+    
 }

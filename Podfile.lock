@@ -29,6 +29,13 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleMaps (2.4.0):
+    - GoogleMaps/Maps (= 2.4.0)
+  - GoogleMaps/Base (2.4.0)
+  - GoogleMaps/Maps (2.4.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.4.0):
+    - GoogleMaps/Base (= 2.4.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -56,6 +63,8 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - GoogleMaps
+  - GooglePlaces
   - Hero
   - Kingfisher (~> 4.0)
   - Pastel
@@ -74,6 +83,8 @@ SPEC CHECKSUMS:
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
+  GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
@@ -86,6 +97,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
 
-PODFILE CHECKSUM: fef49a658fb898c3a640024a2a1081c112ca9b67
+PODFILE CHECKSUM: ab7e9ee206876d7a39fd2395963e925ced75236c
 
 COCOAPODS: 1.2.0
