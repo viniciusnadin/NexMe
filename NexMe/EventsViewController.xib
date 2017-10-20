@@ -17,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsViewController" customModule="NexMe" customModuleProvider="target">
             <connections>
                 <outlet property="menuButton" destination="6Mv-1B-cD2" id="b0g-NJ-oy7"/>
+                <outlet property="newEventButton" destination="dzL-Rl-f1D" id="WVz-h6-v3B"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,21 +37,31 @@
                             </constraints>
                             <state key="normal" image="icon-menu"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURITIBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ita-JE-93p">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENTOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ita-JE-93p">
                             <rect key="frame" x="111" y="35" width="99" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="99" id="ZLI-qR-2rv"/>
                                 <constraint firstAttribute="height" constant="14" id="btR-aF-CZ5"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
-                            <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.90980392156862744" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzL-Rl-f1D">
+                            <rect key="frame" x="260" y="16" width="52" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="NMc-x1-8uR"/>
+                                <constraint firstAttribute="width" constant="52" id="T6y-Sd-7Wb"/>
+                            </constraints>
+                            <state key="normal" image="newEvent"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="dzL-Rl-f1D" firstAttribute="centerY" secondItem="ita-JE-93p" secondAttribute="centerY" id="0Er-G7-Zph"/>
                         <constraint firstItem="ita-JE-93p" firstAttribute="centerX" secondItem="11A-PS-bCa" secondAttribute="centerX" id="Hbb-lV-4eT"/>
                         <constraint firstItem="6Mv-1B-cD2" firstAttribute="leading" secondItem="11A-PS-bCa" secondAttribute="leading" constant="8" id="WN9-t6-vYf"/>
+                        <constraint firstAttribute="trailing" secondItem="dzL-Rl-f1D" secondAttribute="trailing" constant="8" id="bs9-CN-eKc"/>
                         <constraint firstAttribute="height" constant="68" id="jry-bn-qFW"/>
                         <constraint firstAttribute="bottom" secondItem="ita-JE-93p" secondAttribute="bottom" constant="19" id="qHv-ZE-0C1"/>
                         <constraint firstItem="6Mv-1B-cD2" firstAttribute="top" secondItem="11A-PS-bCa" secondAttribute="top" constant="24" id="yNH-Z1-BrR"/>
@@ -67,5 +78,6 @@
     </objects>
     <resources>
         <image name="icon-menu" width="19" height="15"/>
+        <image name="newEvent" width="16" height="16"/>
     </resources>
 </document>

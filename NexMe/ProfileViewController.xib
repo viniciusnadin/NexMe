@@ -15,9 +15,6 @@
         <array key="Gilroy-Medium.otf">
             <string>Gilroy-Medium</string>
         </array>
-        <array key="Gilroy-Regular.otf">
-            <string>Gilroy-Regular</string>
-        </array>
         <array key="Gilroy-SemiBold.otf">
             <string>Gilroy-SemiBold</string>
         </array>
@@ -50,7 +47,7 @@
                             <state key="normal" image="icon-menu"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MINHA CONTA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-Rh-zoo">
-                            <rect key="frame" x="105.5" y="33.5" width="109.5" height="19"/>
+                            <rect key="frame" x="106" y="34" width="109.5" height="19"/>
                             <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
                             <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -84,21 +81,15 @@
                     <color key="textColor" red="0.15868747229999999" green="0.2182204425" blue="0.30320093040000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@viniciato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NY-r7-3Qc">
-                    <rect key="frame" x="126.5" y="190" width="67.5" height="17.5"/>
-                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="15"/>
-                    <color key="textColor" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nc-95-eLs">
-                    <rect key="frame" x="30" y="215.5" width="260" height="1"/>
+                    <rect key="frame" x="30" y="210" width="260" height="1"/>
                     <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="7EI-NN-YNY"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-EQ-3Jy">
-                    <rect key="frame" x="40" y="224" width="240" height="38"/>
+                    <rect key="frame" x="40" y="219" width="240" height="38"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="U2W-eA-jqX">
                             <rect key="frame" x="0.0" y="0.0" width="80" height="38"/>
@@ -175,19 +166,12 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tH4-ed-lQs">
-                    <rect key="frame" x="30" y="270" width="260" height="1"/>
+                    <rect key="frame" x="30" y="265" width="260" height="1"/>
                     <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="s7B-Dg-i5h"/>
                     </constraints>
                 </view>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="asdfasdf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1Y-PR-sbz">
-                    <rect key="frame" x="83" y="343" width="174" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uo7-w7-5op">
                     <rect key="frame" x="258" y="93" width="32" height="32"/>
                     <color key="backgroundColor" red="0.14457883560000001" green="0.5574401202" blue="0.71311865480000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -201,27 +185,37 @@
                         <color key="titleColor" red="0.89126098155975342" green="0.3545563817024231" blue="0.39968371391296387" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vininadin@hotmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1Y-PR-sbz">
+                    <rect key="frame" x="20" y="184" width="280" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="ChX-sj-BaD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="15"/>
+                    <color key="textColor" red="0.51784205439999997" green="0.58159953360000005" blue="0.58617168659999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="tH4-ed-lQs" firstAttribute="top" secondItem="gZF-EQ-3Jy" secondAttribute="bottom" constant="8" id="2GU-g6-PZu"/>
-                <constraint firstItem="6NY-r7-3Qc" firstAttribute="top" secondItem="0zI-sj-gTS" secondAttribute="bottom" constant="1" id="7bA-L5-Eef"/>
-                <constraint firstItem="1Nc-95-eLs" firstAttribute="top" secondItem="6NY-r7-3Qc" secondAttribute="bottom" constant="8" id="8xp-Sr-OEV"/>
                 <constraint firstItem="Vtb-Nl-gkq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CM3-6A-jXD"/>
                 <constraint firstItem="uo7-w7-5op" firstAttribute="top" secondItem="Vtb-Nl-gkq" secondAttribute="bottom" constant="25" id="DsR-1Q-76y"/>
                 <constraint firstItem="Wog-2f-93h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gc9-Et-Nrk"/>
                 <constraint firstItem="gZF-EQ-3Jy" firstAttribute="top" secondItem="1Nc-95-eLs" secondAttribute="bottom" constant="8" id="HDw-VO-uul"/>
                 <constraint firstItem="0zI-sj-gTS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="MBq-Pt-53T"/>
+                <constraint firstAttribute="trailing" secondItem="D1Y-PR-sbz" secondAttribute="trailing" constant="20" id="QIg-sC-sLK"/>
+                <constraint firstItem="D1Y-PR-sbz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="SJm-0F-1Db"/>
                 <constraint firstItem="0zI-sj-gTS" firstAttribute="top" secondItem="Wog-2f-93h" secondAttribute="bottom" constant="6" id="TG3-e8-Set"/>
                 <constraint firstAttribute="trailing" secondItem="Vtb-Nl-gkq" secondAttribute="trailing" id="WRq-2Y-n97"/>
                 <constraint firstItem="Vtb-Nl-gkq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WXm-3a-z5i"/>
                 <constraint firstItem="1Nc-95-eLs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="XOB-sy-Rej"/>
                 <constraint firstItem="gZF-EQ-3Jy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="YKB-jJ-tQd"/>
-                <constraint firstItem="6NY-r7-3Qc" firstAttribute="centerX" secondItem="0zI-sj-gTS" secondAttribute="centerX" id="gBt-L6-22x"/>
+                <constraint firstItem="D1Y-PR-sbz" firstAttribute="top" secondItem="0zI-sj-gTS" secondAttribute="bottom" constant="-5" id="eNl-qT-DFJ"/>
                 <constraint firstAttribute="trailing" secondItem="uo7-w7-5op" secondAttribute="trailing" constant="30" id="hL0-He-eRd"/>
                 <constraint firstAttribute="trailing" secondItem="1Nc-95-eLs" secondAttribute="trailing" constant="30" id="qqL-GQ-RAp"/>
                 <constraint firstAttribute="trailing" secondItem="tH4-ed-lQs" secondAttribute="trailing" constant="30" id="qxC-aM-Gxt"/>
                 <constraint firstAttribute="trailing" secondItem="gZF-EQ-3Jy" secondAttribute="trailing" constant="40" id="uKB-UE-Wq2"/>
+                <constraint firstItem="1Nc-95-eLs" firstAttribute="top" secondItem="D1Y-PR-sbz" secondAttribute="bottom" constant="6" id="vK4-4A-ofd"/>
                 <constraint firstAttribute="trailing" secondItem="0zI-sj-gTS" secondAttribute="trailing" constant="30" id="vY2-qi-mEj"/>
                 <constraint firstItem="tH4-ed-lQs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="zTF-hk-9y6"/>
                 <constraint firstItem="Wog-2f-93h" firstAttribute="top" secondItem="Vtb-Nl-gkq" secondAttribute="bottom" constant="16" id="zap-aX-qCw"/>

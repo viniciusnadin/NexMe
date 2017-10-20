@@ -19,5 +19,6 @@ target 'NexMe' do
   pod 'Unbox'
   pod 'SwiftyJSON'
   pod 'Kingfisher', '~> 4.0'
-  
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'  
 end
