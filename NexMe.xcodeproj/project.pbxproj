@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D500D3191F99810C00FBDB8E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3181F99810C00FBDB8E /* Event.swift */; };
 		D500D31B1F9985EB00FBDB8E /* EventCategorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */; };
+		D500D3201F9BC13800FBDB8E /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D31E1F9BC13800FBDB8E /* NewEventViewController.swift */; };
+		D500D3211F9BC13800FBDB8E /* NewEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D500D31F1F9BC13800FBDB8E /* NewEventViewController.xib */; };
+		D500D3231F9BC7F500FBDB8E /* NewEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3221F9BC7F500FBDB8E /* NewEventViewModel.swift */; };
+		D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */; };
 		D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */; };
 		D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */; };
 		D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */; };
@@ -74,6 +78,10 @@
 		B6A0D8DFCE32235C0A5B0940 /* Pods_NexMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D500D3181F99810C00FBDB8E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategorie.swift; sourceTree = "<group>"; };
+		D500D31E1F9BC13800FBDB8E /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
+		D500D31F1F9BC13800FBDB8E /* NewEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventViewController.xib; sourceTree = "<group>"; };
+		D500D3221F9BC7F500FBDB8E /* NewEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewModel.swift; sourceTree = "<group>"; };
+		D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRouter.swift; sourceTree = "<group>"; };
 		D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -171,6 +179,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D500D31C1F9BC11300FBDB8E /* Categorie */ = {
+			isa = PBXGroup;
+			children = (
+				D5B16A8A1F66121500CDCE28 /* EventsRouter.swift */,
+				D5B16A881F66120C00CDCE28 /* EventsViewModel.swift */,
+				D5B16A841F66120200CDCE28 /* EventsViewController.swift */,
+				D5B16A851F66120200CDCE28 /* EventsViewController.xib */,
+			);
+			name = Categorie;
+			sourceTree = "<group>";
+		};
+		D500D31D1F9BC12200FBDB8E /* New */ = {
+			isa = PBXGroup;
+			children = (
+				D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */,
+				D500D3221F9BC7F500FBDB8E /* NewEventViewModel.swift */,
+				D500D31E1F9BC13800FBDB8E /* NewEventViewController.swift */,
+				D500D31F1F9BC13800FBDB8E /* NewEventViewController.xib */,
+			);
+			name = New;
+			sourceTree = "<group>";
+		};
 		D54F43FC1F969C0B004328D8 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +286,7 @@
 				D54F44071F96BEF7004328D8 /* Users */,
 				D5B16A8C1F674A5600CDCE28 /* Profile */,
 				D5B16A751F660EC700CDCE28 /* Menu */,
-				D5B16A741F660EC000CDCE28 /* Events */,
+				D5B16A741F660EC000CDCE28 /* Event */,
 				D5B16A711F660CB900CDCE28 /* Main */,
 				D5B16A5F1F5E24D500CDCE28 /* Sign Up */,
 				D5B16A521F4F65B600CDCE28 /* Sign In */,
@@ -323,15 +353,13 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		D5B16A741F660EC000CDCE28 /* Events */ = {
+		D5B16A741F660EC000CDCE28 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				D5B16A8A1F66121500CDCE28 /* EventsRouter.swift */,
-				D5B16A881F66120C00CDCE28 /* EventsViewModel.swift */,
-				D5B16A841F66120200CDCE28 /* EventsViewController.swift */,
-				D5B16A851F66120200CDCE28 /* EventsViewController.xib */,
+				D500D31D1F9BC12200FBDB8E /* New */,
+				D500D31C1F9BC11300FBDB8E /* Categorie */,
 			);
-			name = Events;
+			name = Event;
 			sourceTree = "<group>";
 		};
 		D5B16A751F660EC700CDCE28 /* Menu */ = {
@@ -521,6 +549,7 @@
 				D5B16A661F61C11100CDCE28 /* SignUpViewController.xib in Resources */,
 				D5B16A871F66120200CDCE28 /* EventsViewController.xib in Resources */,
 				D5B16A7D1F660EF100CDCE28 /* MenuViewController.xib in Resources */,
+				D500D3211F9BC13800FBDB8E /* NewEventViewController.xib in Resources */,
 				D5D367B51F97F94000A5C2E0 /* CardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B16A621F5F6B7500CDCE28 /* PopupDialog.swift in Sources */,
+				D500D3201F9BC13800FBDB8E /* NewEventViewController.swift in Sources */,
 				D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */,
 				D5B16A861F66120200CDCE28 /* EventsViewController.swift in Sources */,
 				D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */,
@@ -621,7 +651,9 @@
 				D5D367B41F97F94000A5C2E0 /* CardTableViewCell.swift in Sources */,
 				D5B16A651F61C11100CDCE28 /* SignUpViewController.swift in Sources */,
 				D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */,
+				D500D3231F9BC7F500FBDB8E /* NewEventViewModel.swift in Sources */,
 				D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */,
+				D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */,
 				D55229B01F984D46002B7AFC /* UserDetailRouter.swift in Sources */,
 				D5B16A4C1F4F62A800CDCE28 /* AppDependecies.swift in Sources */,
 				D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */,

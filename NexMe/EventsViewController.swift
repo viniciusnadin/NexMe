@@ -20,7 +20,6 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var newEventButton: UIButton!
     
-    
     init(viewModel: EventsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
