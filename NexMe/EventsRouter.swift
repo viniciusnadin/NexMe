@@ -13,6 +13,7 @@ class EventsRouter {
     let useCases: UseCases
     var viewController: EventsViewController!
     var newEventRouter: NewEventRouter!
+    var eventListRouter: EventListRouter!
     
     init(window: UIWindow, useCases: UseCases) {
         self.window = window
@@ -39,6 +40,10 @@ class EventsRouter {
     
     func presentNewEvent() {
         self.newEventRouter.presentNewEventFromViewController(presentingViewController: self.viewController)
+    }
+    
+    func presentEventsByFilter(categorie: EventCategorie){
+        self.eventListRouter.presentEventsFromViewController(presentingViewController: self.viewController, categorie: categorie)
     }
     
 }
