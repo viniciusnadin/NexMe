@@ -13,6 +13,16 @@ class EventsViewModel {
     var router: EventsRouter!
     let disposeBag = DisposeBag()
     
+    let categories = Variable<[EventCategorie]>([])
+    
+    func viewDidLoad() {
+        self.useCases.findAllCategories(completion: { (categories) in
+            let array = categories.value!
+            self.categories.value.removeAll()
+            self.categories.value.append(contentsOf: array)
+        })
+    }
+    
     let errorMessage = Variable<String>("")
     let loading = Variable<Bool>(false)
     

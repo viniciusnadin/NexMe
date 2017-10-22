@@ -185,7 +185,7 @@ final class UseCases {
             let databaseReference = Database.database().reference()
             let eventsReference = databaseReference.child("event").child("events").childByAutoId()
             let values : [String : Any]!
-            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
+            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
             eventsReference.updateChildValues(values) { (error, reference) in
                 if error != nil {
                     failure(error!)
@@ -196,10 +196,16 @@ final class UseCases {
                     if err != nil {
                         failure(error!)
                     }
+                    self.saveCity(name: event.city)
                     success()
                 })
             }
         }
+    }
+    
+    func saveCity(name: String){
+        let value = [name : ""] as [String : String]
+        Database.database().reference().child("city").child("cities").updateChildValues(value)
     }
     
     func createAllCategories(){

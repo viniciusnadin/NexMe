@@ -141,10 +141,17 @@ extension NewEventViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        self.viewModel.city = ""
         self.locationTextField.text = place.name
         let position = place.coordinate
         let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 18)
         self.googleMapsView.camera = camera
+        let fullAddress = place.addressComponents
+        for address in fullAddress! {
+            if (address.type == "administrative_area_level_2"){
+                self.viewModel.city = address.name
+            }
+        }
         let marker = GMSMarker(position: position)
         marker.title = place.name
         marker.map = self.googleMapsView

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gilroy-Bold.otf">
+            <string>Gilroy-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CardCollectionViewCell" customModule="NexMe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sG4-9g-0ft">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="LLX-C5-0LP">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="gN5-hm-2s5"/>
+                                    <constraint firstAttribute="height" constant="160" id="iqQ-hc-EEd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cursos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adc-8M-mrB">
+                                <rect key="frame" x="0.0" y="160" width="160" height="30"/>
+                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="21"/>
+                                <color key="textColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="adc-8M-mrB" secondAttribute="bottom" id="20g-iJ-ZDj"/>
+                            <constraint firstItem="adc-8M-mrB" firstAttribute="leading" secondItem="sG4-9g-0ft" secondAttribute="leading" id="9f9-l3-s77"/>
+                            <constraint firstAttribute="trailing" secondItem="adc-8M-mrB" secondAttribute="trailing" id="aDD-In-X2Z"/>
+                            <constraint firstItem="LLX-C5-0LP" firstAttribute="leading" secondItem="sG4-9g-0ft" secondAttribute="leading" id="b5p-kC-ayu"/>
+                            <constraint firstItem="adc-8M-mrB" firstAttribute="top" secondItem="LLX-C5-0LP" secondAttribute="bottom" id="evs-Fp-pQJ"/>
+                            <constraint firstItem="LLX-C5-0LP" firstAttribute="top" secondItem="sG4-9g-0ft" secondAttribute="top" id="hSX-rD-yNv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="sG4-9g-0ft" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JcK-Hj-0fz"/>
+                <constraint firstItem="sG4-9g-0ft" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UxS-TH-uAE"/>
+                <constraint firstAttribute="bottom" secondItem="sG4-9g-0ft" secondAttribute="bottom" id="l1i-7I-Wt0"/>
+                <constraint firstAttribute="trailing" secondItem="sG4-9g-0ft" secondAttribute="trailing" id="qj1-mQ-gyW"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="160" height="191"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="cardView" destination="sG4-9g-0ft" id="hjs-a6-skd"/>
+                <outlet property="categorieImage" destination="LLX-C5-0LP" id="o4u-zU-7wW"/>
+                <outlet property="categorieName" destination="adc-8M-mrB" id="mjE-nl-pZd"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="69.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="profileImage" width="150" height="150"/>
+    </resources>
+</document>
