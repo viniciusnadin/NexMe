@@ -19,8 +19,9 @@ class Event {
     var categorie : EventCategorie
     var ownerId: String
     var owner: User?
+    var city: String
     
-    init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, image: UIImage, description: String, categorie: EventCategorie, ownerId: String){
+    init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, image: UIImage, description: String, categorie: EventCategorie, ownerId: String, city: String){
         self.title = title
         self.coordinate = coordinate
         self.locationName = locationName
@@ -29,5 +30,6 @@ class Event {
         self.description = description
         self.categorie = categorie
         self.ownerId = ownerId
+        self.city = city
     }
 }
