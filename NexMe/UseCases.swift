@@ -11,6 +11,8 @@ import PopupDialog
 import RxCocoa
 import RxSwift
 import Unbox
+import GooglePlaces
+import GoogleMaps
 
 final class UseCases {
     let authentication: Auth
@@ -163,8 +165,9 @@ final class UseCases {
         }
     }
     
-    
-    
+    func getUserId() -> String{
+        return (Auth.auth().currentUser?.uid)!
+    }
     
     func getCurrentUser() -> User? {
         return self.store.getCurrentUser()
@@ -177,21 +180,71 @@ final class UseCases {
         })
     }
     
+    func createEvent(event : Event, completion: @escaping (Result<Void>) -> Void){
+        deliver(completion: completion) { success, failure in
+            let databaseReference = Database.database().reference()
+            let eventsReference = databaseReference.child("event").child("events").childByAutoId()
+            let values : [String : Any]!
+            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
+            eventsReference.updateChildValues(values) { (error, reference) in
+                if error != nil {
+                    failure(error!)
+                }
+                let eventLocationReference = eventsReference.child("location")
+                let locationValue = ["latitude" : event.coordinate.latitude, "longitude" : event.coordinate.longitude] as [String : CLLocationDegrees]
+                eventLocationReference.updateChildValues(locationValue, withCompletionBlock: { (err, ref) in
+                    if err != nil {
+                        failure(error!)
+                    }
+                    success()
+                })
+            }
+        }
+    }
     
+    func createAllCategories(){
+        let categoriesReference = Database.database().reference().child("event").child("categories")
+        var values : [String : String]!
+        let categories : [EventCategorie]!
+        categories = [EventCategorie(name: "Festa"), EventCategorie(name: "Curso")]
+        for categorie in categories {
+            values = ["name" : categorie.name] as [String : String]
+            categoriesReference.childByAutoId().updateChildValues(values) { (error, reference) in
+                if error != nil {
+                    print(error!)
+                }
+            }
+        }
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func findAllCategories(completion: @escaping (Result<[EventCategorie]>) -> Void){
+        deliver(completion: completion) { success, failure in
+            let databaseReference = Database.database().reference()
+            var categories = [EventCategorie]()
+            let eventCategorieDispatch = DispatchGroup()
+            databaseReference.child("event").child("categories").observeSingleEvent(of: .value, with: { (snapShot) in
+                if let dictionary = snapShot.value as? [String : [String : String]]{
+                    for dic in dictionary {
+                        eventCategorieDispatch.enter()
+                        let name = (dic.value["name"])
+                        let id = dic.key
+                        let categorie = EventCategorie(name: name!)
+                        categorie.id = id
+                        categories.append(categorie)
+                        eventCategorieDispatch.leave()
+                    }
+                    eventCategorieDispatch.notify(queue: .main, execute: {
+                        success(categories)
+                    })
+                }
+                else{
+                    success(categories)
+                    return
+                }
+            })
+            
+        }
+    }
     
     
 }

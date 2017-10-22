@@ -6,7 +6,11 @@
 //  Copyright © 2017 Vinicius Nadin. All rights reserved.
 //
 
-struct EventCategorie {
-    var id : String
+class EventCategorie {
+    var id : String?
     var name : String
+    
+    init(name: String) {
+        self.name = name
+    }
 }
