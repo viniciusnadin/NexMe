@@ -34,4 +34,8 @@ class EventsViewModel {
         self.router.presentNewEvent()
     }
     
+    func eventsByFilter(categorie: EventCategorie) {
+        self.router.presentEventsByFilter(categorie: categorie)
+    }
+    
 }

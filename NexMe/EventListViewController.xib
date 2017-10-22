@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gilroy-Bold.otf">
+            <string>Gilroy-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventListViewController" customModule="NexMe" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="Wex-ep-P8d" id="zTF-30-h8Z"/>
+                <outlet property="categorieLabel" destination="RNC-ar-9uq" id="Fqq-Rq-SBe"/>
+                <outlet property="table" destination="byl-rz-0UZ" id="cdD-Lt-qmW"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NU0-2Z-Zu8">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wex-ep-P8d">
+                            <rect key="frame" x="8" y="24" width="39" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="X0d-Ck-tPI"/>
+                                <constraint firstAttribute="width" constant="39" id="sYp-JD-zAM"/>
+                            </constraints>
+                            <state key="normal" image="left"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOVO EVENTO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNC-ar-9uq">
+                            <rect key="frame" x="104" y="33" width="112.5" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="19" id="2DH-Iw-afD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
+                            <color key="textColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="0g9-w9-j5o"/>
+                        <constraint firstItem="Wex-ep-P8d" firstAttribute="top" secondItem="NU0-2Z-Zu8" secondAttribute="top" constant="24" id="4xd-cK-Ywi"/>
+                        <constraint firstItem="RNC-ar-9uq" firstAttribute="centerX" secondItem="NU0-2Z-Zu8" secondAttribute="centerX" id="JPv-RQ-uIt"/>
+                        <constraint firstItem="Wex-ep-P8d" firstAttribute="leading" secondItem="NU0-2Z-Zu8" secondAttribute="leading" constant="8" id="NLp-Rw-UlS"/>
+                        <constraint firstItem="RNC-ar-9uq" firstAttribute="centerY" secondItem="Wex-ep-P8d" secondAttribute="centerY" id="PO7-gm-gay"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="byl-rz-0UZ">
+                    <rect key="frame" x="0.0" y="68" width="320" height="412"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="vto-4d-j3n"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="NU0-2Z-Zu8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="08o-xJ-vRX"/>
+                <constraint firstItem="NU0-2Z-Zu8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4ih-Tj-xeo"/>
+                <constraint firstItem="byl-rz-0UZ" firstAttribute="top" secondItem="NU0-2Z-Zu8" secondAttribute="bottom" id="8xg-Mn-VjW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="byl-rz-0UZ" secondAttribute="bottom" id="Hzw-Fx-yfo"/>
+                <constraint firstItem="NU0-2Z-Zu8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="TRH-fv-2aq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="byl-rz-0UZ" secondAttribute="trailing" id="YEv-yM-5Ri"/>
+                <constraint firstItem="byl-rz-0UZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d21-MB-Xod"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="left" width="7" height="12"/>
+    </resources>
+</document>

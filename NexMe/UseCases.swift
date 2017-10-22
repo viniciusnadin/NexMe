@@ -252,5 +252,51 @@ final class UseCases {
         }
     }
     
+    struct snapValue {
+        var key : String
+        var value : [String : Any]
+    }
     
+    func createEventByValue(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
+        deliver(completion: completion) { success, failure in
+            let userID = (value.value["ownerId"] as! String)
+            let title = (value.value["title"] as! String)
+            let city = (value.value["town"] as! String)
+            let date = (value.value["date"] as! Int)
+            let description = (value.value["description"] as! String)
+            //        let image = (value.value["image"] as! String)
+            var eventCoordinate = CLLocationCoordinate2D()
+            if let location = (value.value["location"] as? [String : CLLocationDegrees]){
+                var locationValues = [CLLocationDegrees]()
+                for val in location {
+                    locationValues.append(val.value)
+                }
+                eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
+            }
+            let locationName = (value.value["locationName"] as! String)
+            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), image: #imageLiteral(resourceName: "profileImage"), description: description, categorie: categorie, ownerId: userID, city: city)
+            success(event)
+        }
+    }
+    
+    func findEventByCategorie(categorie: EventCategorie, completion: @escaping (Result<[Event]>) -> Void){
+        deliver(completion: completion) { success, failure in
+            let databaseReference = Database.database().reference().child("event").child("events")
+            var events = [Event]()
+            databaseReference.queryOrdered(byChild: "categorie").queryEqual(toValue: categorie.id).observeSingleEvent(of: .value, with: { (snapShot) in
+                if let values = snapShot.value as? [String : [String : Any]]{
+                    for value in values {
+                        let snap = snapValue(key: value.key, value: value.value)
+                        self.createEventByValue(value: snap, categorie: categorie, completion: { (event) in
+                            events.append(event.value!)
+                        })
+                    }
+                    success(events)
+                } else {
+                    success(events)
+                }
+            })
+        }
+    }
+
 }

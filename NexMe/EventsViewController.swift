@@ -61,7 +61,7 @@ class EventsViewController: UIViewController {
 
 extension EventsViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(self.viewModel.categories.value[indexPath.row].name)")
+        self.viewModel.eventsByFilter(categorie: self.viewModel.categories.value[indexPath.row])
     }
 }
 
