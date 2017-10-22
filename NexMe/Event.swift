@@ -9,7 +9,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-struct Event {
+class Event {
     var title : String
     var coordinate : CLLocationCoordinate2D
     var locationName : String
@@ -17,5 +17,17 @@ struct Event {
     var image : UIImage
     var description : String
     var categorie : EventCategorie
-    var ownerId: User
+    var ownerId: String
+    var owner: User?
+    
+    init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, image: UIImage, description: String, categorie: EventCategorie, ownerId: String){
+        self.title = title
+        self.coordinate = coordinate
+        self.locationName = locationName
+        self.date = date
+        self.image = image
+        self.description = description
+        self.categorie = categorie
+        self.ownerId = ownerId
+    }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import GooglePlaces
 import GoogleMaps
+import PopupDialog
 
 class NewEventViewController: UIViewController {
     
@@ -33,8 +34,11 @@ class NewEventViewController: UIViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel.viewDidLoad()
         self.nameTextField.delegate = self
         self.configurebinds()
+        self.categoryPicker.dataSource = self
+        self.categoryPicker.delegate = self
         let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewEventViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapOnView)
     }
@@ -89,6 +93,27 @@ class NewEventViewController: UIViewController {
         self.saveButton.rx.tap.subscribe(onNext: {
             self.viewModel.save()
         }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.viewModel.categories.asObservable().subscribe({_ in 
+            self.categoryPicker.reloadAllComponents()
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
+            .subscribe(onNext: { message in
+                PopUpDialog.present(title: "Ops!", message: message, viewController: self)
+            }).addDisposableTo(viewModel.disposeBag)
+        
+        viewModel.successMessage.asObservable().filter({!$0.isEmpty})
+            .subscribe(onNext: { message in
+                let pop2 = PopupDialog(title: "Sucesso!", message: message, image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
+                    self.viewModel.successCreation.value = true
+                })
+                self.present(pop2, animated: true, completion: nil)
+            }).addDisposableTo(viewModel.disposeBag)
+        
+        self.viewModel.successCreation.asObservable().bind { (verify) in
+            if verify{self.viewModel.close()}
+            }.addDisposableTo(self.viewModel.disposeBag)
     }
 
     func dismissKeyboard() {
@@ -147,4 +172,22 @@ extension NewEventViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+extension NewEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.viewModel.categories.value.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.viewModel.categories.value[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.viewModel.categorie = self.viewModel.categories.value[row]
+    }
 }
