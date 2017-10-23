@@ -27,7 +27,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sG4-9g-0ft">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="LLX-C5-0LP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vividballoons" translatesAutoresizingMaskIntoConstraints="NO" id="LLX-C5-0LP">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="gN5-hm-2s5"/>
@@ -75,6 +75,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="profileImage" width="150" height="150"/>
+        <image name="vividballoons" width="800" height="478"/>
     </resources>
 </document>

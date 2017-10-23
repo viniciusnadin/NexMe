@@ -70,7 +70,7 @@ class MenuViewController: UIViewController {
         }).addDisposableTo(self.viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
-            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
+            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
         }).addDisposableTo(viewModel.disposeBag)
         
         self.viewModel.successFullSignOut.asObservable().bind { (verify) in

@@ -14,6 +14,7 @@ class EventListRouter {
     let window: UIWindow!
     var viewController : EventListViewController!
     var presentingViewController: UIViewController!
+    var eventDetailRouter: EventDetailRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
@@ -37,6 +38,10 @@ class EventListRouter {
         self.viewController.isHeroEnabled = true
         self.viewController.heroModalAnimationType = .pull(direction: HeroDefaultAnimationType.Direction.right)
         self.viewController.hero_dismissViewController()
+    }
+    
+    func presentEventDetail(event: Event){
+        self.eventDetailRouter.presentEventFromViewController(presentingViewController: self.viewController, event: event)
     }
     
 }

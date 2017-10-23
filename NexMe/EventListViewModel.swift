@@ -29,6 +29,6 @@ class EventListViewModel {
     }
     
     func presentEventDetail(event: Event) {
-        
+        self.router.presentEventDetail(event: event)
     }
 }
