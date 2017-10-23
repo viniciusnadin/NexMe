@@ -30,6 +30,7 @@ struct AppDependecies {
     let userDetailRouter: UserDetailRouter
     let newEventRouter: NewEventRouter
     let eventListRouter: EventListRouter
+    let eventDetailRouter: EventDetailRouter
     
     init(window: UIWindow) {
         self.window = window
@@ -49,6 +50,7 @@ struct AppDependecies {
         self.userDetailRouter = UserDetailRouter(useCases: self.useCases, window: self.window)
         self.newEventRouter = NewEventRouter(window: self.window, useCases: self.useCases)
         self.eventListRouter = EventListRouter(useCases: self.useCases, window: self.window)
+        self.eventDetailRouter = EventDetailRouter(useCases: self.useCases, window: self.window)
         
         // Routing
         self.signInRouter.mainRouter = mainRouter
@@ -63,6 +65,7 @@ struct AppDependecies {
         self.mainRouter.eventsRouter = self.eventsRouter
         self.eventsRouter.newEventRouter = self.newEventRouter
         self.eventsRouter.eventListRouter = self.eventListRouter
+        self.eventListRouter.eventDetailRouter = self.eventDetailRouter
     }
     
     func presentUI() {

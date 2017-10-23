@@ -58,7 +58,22 @@ class EventDetailViewController: UIViewController {
     }
     
     func setupLabels() {
-        self.eventTitleLabel.text = self.viewModel.event.value.title
+        self.eventTitleLabel.text = self.viewModel.event.value.title.uppercased()
+//        self.eventImageView.image = self.viewModel.event.value.image
+        self.locationLabel.text = self.viewModel.event.value.locationName
+        self.descriptionTextView.text = self.viewModel.event.value.description
+//        self.ownerName.text = self.viewModel.event.value.owner?.name
+        let date = self.viewModel.event.value.date
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        let year = calendar.component(.year, from: date)
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let dateFormatter: DateFormatter = DateFormatter()
+        let months = dateFormatter.monthSymbols
+        let monthSymbol = months![month-1]
+        self.schedulerLabel.text = "\(day) de \(monthSymbol) de \(year) as \(hour)horas e \(minute) minutos"
     }
 
 }

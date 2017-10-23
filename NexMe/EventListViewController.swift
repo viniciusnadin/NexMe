@@ -76,7 +76,7 @@ extension EventListViewController: UITableViewDelegate{
     
     func cellForEvent(event: Event) -> EventTableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "EventTableCell") as! EventTableViewCell
-        cell.eventImage.image = event.image
+//        cell.eventImage.image = event.image
         cell.eventLocationName.text = event.locationName
         cell.eventNameLabel.text = event.title
         cell.selectionStyle = .none

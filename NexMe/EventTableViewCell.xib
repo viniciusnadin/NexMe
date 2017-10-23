@@ -52,7 +52,7 @@
                                 <color key="textColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="53e-DJ-d7U">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vividballoons" translatesAutoresizingMaskIntoConstraints="NO" id="53e-DJ-d7U">
                                 <rect key="frame" x="8" y="56" width="304" height="139"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="304" id="hS8-xX-uAN"/>
@@ -163,4 +163,7 @@
             <point key="canvasLocation" x="80" y="122.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="vividballoons" width="800" height="478"/>
+    </resources>
 </document>

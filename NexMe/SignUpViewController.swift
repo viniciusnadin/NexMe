@@ -114,6 +114,7 @@ class SignUpViewController: UIViewController {
         
         self.viewModel.successFullSignUp.asObservable().bind { (verify) in
             if verify {
+                self.viewModel.useCases.signOut()
                 self.viewModel.close()
             }
         }.addDisposableTo(self.viewModel.disposeBag)

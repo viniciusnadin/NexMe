@@ -81,7 +81,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBy-fa-vyY">
                     <rect key="frame" x="0.0" y="429" width="320" height="1"/>
-                    <color key="backgroundColor" red="0.81852415639999998" green="0.81852415639999998" blue="0.81852415639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="WDU-tT-xU2"/>
                     </constraints>
@@ -165,25 +165,6 @@
                 <constraint firstItem="6ef-5N-qZC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-40.5" id="y6U-FM-0NK"/>
                 <constraint firstItem="xZx-wK-LbW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="yHb-TK-g6L"/>
                 <constraint firstAttribute="trailing" secondItem="RBy-fa-vyY" secondAttribute="trailing" id="yWZ-w6-3zm"/>
-            </constraints>
-        </view>
-        <view alpha="0.85000002384185791" contentMode="scaleToFill" id="P0M-Eb-nWU">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nexme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDx-iX-T1L">
-                    <rect key="frame" x="56" y="35" width="208" height="409"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="32"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="0.18024457790000001" green="0.032155656140000002" blue="0.64965843369999998" alpha="0.33476027400000002" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="cDx-iX-T1L" firstAttribute="top" secondItem="P0M-Eb-nWU" secondAttribute="top" constant="35" id="DOR-7O-aLR"/>
-                <constraint firstItem="cDx-iX-T1L" firstAttribute="leading" secondItem="P0M-Eb-nWU" secondAttribute="leading" constant="56" id="btL-OG-b0x"/>
-                <constraint firstAttribute="bottom" secondItem="cDx-iX-T1L" secondAttribute="bottom" constant="36" id="cLD-EY-s4y"/>
-                <constraint firstAttribute="trailing" secondItem="cDx-iX-T1L" secondAttribute="trailing" constant="56" id="jrD-s9-6E7"/>
             </constraints>
         </view>
     </objects>
