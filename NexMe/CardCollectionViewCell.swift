@@ -16,8 +16,8 @@ class CardCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cardView.backgroundColor = UIColor.white
-        contentView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+//        cardView.backgroundColor = UIColor.white
+//        contentView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
 //        cardView.layer.cornerRadius = 4.0
 //        cardView.layer.masksToBounds = false
 //        cardView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor

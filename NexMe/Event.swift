@@ -20,6 +20,7 @@ class Event {
     var ownerId: String
     var owner: User?
     var city: String
+    var id: String?
     
     init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, image: UIImage, description: String, categorie: EventCategorie, ownerId: String, city: String){
         self.title = title
