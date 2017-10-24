@@ -18,43 +18,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CardCollectionViewCell" customModule="NexMe" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+            <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+                <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sG4-9g-0ft">
-                        <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vividballoons" translatesAutoresizingMaskIntoConstraints="NO" id="LLX-C5-0LP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="LLX-C5-0LP">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="gN5-hm-2s5"/>
                                     <constraint firstAttribute="height" constant="160" id="iqQ-hc-EEd"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="4"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cursos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adc-8M-mrB">
-                                <rect key="frame" x="0.0" y="160" width="160" height="30"/>
-                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="21"/>
-                                <color key="textColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cursos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adc-8M-mrB">
+                                <rect key="frame" x="10" y="160" width="150" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="20"/>
+                                <color key="textColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="0.67650363869863017" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="adc-8M-mrB" secondAttribute="bottom" id="20g-iJ-ZDj"/>
-                            <constraint firstItem="adc-8M-mrB" firstAttribute="leading" secondItem="sG4-9g-0ft" secondAttribute="leading" id="9f9-l3-s77"/>
-                            <constraint firstAttribute="trailing" secondItem="adc-8M-mrB" secondAttribute="trailing" id="aDD-In-X2Z"/>
+                            <constraint firstItem="adc-8M-mrB" firstAttribute="top" secondItem="LLX-C5-0LP" secondAttribute="bottom" id="8gy-Dx-4Tx"/>
+                            <constraint firstAttribute="trailing" secondItem="adc-8M-mrB" secondAttribute="trailing" id="W7Z-x8-VVU"/>
                             <constraint firstItem="LLX-C5-0LP" firstAttribute="leading" secondItem="sG4-9g-0ft" secondAttribute="leading" id="b5p-kC-ayu"/>
-                            <constraint firstItem="adc-8M-mrB" firstAttribute="top" secondItem="LLX-C5-0LP" secondAttribute="bottom" id="evs-Fp-pQJ"/>
+                            <constraint firstItem="adc-8M-mrB" firstAttribute="leading" secondItem="sG4-9g-0ft" secondAttribute="leading" constant="10" id="fY0-7a-xp1"/>
                             <constraint firstItem="LLX-C5-0LP" firstAttribute="top" secondItem="sG4-9g-0ft" secondAttribute="top" id="hSX-rD-yNv"/>
+                            <constraint firstAttribute="bottom" secondItem="adc-8M-mrB" secondAttribute="bottom" id="jvf-Eu-8af"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="sG4-9g-0ft" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JcK-Hj-0fz"/>
                 <constraint firstItem="sG4-9g-0ft" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UxS-TH-uAE"/>
@@ -62,19 +64,16 @@
                 <constraint firstAttribute="trailing" secondItem="sG4-9g-0ft" secondAttribute="trailing" id="qj1-mQ-gyW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="160" height="191"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
-            </userDefinedRuntimeAttributes>
+            <size key="customSize" width="160" height="203"/>
             <connections>
                 <outlet property="cardView" destination="sG4-9g-0ft" id="hjs-a6-skd"/>
                 <outlet property="categorieImage" destination="LLX-C5-0LP" id="o4u-zU-7wW"/>
                 <outlet property="categorieName" destination="adc-8M-mrB" id="mjE-nl-pZd"/>
             </connections>
-            <point key="canvasLocation" x="34" y="69.5"/>
+            <point key="canvasLocation" x="34" y="75"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="vividballoons" width="800" height="478"/>
+        <image name="placeHolder" width="800" height="800"/>
     </resources>
 </document>

@@ -29,4 +29,8 @@ class EventDetailViewModel {
     func close() {
         self.router.dismiss()
     }
+    
+    func presentEventMessages() {
+        self.router.presentEventMessages(event: self.event.value)
+    }
 }

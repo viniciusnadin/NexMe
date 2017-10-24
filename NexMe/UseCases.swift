@@ -259,6 +259,7 @@ final class UseCases {
     
     func createEventByValue(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
         deliver(completion: completion) { success, failure in
+            let eventId = value.key as! String
             let userID = (value.value["ownerId"] as! String)
             let title = (value.value["title"] as! String)
             let city = (value.value["town"] as! String)
@@ -275,6 +276,7 @@ final class UseCases {
             }
             let locationName = (value.value["locationName"] as! String)
             let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), image: #imageLiteral(resourceName: "profileImage"), description: description, categorie: categorie, ownerId: userID, city: city)
+            event.id = eventId
             success(event)
         }
     }
@@ -298,5 +300,49 @@ final class UseCases {
             })
         }
     }
+    let messages = Variable<[Message]>([])
+    
+    func sendMessage(event: Event, message: String) {
+        let date = Int(Date().timeIntervalSince1970)
+        let values = ["userId" : Auth.auth().currentUser!.uid, "date" : date, "message" : message] as [String : Any]
+        Database.database().reference().child("messages").child(event.id!).childByAutoId().updateChildValues(values)
+    }
+    
+    func observeMessages(eventId: String) {
+        Database.database().reference().child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
+            if let dictionary = snapShot.value as? [String : Any]{
+                let message = Message()
+                message.userId = (dictionary["userId"] as! String)
+                message.date = (dictionary["date"] as! Int)
+                message.message = (dictionary["message"] as! String)
+                self.messages.value.append(message)
+            }
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    func fetchUserById(id: String, completion: @escaping (Result<User>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            Database.database().reference().child("users").child(id).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
+                do {
+                    let data = snapShot.value as! NSMutableDictionary
+                    data.setObject(id, forKey: "id" as NSCopying)
+                    let data2 = data as NSDictionary
+                    let user = try parseUser(data: data2 as! UnboxableDictionary)
+                    success(user)
+                } catch {
+                    failure(error)
+                }
+            })
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 
 }

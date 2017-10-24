@@ -1,34 +1,32 @@
 //
-//  EventListRouter.swift
+//  EventChatRouter.swift
 //  NexMe
 //
-//  Created by Vinicius Nadin on 22/10/17.
+//  Created by Vinicius Nadin on 23/10/17.
 //  Copyright © 2017 Vinicius Nadin. All rights reserved.
 //
 
 import UIKit
 import Hero
 
-class EventListRouter {
+class EventChatRouter {
     let useCases: UseCases!
     let window: UIWindow!
-    var viewController : EventListViewController!
+    var viewController : EventChatViewController!
     var presentingViewController: UIViewController!
-    var eventDetailRouter: EventDetailRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
         self.window = window
     }
     
-    func presentEventsFromViewController(presentingViewController: UIViewController, categorie: EventCategorie){
+    func presentChatFromViewController(presentingViewController: UIViewController, event: Event){
         self.presentingViewController = presentingViewController
-        let viewModel = EventListViewModel()
+        let viewModel = EventChatViewModel()
         viewModel.useCases = useCases
         viewModel.router = self
-        viewModel.filter.value = categorie.name.uppercased()
-        viewModel.eventCategorie = categorie
-        viewController = EventListViewController(viewModel: viewModel)
+        viewModel.setEvent(event: event)
+        viewController = EventChatViewController(viewModel: viewModel)
         viewController.isHeroEnabled = true
         viewController.heroModalAnimationType = .push(direction: HeroDefaultAnimationType.Direction.left)
         presentingViewController.present(viewController, animated: true, completion: nil)
@@ -38,11 +36,6 @@ class EventListRouter {
         self.viewController.isHeroEnabled = true
         self.viewController.heroModalAnimationType = .pull(direction: HeroDefaultAnimationType.Direction.right)
         self.viewController.hero_dismissViewController()
-    }
-    
-    
-    func presentEventDetail(event: Event){
-        self.eventDetailRouter.presentEventFromViewController(presentingViewController: self.viewController, event: event)
     }
     
 }

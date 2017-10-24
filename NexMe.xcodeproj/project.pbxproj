@@ -15,6 +15,11 @@
 		D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */; };
 		D5043E9B1F9C36930095CF31 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5043E991F9C36930095CF31 /* CardCollectionViewCell.swift */; };
 		D5043E9C1F9C36930095CF31 /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5043E9A1F9C36930095CF31 /* CardCollectionViewCell.xib */; };
+		D515086A1F9E8DB0003AC336 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51508681F9E8DB0003AC336 /* EventChatViewController.swift */; };
+		D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51508691F9E8DB0003AC336 /* EventChatViewController.xib */; };
+		D515086D1F9E92B1003AC336 /* EventChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */; };
+		D515086F1F9E92F7003AC336 /* EventChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515086E1F9E92F7003AC336 /* EventChatRouter.swift */; };
+		D51508711F9E9AB8003AC336 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51508701F9E9AB8003AC336 /* Message.swift */; };
 		D54DB02A1F9D0A6F0087D5E7 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB0281F9D0A6F0087D5E7 /* EventTableViewCell.swift */; };
 		D54DB02B1F9D0A6F0087D5E7 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54DB0291F9D0A6F0087D5E7 /* EventTableViewCell.xib */; };
 		D54DB0301F9D17A40087D5E7 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB02E1F9D17A40087D5E7 /* EventDetailViewController.swift */; };
@@ -78,6 +83,8 @@
 		D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367BF1F984A7D00A5C2E0 /* UserDetailViewController.swift */; };
 		D5D367C21F984A7D00A5C2E0 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D367C01F984A7D00A5C2E0 /* UserDetailViewController.xib */; };
 		D5D367C41F984C1C00A5C2E0 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367C31F984C1C00A5C2E0 /* UserDetailViewModel.swift */; };
+		D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */; };
+		D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */; };
 		D5FFFEB21F9CFC5500CA1FA2 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFFEB01F9CFC5500CA1FA2 /* EventListViewController.swift */; };
 		D5FFFEB31F9CFC5500CA1FA2 /* EventListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FFFEB11F9CFC5500CA1FA2 /* EventListViewController.xib */; };
 		D5FFFEB51F9CFC7300CA1FA2 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFFEB41F9CFC7300CA1FA2 /* EventListViewModel.swift */; };
@@ -96,6 +103,11 @@
 		D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRouter.swift; sourceTree = "<group>"; };
 		D5043E991F9C36930095CF31 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		D5043E9A1F9C36930095CF31 /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
+		D51508681F9E8DB0003AC336 /* EventChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
+		D51508691F9E8DB0003AC336 /* EventChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventChatViewController.xib; sourceTree = "<group>"; };
+		D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewModel.swift; sourceTree = "<group>"; };
+		D515086E1F9E92F7003AC336 /* EventChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatRouter.swift; sourceTree = "<group>"; };
+		D51508701F9E9AB8003AC336 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D54DB0281F9D0A6F0087D5E7 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		D54DB0291F9D0A6F0087D5E7 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		D54DB02E1F9D17A40087D5E7 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +179,8 @@
 		D5D367BF1F984A7D00A5C2E0 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		D5D367C01F984A7D00A5C2E0 /* UserDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
 		D5D367C31F984C1C00A5C2E0 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
+		D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		D5FFFEB01F9CFC5500CA1FA2 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		D5FFFEB11F9CFC5500CA1FA2 /* EventListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventListViewController.xib; sourceTree = "<group>"; };
 		D5FFFEB41F9CFC7300CA1FA2 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
@@ -233,6 +247,18 @@
 				D5043E9A1F9C36930095CF31 /* CardCollectionViewCell.xib */,
 			);
 			name = "Card Collection Cell";
+			sourceTree = "<group>";
+		};
+		D51508671F9E8D95003AC336 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D5F168651F9EB80D007E8681 /* Chat Cell */,
+				D515086E1F9E92F7003AC336 /* EventChatRouter.swift */,
+				D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */,
+				D51508681F9E8DB0003AC336 /* EventChatViewController.swift */,
+				D51508691F9E8DB0003AC336 /* EventChatViewController.xib */,
+			);
+			name = Chat;
 			sourceTree = "<group>";
 		};
 		D54DB0271F9D0A4E0087D5E7 /* Event Cell */ = {
@@ -411,6 +437,7 @@
 		D5B16A741F660EC000CDCE28 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				D51508671F9E8D95003AC336 /* Chat */,
 				D54DB02D1F9D178B0087D5E7 /* Detail */,
 				D5FFFEAF1F9CFC3A00CA1FA2 /* List */,
 				D500D31D1F9BC12200FBDB8E /* New */,
@@ -467,6 +494,7 @@
 				D5B16AA01F6758C700CDCE28 /* Avatar.swift */,
 				D500D3181F99810C00FBDB8E /* Event.swift */,
 				D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */,
+				D51508701F9E9AB8003AC336 /* Message.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -529,6 +557,15 @@
 				D5D367C01F984A7D00A5C2E0 /* UserDetailViewController.xib */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+		D5F168651F9EB80D007E8681 /* Chat Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */,
+				D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */,
+			);
+			name = "Chat Cell";
 			sourceTree = "<group>";
 		};
 		D5FFFEAF1F9CFC3A00CA1FA2 /* List */ = {
@@ -622,6 +659,8 @@
 				D54DB0311F9D17A40087D5E7 /* EventDetailViewController.xib in Resources */,
 				D5B16A7D1F660EF100CDCE28 /* MenuViewController.xib in Resources */,
 				D500D3211F9BC13800FBDB8E /* NewEventViewController.xib in Resources */,
+				D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */,
+				D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */,
 				D5D367B51F97F94000A5C2E0 /* CardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,8 +721,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B16A621F5F6B7500CDCE28 /* PopupDialog.swift in Sources */,
+				D51508711F9E9AB8003AC336 /* Message.swift in Sources */,
 				D500D3201F9BC13800FBDB8E /* NewEventViewController.swift in Sources */,
 				D5FFFEB71F9CFCBB00CA1FA2 /* EventListRouter.swift in Sources */,
+				D515086A1F9E8DB0003AC336 /* EventChatViewController.swift in Sources */,
 				D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */,
 				D5B16A861F66120200CDCE28 /* EventsViewController.swift in Sources */,
 				D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */,
@@ -703,6 +744,7 @@
 				D5B16A8F1F674A6500CDCE28 /* ProfileViewController.swift in Sources */,
 				D5B16A981F67577400CDCE28 /* UserModel.swift in Sources */,
 				D5B16A811F660F1600CDCE28 /* MenuRouter.swift in Sources */,
+				D515086F1F9E92F7003AC336 /* EventChatRouter.swift in Sources */,
 				D54DB0351F9D25420087D5E7 /* EventDetailRouter.swift in Sources */,
 				D5B16A921F674A6E00CDCE28 /* ProfileRouter.swift in Sources */,
 				D500D3191F99810C00FBDB8E /* Event.swift in Sources */,
@@ -735,8 +777,10 @@
 				D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */,
 				D55229B01F984D46002B7AFC /* UserDetailRouter.swift in Sources */,
 				D5B16A4C1F4F62A800CDCE28 /* AppDependecies.swift in Sources */,
+				D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */,
 				D5FFFEB51F9CFC7300CA1FA2 /* EventListViewModel.swift in Sources */,
 				D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */,
+				D515086D1F9E92B1003AC336 /* EventChatViewModel.swift in Sources */,
 				D5D367C41F984C1C00A5C2E0 /* UserDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
