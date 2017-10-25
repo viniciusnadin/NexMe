@@ -1,4 +1,5 @@
 PODS:
+  - DateTimePicker (1.1.4)
   - Firebase/Auth (4.0.2):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -29,6 +30,7 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FontAwesome.swift (1.2.0)
   - GoogleMaps (2.4.0):
     - GoogleMaps/Maps (= 2.4.0)
   - GoogleMaps/Base (2.4.0)
@@ -54,15 +56,18 @@ PODS:
   - RxCocoa (3.5.0):
     - RxSwift (~> 3.4)
   - RxSwift (3.5.0)
+  - SkyFloatingLabelTextField (3.2.1)
   - SlideMenuControllerSwift (3.0.1)
   - SwiftyJSON (3.1.4)
   - Unbox (2.5.0)
 
 DEPENDENCIES:
+  - DateTimePicker
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - FontAwesome.swift (from `https://github.com/thii/FontAwesome.swift.git`, branch `swift-4.0`)
   - GoogleMaps
   - GooglePlaces
   - Hero
@@ -71,11 +76,23 @@ DEPENDENCIES:
   - PopupDialog (~> 0.5)
   - RxCocoa
   - RxSwift
+  - SkyFloatingLabelTextField (~> 3.0)
   - SlideMenuControllerSwift
   - SwiftyJSON
   - Unbox
 
+EXTERNAL SOURCES:
+  FontAwesome.swift:
+    :branch: swift-4.0
+    :git: https://github.com/thii/FontAwesome.swift.git
+
+CHECKOUT OPTIONS:
+  FontAwesome.swift:
+    :commit: ee1bf6b3db08f969ec7508c0feca3bac0d8b96ff
+    :git: https://github.com/thii/FontAwesome.swift.git
+
 SPEC CHECKSUMS:
+  DateTimePicker: e3281e9b855e8081f6c524e3e720e9938eba2d65
   Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
   FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -83,6 +100,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  FontAwesome.swift: 609815397a9b51cb4d774969787163c7d1306739
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
@@ -93,10 +111,11 @@ SPEC CHECKSUMS:
   PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
   RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
+  SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
 
-PODFILE CHECKSUM: ab7e9ee206876d7a39fd2395963e925ced75236c
+PODFILE CHECKSUM: 935dec322407eefa753c8c96e06710575c6ef7b1
 
 COCOAPODS: 1.2.0

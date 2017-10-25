@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Kingfisher
+import FontAwesome_swift
 
 class ProfileViewController: UIViewController {
     

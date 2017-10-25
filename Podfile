@@ -21,4 +21,7 @@ target 'NexMe' do
   pod 'Kingfisher', '~> 4.0'
   pod 'GoogleMaps'
   pod 'GooglePlaces'  
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'FontAwesome.swift', :git => 'https://github.com/thii/FontAwesome.swift.git', :branch => 'swift-4.0'
+  pod 'DateTimePicker'
 end

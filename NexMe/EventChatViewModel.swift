@@ -16,9 +16,9 @@ class EventChatViewModel {
     var messages = Variable<[Message]>([])
     
     func viewDidLoad() {
-        self.useCases.messages.asObservable().subscribe(onNext:{
-            self.messages.value = $0
-        }).addDisposableTo(self.disposeBag)
+//        self.useCases.messages.asObservable().subscribe(onNext:{
+//            self.messages.value = $0.count
+//        }).addDisposableTo(self.disposeBag)
         self.useCases.observeMessages(eventId: self.event.value.id!)
     }
     
@@ -28,5 +28,9 @@ class EventChatViewModel {
     
     func sendMessage(){
         self.useCases.sendMessage(event: self.event.value, message: self.message.value)
+    }
+    
+    func close() {
+        self.router.dismiss()
     }
 }

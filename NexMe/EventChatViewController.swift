@@ -51,6 +51,10 @@ class EventChatViewController: UIViewController {
         self.sendButton.rx.tap.subscribe(onNext:{
             self.viewModel.sendMessage()
             self.messageTextField.text = ""
+            let lastSectionIndex = self.table.numberOfSections - 1
+            let lastRowIndex = self.table.numberOfRows(inSection: lastSectionIndex) - 1
+            let pathToLastRow = IndexPath(row: lastRowIndex, section: lastSectionIndex)
+            self.table.scrollToRow(at: pathToLastRow, at: UITableViewScrollPosition.none, animated: true)
         }).addDisposableTo(self.viewModel.disposeBag)
         
         self.messageTextField.rx.text.orEmpty.map({$0})
@@ -60,6 +64,10 @@ class EventChatViewController: UIViewController {
         self.viewModel.messages.asObservable().bind(to: table.rx.items) { (table, row, message) in
             return self.cellForMessage(message: message)
             }.addDisposableTo(self.viewModel.disposeBag)
+        
+        self.backButton.rx.tap.subscribe(onNext: {
+            self.viewModel.close()
+        }).addDisposableTo(self.viewModel.disposeBag)
     }
     
     func configureViews() {

@@ -10,6 +10,9 @@ import UIKit
 import GooglePlaces
 import GoogleMaps
 import PopupDialog
+import FontAwesome_swift
+import SkyFloatingLabelTextField
+import DateTimePicker
 
 class NewEventViewController: UIViewController {
     
@@ -22,25 +25,47 @@ class NewEventViewController: UIViewController {
     // MARK: - OUTLETS
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nameTextField: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var descriptionTextField: UITextView!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationTextField: UILabel!
+    @IBOutlet weak var descriptionIcon: UIImageView!
+    @IBOutlet weak var dateButton: UIButton!
+    @IBOutlet weak var dateIcon: UIImageView!
+    @IBOutlet weak var categorieButton: UIButton!
+    @IBOutlet weak var categorieIcon: UIImageView!
     
-
+    
+    
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.viewDidLoad()
         self.nameTextField.delegate = self
         self.configurebinds()
-        self.categoryPicker.dataSource = self
-        self.categoryPicker.delegate = self
         let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewEventViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapOnView)
+        
+        
+        nameTextField.placeholder = "Nome do evento"
+        nameTextField.title = "Nome do evento"
+        let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
+        nameTextField.tintColor = overcastBlueColor
+        nameTextField.selectedTitleColor = overcastBlueColor
+        nameTextField.selectedLineColor = overcastBlueColor
+
+        // Set icon properties
+        nameTextField.iconColor = UIColor.lightGray
+        nameTextField.selectedIconColor = overcastBlueColor
+        nameTextField.iconFont = UIFont.fontAwesome(ofSize: 20)
+//        nameTextField.iconText = String.fontAwesomeIcon(code: "fa-upload")
+        nameTextField.iconText = String.fontAwesomeIcon(code: "fa-wpforms")
+        nameTextField.iconMarginBottom = 2.0 // more precise icon positioning. Usually needed to tweak on a per font basis.
+//        nameTextField.iconRotationDegrees = 90 // rotate it 90 degrees
+        nameTextField.iconMarginLeft = 2.0
+        self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,8 +100,9 @@ class NewEventViewController: UIViewController {
             self.present(autocompleteController, animated: true, completion: nil)
         }).addDisposableTo(self.viewModel.disposeBag)
         
-        self.datePicker.rx.date.map({$0}).bind(to: self.viewModel.date)
-            .addDisposableTo(self.viewModel.disposeBag)
+        self.dateButton.rx.tap.subscribe(onNext: {
+            self.showDatePicker()
+        }).addDisposableTo(self.viewModel.disposeBag)
         
         self.viewModel.eventLocationName.asObservable().subscribe(onNext: { name in
             self.locationTextField.text = name
@@ -94,8 +120,8 @@ class NewEventViewController: UIViewController {
             self.viewModel.save()
         }).addDisposableTo(self.viewModel.disposeBag)
         
-        self.viewModel.categories.asObservable().subscribe({_ in 
-            self.categoryPicker.reloadAllComponents()
+        self.categorieButton.rx.tap.subscribe(onNext: {
+            self.viewModel.showCategoriePicker()
         }).addDisposableTo(self.viewModel.disposeBag)
         
         viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
@@ -114,6 +140,38 @@ class NewEventViewController: UIViewController {
         self.viewModel.successCreation.asObservable().bind { (verify) in
             if verify{self.viewModel.close()}
             }.addDisposableTo(self.viewModel.disposeBag)
+    }
+    
+    func showCategoriePicker() {
+        let pickerData = [
+            ["value": "mile", "display": "Miles (mi)"],
+            ["value": "kilometer", "display": "Kilometers (km)"]
+        ]
+        
+        PickerDialog().show(title: "Distance units", options: pickerData, selected: "kilometer") {
+            (value) -> Void in
+            print("Unit selected: \(value)")
+        }
+    }
+    
+    func showDatePicker() {
+        let picker = DateTimePicker.show()
+        picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
+        picker.isDatePickerOnly = false
+        picker.doneButtonTitle = "Concluido"
+        picker.todayButtonTitle = "Agora"
+        picker.cancelButtonTitle = "Cancelar"
+        picker.timeZone = TimeZone.current
+        picker.completionHandler = { date in
+            self.viewModel.date.value = date
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            let year = calendar.component(.year, from: date)
+            let hour = calendar.component(.hour, from: date)
+            let minute = calendar.component(.minute, from: date)
+            self.dateButton.setTitle("\(hour)h:\(minute)m  \(day)/\(month)/\(year)", for: .normal)
+        }
     }
 
     func dismissKeyboard() {
@@ -179,22 +237,4 @@ extension NewEventViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
-}
-
-extension NewEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.viewModel.categories.value.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.viewModel.categories.value[row].name
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.viewModel.categorie = self.viewModel.categories.value[row]
-    }
 }
