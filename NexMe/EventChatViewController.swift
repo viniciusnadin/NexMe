@@ -54,7 +54,9 @@ class EventChatViewController: UIViewController {
             let lastSectionIndex = self.table.numberOfSections - 1
             let lastRowIndex = self.table.numberOfRows(inSection: lastSectionIndex) - 1
             let pathToLastRow = IndexPath(row: lastRowIndex, section: lastSectionIndex)
-            self.table.scrollToRow(at: pathToLastRow, at: UITableViewScrollPosition.none, animated: true)
+            if (lastRowIndex >= 0){
+                self.table.scrollToRow(at: pathToLastRow, at: UITableViewScrollPosition.none, animated: true)
+            }
         }).addDisposableTo(self.viewModel.disposeBag)
         
         self.messageTextField.rx.text.orEmpty.map({$0})

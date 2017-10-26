@@ -115,6 +115,24 @@ final class UseCases {
         }
     }
     
+    func uploadEventImage(image: Data, completion: @escaping (Result<Void>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            let imageName = NSUUID().uuidString
+            Storage.storage().reference().child("event_images").child("\(imageName).png").putData(image, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    failure(error!)
+                }
+//                let updateProfileImage = ["original" : metadata?.downloadURL()?.absoluteString as Any]
+//                let userId = Auth.auth().currentUser?.uid
+//                let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
+//                usersReference.updateChildValues(updateProfileImage)
+//                self.getUpdatedCurrentUser()
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                success()
+            })
+        }
+    }
+    
     // DELETE
     func fetchAvatar(completion: @escaping (Result<UIImage>) -> Void) {
         deliver(completion: completion) { success, failure in

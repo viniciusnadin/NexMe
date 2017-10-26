@@ -28,6 +28,7 @@ class NewEventViewModel {
     var categorie: EventCategorie!
     let successCreation = Variable<Bool>(false)
     var city = ""
+    var eventImage : UIImage!
     
     func viewDidLoad() {
         self.useCases.findAllCategories(completion: { (categories) in
@@ -37,13 +38,24 @@ class NewEventViewModel {
         })
     }
     
+    func uploadImage(image: UIImage) {
+        let data = UIImageJPEGRepresentation(image, 1.0)!
+        self.useCases.uploadEventImage(image: data) { (result) in
+            do {
+                try result.check()
+            } catch {
+                print("ERRO")
+            }
+        }
+    }
+    
     func close() {
         self.router.dismiss()
     }
     
     func save(){
         self.loading.value = true
-        let event = Event(title: self.eventName.value, coordinate: self.eventLocation, locationName: self.eventLocationName.value, date: self.date.value, image: #imageLiteral(resourceName: "profileImage"), description: self.eventDescription.value, categorie: self.categorie, ownerId: self.useCases.getUserId(), city: self.city)
+        let event = Event(title: self.eventName.value, coordinate: self.eventLocation, locationName: self.eventLocationName.value, date: self.date.value, image: self.eventImage, description: self.eventDescription.value, categorie: self.categorie, ownerId: self.useCases.getUserId(), city: self.city)
         self.useCases.createEvent(event: event, completion: { (result) in
             do {
                 self.loading.value = false

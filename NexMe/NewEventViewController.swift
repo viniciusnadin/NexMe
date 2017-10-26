@@ -19,6 +19,7 @@ class NewEventViewController: UIViewController {
     // MARK: - Properties
     let viewModel: NewEventViewModel
     var googleMapsView : GMSMapView!
+    let imagePicker = ImagePicker()
 //    var eventLocation : CLLocationCoordinate2D!
 //    var eventLocationName : String!
     
@@ -35,6 +36,10 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var dateIcon: UIImageView!
     @IBOutlet weak var categorieButton: UIButton!
     @IBOutlet weak var categorieIcon: UIImageView!
+    @IBOutlet weak var mapIcon: UIImageView!
+    @IBOutlet weak var pickButton: UIButton!
+    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var placeHolderLabel: UILabel!
     
     
     
@@ -66,6 +71,10 @@ class NewEventViewController: UIViewController {
         nameTextField.iconMarginLeft = 2.0
         self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
         self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        
+        self.categorieIcon.image = UIImage.fontAwesomeIcon(code: "fa-bookmark", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        
+        self.mapIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,8 +129,22 @@ class NewEventViewController: UIViewController {
             self.viewModel.save()
         }).addDisposableTo(self.viewModel.disposeBag)
         
-        self.categorieButton.rx.tap.subscribe(onNext: {
-            self.viewModel.showCategoriePicker()
+        self.pickButton.rx.tap.subscribe(onNext: {
+            self.imagePicker.pickImageFromViewController(viewController: self) { result in
+                do {
+                    let image = try result.getValue()
+                    self.eventImage.image = image
+                    self.viewModel.eventImage = image
+                    self.placeHolderLabel.isHidden = true
+//                    self.viewModel.uploadImage(image: image)
+                } catch {
+                    print(error)
+                }
+            }
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
+        self.categorieButton.rx.tap.subscribe({_ in
+            self.showCategoriePicker()
         }).addDisposableTo(self.viewModel.disposeBag)
         
         viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
@@ -143,15 +166,15 @@ class NewEventViewController: UIViewController {
     }
     
     func showCategoriePicker() {
-        let pickerData = [
-            ["value": "mile", "display": "Miles (mi)"],
-            ["value": "kilometer", "display": "Kilometers (km)"]
-        ]
-        
-        PickerDialog().show(title: "Distance units", options: pickerData, selected: "kilometer") {
-            (value) -> Void in
-            print("Unit selected: \(value)")
+        let picker = TCPickerView()
+        picker.title = "Categorias"
+        let values = self.viewModel.categories.value.map { TCPickerView.Value(title: $0.name) }
+        picker.values = values
+        picker.completion = { (selected) in
+            self.viewModel.categorie = self.viewModel.categories.value[selected]
+            self.categorieButton.setTitle(self.viewModel.categorie.name, for: .normal)
         }
+        picker.show()
     }
     
     func showDatePicker() {

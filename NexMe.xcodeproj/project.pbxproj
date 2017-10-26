@@ -85,6 +85,8 @@
 		D5D367C41F984C1C00A5C2E0 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367C31F984C1C00A5C2E0 /* UserDetailViewModel.swift */; };
 		D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */; };
 		D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */; };
+		D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC334F1FA1374B00321A10 /* TCPickerView.swift */; };
+		D5FC33521FA1374B00321A10 /* TCPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC33501FA1374B00321A10 /* TCPickerTableViewCell.swift */; };
 		D5FFFEB21F9CFC5500CA1FA2 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFFEB01F9CFC5500CA1FA2 /* EventListViewController.swift */; };
 		D5FFFEB31F9CFC5500CA1FA2 /* EventListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FFFEB11F9CFC5500CA1FA2 /* EventListViewController.xib */; };
 		D5FFFEB51F9CFC7300CA1FA2 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFFEB41F9CFC7300CA1FA2 /* EventListViewModel.swift */; };
@@ -181,6 +183,8 @@
 		D5D367C31F984C1C00A5C2E0 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
+		D5FC334F1FA1374B00321A10 /* TCPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPickerView.swift; sourceTree = "<group>"; };
+		D5FC33501FA1374B00321A10 /* TCPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPickerTableViewCell.swift; sourceTree = "<group>"; };
 		D5FFFEB01F9CFC5500CA1FA2 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		D5FFFEB11F9CFC5500CA1FA2 /* EventListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventListViewController.xib; sourceTree = "<group>"; };
 		D5FFFEB41F9CFC7300CA1FA2 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
@@ -418,6 +422,8 @@
 		D5B16A6E1F65CE4F00CDCE28 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D5FC33501FA1374B00321A10 /* TCPickerTableViewCell.swift */,
+				D5FC334F1FA1374B00321A10 /* TCPickerView.swift */,
 				D59CD46F1F7C636C001582D1 /* ImagePicker.swift */,
 				D5B16AAC1F6759A700CDCE28 /* FileStore.swift */,
 				D5B16A6B1F65CE3D00CDCE28 /* Result.swift */,
@@ -742,6 +748,7 @@
 				D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */,
 				D54DB02A1F9D0A6F0087D5E7 /* EventTableViewCell.swift in Sources */,
 				D5B16A8F1F674A6500CDCE28 /* ProfileViewController.swift in Sources */,
+				D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */,
 				D5B16A981F67577400CDCE28 /* UserModel.swift in Sources */,
 				D5B16A811F660F1600CDCE28 /* MenuRouter.swift in Sources */,
 				D515086F1F9E92F7003AC336 /* EventChatRouter.swift in Sources */,
@@ -765,6 +772,7 @@
 				D5B16A9F1F6757BB00CDCE28 /* User.swift in Sources */,
 				D5B16A6C1F65CE3D00CDCE28 /* Result.swift in Sources */,
 				D5B16A8B1F66121500CDCE28 /* EventsRouter.swift in Sources */,
+				D5FC33521FA1374B00321A10 /* TCPickerTableViewCell.swift in Sources */,
 				D5B16A5D1F4F6B8C00CDCE28 /* ViewController.swift in Sources */,
 				D5043E9B1F9C36930095CF31 /* CardCollectionViewCell.swift in Sources */,
 				D5B16A681F61C12300CDCE28 /* SignUpViewModel.swift in Sources */,
