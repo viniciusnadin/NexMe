@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Pastel
 import PopupDialog
 
 class SignInViewController: UIViewController {
@@ -23,7 +22,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var mailIcon: UIImageView!
+    @IBOutlet weak var passwordIcon: UIImageView!
     
     init(viewModel: SignInViewModel) {
         self.viewModel = viewModel
@@ -33,23 +33,28 @@ class SignInViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.viewModel.router.successSignUp {
+            self.viewModel.router.successSignUp = false
+            self.viewModel.router.presentMain()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.keyWindow?.windowLevel = UIWindowLevelNormal
         self.configureBinds()
-        self.setSignInButtonLayout()
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapOnView)
+        self.mailIcon.image = UIImage.fontAwesomeIcon(code: "fa-user-o", textColor: UIColor.white, size: CGSize(width: 30, height: 30))
+        self.passwordIcon.image = UIImage.fontAwesomeIcon(code: "fa-lock", textColor: UIColor.white, size: CGSize(width: 30, height: 30))
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
-    }
-    
-    override func viewWillLayoutSubviews() {
-        self.setPastelView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,10 +75,6 @@ class SignInViewController: UIViewController {
         self.viewModel.successLogin.asObservable().bind { (verify) in
             if verify{self.viewModel.router.presentMain()}
             }.addDisposableTo(self.viewModel.disposeBag)
-        
-//        emailTextField.rx.text.orEmpty.map({!$0.isEmpty})
-//            .bind(to:signInButton.rx.isEnabled)
-//            .addDisposableTo(viewModel.disposeBag)
         
         emailTextField.rx.text.orEmpty.map({$0})
             .bind(to: viewModel.email)
@@ -103,23 +104,6 @@ class SignInViewController: UIViewController {
                 })
                 self.present(pop2, animated: true, completion: nil)
             }).addDisposableTo(viewModel.disposeBag)
-    }
-    
-    func setSignInButtonLayout() {
-        self.signInButton.backgroundColor = .clear
-        self.signInButton.layer.cornerRadius = 5
-        self.signInButton.layer.borderWidth = 1
-        self.signInButton.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3).cgColor  
-    }
-    
-    func setPastelView() {
-        let pastelView = PastelView(frame: self.view.bounds)
-        pastelView.startPastelPoint = .bottomLeft
-        pastelView.endPastelPoint = .topRight
-        pastelView.animationDuration = 3.0
-        pastelView.setColors([UIColor(red: 98/255, green: 39/255, blue: 116/255, alpha: 1.0), UIColor(red: 197/255, green: 51/255, blue: 100/255, alpha: 1.0)])
-        pastelView.startAnimation()
-        view.insertSubview(pastelView, at: 0)
     }
     
     func dismissKeyboard() {

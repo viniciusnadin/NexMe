@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import Kingfisher
 import FontAwesome_swift
+import PopupDialog
 
 class ProfileViewController: UIViewController {
     
@@ -51,6 +52,12 @@ class ProfileViewController: UIViewController {
             self.slideMenuController()?.openLeft()
         }).addDisposableTo(self.viewModel.disposeBag)
         
+        self.changePasswordButton.rx.tap.subscribe(onNext: {
+            self.viewModel.passwordReset()
+            let pop = PopupDialog(title: "Redifinição da senha", message: "Enviamos em seu email instruções para redefinir sua senha :)")
+            self.present(pop, animated: true, completion: nil)
+        }).addDisposableTo(self.viewModel.disposeBag)
+        
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
             .addDisposableTo(viewModel.disposeBag)
@@ -59,17 +66,11 @@ class ProfileViewController: UIViewController {
             .bind(to: emailLabel.rx.text)
             .addDisposableTo(viewModel.disposeBag)
         
-        self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
-            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value)
+        self.viewModel.avatarImageURL.asObservable().subscribe({ avatar in
+            self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
         }).addDisposableTo(viewModel.disposeBag)
         
         
     }
-    
-//    func configureLayouts() {
-//        self.editButton.layer.borderWidth = 1
-//        self.editButton.layer.borderColor = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1).cgColor
-//        self.editButton.layer.cornerRadius = 5
-//    }
 
 }

@@ -38,7 +38,7 @@ class SignUpViewModel {
                 do {
                     self.loading.value = false
                     try result.check()
-                    self.successMessage.value = "Cadastro efetuado com sucesso!! :)"
+                    self.successMessage.value = "Cadastro efetuado com sucesso :)"
                 } catch {
                     self.errorMessage.value = handleError(error: error as NSError)
                 }
