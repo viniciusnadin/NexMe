@@ -25,8 +25,6 @@ class UsersViewController: UIViewController {
         self.configureViews()
         self.configureBinds()
         self.searchTextField.delegate = self
-        let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UsersViewController.dismissKeyboard))
-        self.view.addGestureRecognizer(tapOnView)
     }
 
     override func didReceiveMemoryWarning() {

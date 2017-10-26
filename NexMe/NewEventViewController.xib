@@ -59,7 +59,7 @@
                             <state key="normal" image="left"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOVO EVENTO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ss-x1-XF7">
-                            <rect key="frame" x="104.5" y="33" width="112.5" height="19"/>
+                            <rect key="frame" x="106.5" y="33" width="108.5" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="mxr-Bm-tZm"/>
                             </constraints>
@@ -107,7 +107,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300x200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWB-zQ-enF">
-                                    <rect key="frame" x="127" y="130" width="66" height="20"/>
+                                    <rect key="frame" x="125" y="130" width="70" height="21"/>
                                     <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>

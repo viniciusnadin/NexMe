@@ -12,6 +12,7 @@ import Hero
 class SignInRouter {
     let window: UIWindow
     let useCases: UseCases
+    var successSignUp = false
     
     var viewController: SignInViewController!
     var signUpRouter: SignUpRouter!

@@ -29,5 +29,9 @@ class ProfileViewModel {
         self.router.presentProfile()
     }
     
+    func passwordReset() {
+        self.useCases.passwordReset()
+    }
+    
     
 }

@@ -25,7 +25,6 @@ struct AppDependecies {
     let menuRouter: MenuRouter
     let eventsRouter: EventsRouter
     let profileRouter: ProfileRouter
-    let editProfileRouter: EditProfileRouter
     let usersRouter: UsersRouter
     let userDetailRouter: UserDetailRouter
     let newEventRouter: NewEventRouter
@@ -46,7 +45,6 @@ struct AppDependecies {
         self.menuRouter = MenuRouter(useCases: useCases)
         self.eventsRouter = EventsRouter(window: self.window, useCases: self.useCases)
         self.profileRouter = ProfileRouter(useCases: self.useCases, window: self.window)
-        self.editProfileRouter = EditProfileRouter(useCases: self.useCases, window: self.window)
         self.usersRouter = UsersRouter(useCases: self.useCases, window: self.window)
         self.userDetailRouter = UserDetailRouter(useCases: self.useCases, window: self.window)
         self.newEventRouter = NewEventRouter(window: self.window, useCases: self.useCases)
@@ -55,7 +53,7 @@ struct AppDependecies {
         self.eventChatRouter = EventChatRouter(useCases: self.useCases, window: self.window)
         
         // Routing
-        self.signInRouter.mainRouter = mainRouter
+        self.signInRouter.mainRouter = self.mainRouter
         self.signInRouter.signUpRouter = self.signUpRouter
         self.signUpRouter.signInRouter = self.signInRouter
         self.usersRouter.userDetailRouter = self.userDetailRouter

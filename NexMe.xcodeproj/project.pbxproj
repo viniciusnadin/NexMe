@@ -27,10 +27,6 @@
 		D54DB0331F9D24F70087D5E7 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB0321F9D24F70087D5E7 /* EventDetailViewModel.swift */; };
 		D54DB0351F9D25420087D5E7 /* EventDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB0341F9D25420087D5E7 /* EventDetailRouter.swift */; };
 		D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */; };
-		D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */; };
-		D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */; };
-		D54F44031F969C74004328D8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44011F969C74004328D8 /* EditProfileViewController.swift */; };
-		D54F44041F969C74004328D8 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54F44021F969C74004328D8 /* EditProfileViewController.xib */; };
 		D54F44061F96B22F004328D8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44051F96B22F004328D8 /* CardView.swift */; };
 		D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44081F96BF0F004328D8 /* UsersViewController.swift */; };
 		D54F440B1F96BF0F004328D8 /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54F44091F96BF0F004328D8 /* UsersViewController.xib */; };
@@ -117,10 +113,6 @@
 		D54DB0321F9D24F70087D5E7 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		D54DB0341F9D25420087D5E7 /* EventDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailRouter.swift; sourceTree = "<group>"; };
 		D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
-		D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
-		D54F44011F969C74004328D8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		D54F44021F969C74004328D8 /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		D54F44051F96B22F004328D8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D54F44081F96BF0F004328D8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		D54F44091F96BF0F004328D8 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
@@ -283,17 +275,6 @@
 				D54DB02F1F9D17A40087D5E7 /* EventDetailViewController.xib */,
 			);
 			name = Detail;
-			sourceTree = "<group>";
-		};
-		D54F43FC1F969C0B004328D8 /* Edit */ = {
-			isa = PBXGroup;
-			children = (
-				D54F43FD1F969C3C004328D8 /* EditProfileRouter.swift */,
-				D54F43FF1F969C56004328D8 /* EditProfileViewModel.swift */,
-				D54F44011F969C74004328D8 /* EditProfileViewController.swift */,
-				D54F44021F969C74004328D8 /* EditProfileViewController.xib */,
-			);
-			name = Edit;
 			sourceTree = "<group>";
 		};
 		D54F44071F96BEF7004328D8 /* Users */ = {
@@ -467,7 +448,6 @@
 		D5B16A8C1F674A5600CDCE28 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D54F43FC1F969C0B004328D8 /* Edit */,
 				D5B16A911F674A6E00CDCE28 /* ProfileRouter.swift */,
 				D5B16A931F674A8600CDCE28 /* ProfileViewModel.swift */,
 				D5B16A8D1F674A6500CDCE28 /* ProfileViewController.swift */,
@@ -651,7 +631,6 @@
 				D5B16A901F674A6500CDCE28 /* ProfileViewController.xib in Resources */,
 				D5043E9C1F9C36930095CF31 /* CardCollectionViewCell.xib in Resources */,
 				D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */,
-				D54F44041F969C74004328D8 /* EditProfileViewController.xib in Resources */,
 				D5D367C21F984A7D00A5C2E0 /* UserDetailViewController.xib in Resources */,
 				D5B16A581F4F662D00CDCE28 /* SignInViewController.xib in Resources */,
 				D54F440B1F96BF0F004328D8 /* UsersViewController.xib in Resources */,
@@ -740,7 +719,6 @@
 				D5B16A7F1F660F0900CDCE28 /* MenuNavigationController.swift in Sources */,
 				D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */,
 				D5B16A831F660F3A00CDCE28 /* MenuViewModel.swift in Sources */,
-				D54F44031F969C74004328D8 /* EditProfileViewController.swift in Sources */,
 				D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,
@@ -756,7 +734,6 @@
 				D5B16A921F674A6E00CDCE28 /* ProfileRouter.swift in Sources */,
 				D500D3191F99810C00FBDB8E /* Event.swift in Sources */,
 				D5B16A731F660CC600CDCE28 /* MainRouter.swift in Sources */,
-				D54F43FE1F969C3C004328D8 /* EditProfileRouter.swift in Sources */,
 				D5B16A5A1F4F66A300CDCE28 /* SignInViewModel.swift in Sources */,
 				D5B16A541F4F65D200CDCE28 /* SignInRouter.swift in Sources */,
 				D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */,
@@ -779,7 +756,6 @@
 				D5D367B41F97F94000A5C2E0 /* CardTableViewCell.swift in Sources */,
 				D5B16A651F61C11100CDCE28 /* SignUpViewController.swift in Sources */,
 				D54DB0331F9D24F70087D5E7 /* EventDetailViewModel.swift in Sources */,
-				D54F44001F969C56004328D8 /* EditProfileViewModel.swift in Sources */,
 				D500D3231F9BC7F500FBDB8E /* NewEventViewModel.swift in Sources */,
 				D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */,
 				D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */,
@@ -905,6 +881,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VJ9FQ76YK4;
 				INFOPLIST_FILE = NexMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nadin.NexMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -919,6 +896,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VJ9FQ76YK4;
 				INFOPLIST_FILE = NexMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nadin.NexMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";

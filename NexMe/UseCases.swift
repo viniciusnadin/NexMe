@@ -29,6 +29,12 @@ final class UseCases {
         return authentication.currentUser != nil
     }
     
+    func passwordReset() {
+        Auth.auth().sendPasswordReset(withEmail: (store.getCurrentUser()?.email)!) { (response) in
+            print(response)
+        }
+    }
+    
     func signIn(email: String, password: String, completion: @escaping (Result<Void>) -> Void) {
         deliver(completion: completion) { (success, failure) in
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
@@ -62,7 +68,9 @@ final class UseCases {
                         if err != nil {
                             failure(err!)
                         } else {
-                            success()
+                            self.fetchUser(completion: { (result) in
+                                success()
+                            })
                         }
                     })
                     success()
