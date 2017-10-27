@@ -43,15 +43,15 @@ class UsersViewController: UIViewController {
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.users.asObservable().bind(to: table.rx.items) { (table, row, user) in
             return self.cellForUser(user: user)
-        }.addDisposableTo(viewModel.disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         self.searchTextField.rx.text.orEmpty.map({$0})
         .bind(to: self.viewModel.textEntry)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
     }
     
     func configureViews() {

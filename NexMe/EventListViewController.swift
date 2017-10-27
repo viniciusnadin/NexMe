@@ -43,14 +43,14 @@ class EventListViewController: UIViewController {
     }
     
     func configureBinds() {
-        self.viewModel.filter.asObservable().bind(to: self.categorieLabel.rx.text).addDisposableTo(self.viewModel.disposeBag)
+        self.viewModel.filter.asObservable().bind(to: self.categorieLabel.rx.text).disposed(by: self.viewModel.disposeBag)
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.events.asObservable().bind(to: table.rx.items) { (table, row, event) in
             return self.cellForEvent(event: event)
-            }.addDisposableTo(viewModel.disposeBag)
+            }.disposed(by: viewModel.disposeBag)
     }
     
     func configureViews() {

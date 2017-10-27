@@ -46,15 +46,15 @@ class EventsViewController: UIViewController {
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.newEventButton.rx.tap.subscribe(onNext: {
             self.viewModel.newEvent()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.categories.asObservable().subscribe { _ in
             self.categoriesCollection.reloadData()
-        }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
     }
 
 }

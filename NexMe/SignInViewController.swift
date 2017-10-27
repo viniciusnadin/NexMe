@@ -66,36 +66,36 @@ class SignInViewController: UIViewController {
         signInButton.rx.tap.subscribe(onNext: {
             self.dismissKeyboard()
             self.viewModel.tryToSignIn()
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
         signUpButton.rx.tap.subscribe(onNext: {
             self.viewModel.signUp()
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successLogin.asObservable().bind { (verify) in
             if verify{self.viewModel.router.presentMain()}
-            }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         emailTextField.rx.text.orEmpty.map({$0})
             .bind(to: viewModel.email)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         viewModel.loading.asObservable()
             .bind(to: activityIndicator.rx.isAnimating)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         viewModel.loading.asObservable().map(negate)
             .bind(to:signInButton.rx.isEnabled)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         passwordTextField.rx.text.orEmpty.map({$0})
             .bind(to: viewModel.password)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         viewModel.successMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
@@ -103,7 +103,7 @@ class SignInViewController: UIViewController {
                     self.viewModel.successLogin.value = true
                 })
                 self.present(pop2, animated: true, completion: nil)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
     
     func dismissKeyboard() {

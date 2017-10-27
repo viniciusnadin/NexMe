@@ -48,40 +48,40 @@ class MenuViewController: UIViewController {
     func configureBinds() {
         self.eventsButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentEvents()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.signOutButton.rx.tap.subscribe(onNext: {
             let pop2 = PopupDialog(title: "Até logo!", message: "Aguardamos o seu retorno :)", image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
                 self.viewModel.successFullSignOut.value = true
             })
             self.present(pop2, animated: true, completion: nil)
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.profileButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentProfile()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.usersButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentUsersSearch()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.closeMenuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.closeLeft()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
             self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successFullSignOut.asObservable().bind { (verify) in
             if verify {
                 self.viewModel.signOut()
             }
-        }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
-            .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
     }
     
     @IBAction func editAvatarButtonTouched(_ sender: UIButton) {

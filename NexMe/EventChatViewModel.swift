@@ -18,7 +18,7 @@ class EventChatViewModel {
     func viewDidLoad() {
         self.useCases.messages.asObservable().subscribe({
             self.messages.value = ($0.element)!
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.useCases.observeMessages(eventId: self.event.value.id!)
     }
     

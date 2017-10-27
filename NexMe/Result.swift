@@ -85,14 +85,14 @@ extension Result {
     }
 }
 
-public func strive<T>( f: @escaping (Void) throws -> T?) -> Result<T> {
+public func strive<T>( f: @escaping () throws -> T?) -> Result<T> {
     return Result<T>.strive(f: f)
 }
 
 public func strive<T>(completion: @escaping (Result<T>) -> Void,
     runQueue: DispatchQueue = DispatchQueue.global(qos: DispatchQoS.default.qosClass),
     resultQueue: DispatchQueue = DispatchQueue.main,
-    f: @escaping (Void) throws -> T?) {
+    f: @escaping () throws -> T?) {
         
     
     runQueue.async {
@@ -169,7 +169,7 @@ enum ResultError: Error {
 }
 
 extension Result {
-    public static func strive<T>( f: @escaping (Void) throws -> T?) -> Result<T> {
+    public static func strive<T>( f: @escaping () throws -> T?) -> Result<T> {
         let e: Error?
         let v: T?
 

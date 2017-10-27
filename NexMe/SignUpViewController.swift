@@ -79,44 +79,44 @@ class SignUpViewController: UIViewController {
     func configureBinds() {
         self.signInButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         viewModel.loading.asObservable().map(negate)
             .bind(to:signUpButton.rx.isEnabled)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         viewModel.loading.asObservable()
             .bind(to: activityIndicator.rx.isAnimating)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         signUpButton.rx.tap.subscribe(onNext: {
             self.dismissKeyboard()
             self.viewModel.tryToSignUp()
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
         self.nameTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.name)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         emailTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.email)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         passwordTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.password)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.successFullSignUp.asObservable().bind { (verify) in
             if verify {
                 self.viewModel.router.signInRouter.successSignUp = true
                 self.viewModel.close()
             }
-        }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
-        }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
@@ -124,7 +124,7 @@ class SignUpViewController: UIViewController {
                     self.viewModel.successFullSignUp.value = true
                 })
                 self.present(pop2, animated: true, completion: nil)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
 
 }

@@ -49,15 +49,15 @@ class UserDetailViewController: UIViewController {
     func configureBinds() {
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe(onNext: { avatar in
             self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
     }
     

@@ -50,15 +50,15 @@ class EventDetailViewController: UIViewController {
     func configureBinds() {
         self.viewModel.event.asObservable().subscribe { _ in
             self.setupLabels()
-        }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.chatButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentEventMessages()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
     }
     
     func setupLabels() {

@@ -101,33 +101,33 @@ class NewEventViewController: UIViewController {
     func configurebinds() {
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.locationButton.rx.tap.subscribe(onNext: {
             let autocompleteController = GMSAutocompleteViewController()
             autocompleteController.delegate = self
             self.present(autocompleteController, animated: true, completion: nil)
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.dateButton.rx.tap.subscribe(onNext: {
             self.showDatePicker()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.eventLocationName.asObservable().subscribe(onNext: { name in
             self.locationTextField.text = name
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.nameTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.eventName)
-            .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.descriptionTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.eventDescription)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.saveButton.rx.tap.subscribe(onNext: {
             self.viewModel.save()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.pickButton.rx.tap.subscribe(onNext: {
             self.imagePicker.pickImageFromViewController(viewController: self) { result in
@@ -141,16 +141,16 @@ class NewEventViewController: UIViewController {
                     print(error)
                 }
             }
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.categorieButton.rx.tap.subscribe({_ in
             self.showCategoriePicker()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         viewModel.successMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
@@ -158,11 +158,11 @@ class NewEventViewController: UIViewController {
                     self.viewModel.successCreation.value = true
                 })
                 self.present(pop2, animated: true, completion: nil)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successCreation.asObservable().bind { (verify) in
             if verify{self.viewModel.close()}
-            }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
     }
     
     func showCategoriePicker() {

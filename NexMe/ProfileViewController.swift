@@ -50,25 +50,25 @@ class ProfileViewController: UIViewController {
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.changePasswordButton.rx.tap.subscribe(onNext: {
             self.viewModel.passwordReset()
             let pop = PopupDialog(title: "Redifinição da senha", message: "Enviamos em seu email instruções para redefinir sua senha :)")
             self.present(pop, animated: true, completion: nil)
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         self.viewModel.email.asObservable()
             .bind(to: emailLabel.rx.text)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         self.viewModel.avatarImageURL.asObservable().subscribe({ avatar in
             self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
         
     }

@@ -31,7 +31,7 @@ final class UseCases {
     
     func passwordReset() {
         Auth.auth().sendPasswordReset(withEmail: (store.getCurrentUser()?.email)!) { (response) in
-            print(response)
+            print(response ?? "error")
         }
     }
     
@@ -285,7 +285,7 @@ final class UseCases {
     
     func createEventByValue(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
         deliver(completion: completion) { success, failure in
-            let eventId = value.key as! String
+            let eventId = value.key 
             let userID = (value.value["ownerId"] as! String)
             let title = (value.value["title"] as! String)
             let city = (value.value["town"] as! String)

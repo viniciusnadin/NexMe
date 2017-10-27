@@ -57,19 +57,19 @@ class EventChatViewController: UIViewController {
             if (lastRowIndex >= 0){
                 self.table.scrollToRow(at: pathToLastRow, at: UITableViewScrollPosition.none, animated: true)
             }
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.messageTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.message)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.messages.asObservable().bind(to: table.rx.items) { (table, row, message) in
             return self.cellForMessage(message: message)
-            }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
     }
     
     func configureViews() {
