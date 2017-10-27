@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'NexMe' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -12,16 +12,16 @@ target 'NexMe' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  pod 'PopupDialog', '~> 0.5'
+  pod 'PopupDialog'
   pod "Pastel"
   pod "Hero"
   pod 'SlideMenuControllerSwift'
   pod 'Unbox'
   pod 'SwiftyJSON'
-  pod 'Kingfisher', '~> 4.0'
+  pod 'Kingfisher'
   pod 'GoogleMaps'
   pod 'GooglePlaces'  
-  pod 'SkyFloatingLabelTextField', '~> 3.0'
-  pod 'FontAwesome.swift', :git => 'https://github.com/thii/FontAwesome.swift.git', :branch => 'swift-4.0'
+  pod 'SkyFloatingLabelTextField'
+  pod 'FontAwesome.swift'
   pod 'DateTimePicker'
 end
