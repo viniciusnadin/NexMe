@@ -33,4 +33,5 @@ class Event {
         self.ownerId = ownerId
         self.city = city
     }
+    
 }

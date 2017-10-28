@@ -23,11 +23,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var tableEvents: UITableView!
+    @IBOutlet weak var eventsCount: UIButton!
     
-
     // MARK :- Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureViews()
         self.configureBinds()
         self.viewModel.viewDidLoad()
     }
@@ -62,6 +64,10 @@ class ProfileViewController: UIViewController {
             .bind(to: nameLabel.rx.text)
             .disposed(by: viewModel.disposeBag)
         
+        self.viewModel.events.asObservable().subscribe { (events) in
+            self.eventsCount.setTitle("\(events.element!.count)", for: .normal)
+        }.disposed(by: viewModel.disposeBag)
+        
         self.viewModel.email.asObservable()
             .bind(to: emailLabel.rx.text)
             .disposed(by: viewModel.disposeBag)
@@ -70,7 +76,59 @@ class ProfileViewController: UIViewController {
             self.avatar.kf.setImage(with: self.viewModel.avatarImageURL.value, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
         }).disposed(by: viewModel.disposeBag)
         
-        
+        self.viewModel.events.asObservable().bind(to: tableEvents.rx.items) { (table, row, event) in
+            return self.cellForEvent(event: event)
+        }.disposed(by: viewModel.disposeBag)
+    }
+    
+    func configureViews() {
+        let cellNib = UINib(nibName: "EventLesserCell", bundle: nil)
+        tableEvents.register(cellNib, forCellReuseIdentifier: "EventCell")
+        tableEvents.separatorColor = UIColor.clear
     }
 
 }
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let event = self.viewModel.events.value[indexPath.row]
+//        self.viewModel.presentEventDetail(event: event)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func cellForEvent(event: Event) -> EventLesserCell {
+        let cell = self.tableEvents.dequeueReusableCell(withIdentifier: "EventCell") as! EventLesserCell
+        cell.nameLabel.text = event.title
+        cell.locationLabel.text = event.locationName
+        cell.selectionStyle = .none
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: event.date)
+        let day = calendar.component(.day, from: event.date)
+        let dateFormatter: DateFormatter = DateFormatter()
+        let months = dateFormatter.shortMonthSymbols
+        let monthSymbol = months![month-1]
+        dateFormatter.dateFormat = "HH:mm"
+        let date24 = dateFormatter.string(from: event.date)
+        cell.monthLabel.text = monthSymbol
+        cell.dayLabel.text = "\(day)"
+        cell.scheduleLabel.text = "\(date24)"
+        cell.updateConstraintsIfNeeded()
+        return cell
+    }
+}
+
+
+
+
+
+
+
+
+
