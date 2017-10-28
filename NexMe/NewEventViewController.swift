@@ -39,7 +39,6 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var mapIcon: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var placeHolderLabel: UILabel!
     
     
     
@@ -135,7 +134,7 @@ class NewEventViewController: UIViewController {
                     let image = try result.getValue()
                     self.eventImage.image = image
                     self.viewModel.eventImage = image
-                    self.placeHolderLabel.isHidden = true
+//                    self.placeHolderLabel.isHidden = true
 //                    self.viewModel.uploadImage(image: image)
                 } catch {
                     print(error)

@@ -12,7 +12,7 @@ class ProfileViewModel {
     var useCases: UseCases!
     var router: ProfileRouter!
     var disposeBag = DisposeBag()
-    
+    let events = Variable<[Event]>([])
     let name = Variable<String>("")
     let email = Variable<String>("")
     let avatarImageURL = Variable<URL?>(nil)
@@ -22,7 +22,15 @@ class ProfileViewModel {
             name.value = user.name.capitalized
             email.value = user.email
             self.avatarImageURL.value = user.avatar?.original
+            self.useCases.findEventsByUser(id: user.id, completion: { (events) in
+                do {
+                    self.events.value = try events.getValue().sorted(by: { $0.date < $1.date })
+                } catch {
+                    print("Erro Eventos")
+                }
+            })
         }
+        
     }
     
     func presentProfile() {

@@ -283,7 +283,7 @@ final class UseCases {
         var value : [String : Any]
     }
     
-    func createEventByValue(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
+    func createEventByValueWithCategorie(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
         deliver(completion: completion) { success, failure in
             let eventId = value.key 
             let userID = (value.value["ownerId"] as! String)
@@ -315,7 +315,7 @@ final class UseCases {
                 if let values = snapShot.value as? [String : [String : Any]]{
                     for value in values {
                         let snap = snapValue(key: value.key, value: value.value)
-                        self.createEventByValue(value: snap, categorie: categorie, completion: { (event) in
+                        self.createEventByValueWithCategorie(value: snap, categorie: categorie, completion: { (event) in
                             events.append(event.value!)
                         })
                     }
@@ -326,6 +326,81 @@ final class UseCases {
             })
         }
     }
+    
+    func createEventByValue(value : snapValue, completion: @escaping (Result<Event>) -> Void){
+        deliver(completion: completion) { success, failure in
+            let eventId = value.key
+            let userID = (value.value["ownerId"] as! String)
+            let title = (value.value["title"] as! String)
+            let city = (value.value["town"] as! String)
+            let date = (value.value["date"] as! Int)
+            let description = (value.value["description"] as! String)
+            //        let image = (value.value["image"] as! String)
+            var eventCoordinate = CLLocationCoordinate2D()
+            if let location = (value.value["location"] as? [String : CLLocationDegrees]){
+                var locationValues = [CLLocationDegrees]()
+                for val in location {
+                    locationValues.append(val.value)
+                }
+                eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
+            }
+            let locationName = (value.value["locationName"] as! String)
+            let categorieId = (value.value["categorie"] as! String)
+            self.findCategorieById(id: categorieId, completion: { (categorie) in
+                do{
+                    let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), image: #imageLiteral(resourceName: "profileImage"), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
+                    event.id = eventId
+                    success(event)
+                } catch {
+                    print("Erro put categorie in event")
+                }
+            })
+        }
+    }
+    
+    func findEventsByUser(id: String, completion: @escaping (Result<[Event]>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            var events = [Event]()
+            let eventsDispatch = DispatchGroup()
+            let databaseReference = Database.database().reference().child("event").child("events")
+            databaseReference.queryOrdered(byChild: "ownerId").queryEqual(toValue: id).observeSingleEvent(of: .value, with: { (snapShot) in
+                if let values = snapShot.value as? [String : [String : Any]]{
+                    for value in values {
+                        eventsDispatch.enter()
+                        let snap = snapValue(key: value.key, value: value.value)
+                        self.createEventByValue(value: snap, completion: { (event) in
+                            do{
+                                try events.append(event.getValue())
+                                eventsDispatch.leave()
+                            }catch{
+                                print("Erro append")
+                            }
+                        })
+                    }
+                    eventsDispatch.notify(queue: .main, execute: {
+                        success(events)
+                    })
+                } else {
+                    success(events)
+                }
+            })
+        }
+    }
+    
+    func findCategorieById(id: String, completion: @escaping (Result<EventCategorie>) -> Void){
+        deliver(completion: completion) { success, failure in
+            Database.database().reference().child("event").child("categories").child(id).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
+                if let dictionary = snapShot.value as? [String : Any]{
+                    let name = (dictionary["name"] as! String)
+                    let categorie = EventCategorie(name: name)
+                    categorie.id = id
+                    success(categorie)
+                }
+            })
+        }
+    }
+        
+        
     let messages = Variable<[Message]>([])
     
     func sendMessage(event: Event, message: String) {

@@ -25,8 +25,10 @@
                 <outlet property="avatar" destination="Wog-2f-93h" id="Z7k-Ve-PRP"/>
                 <outlet property="changePasswordButton" destination="uo7-w7-5op" id="7Ql-q7-M9a"/>
                 <outlet property="emailLabel" destination="D1Y-PR-sbz" id="bru-2q-yBz"/>
+                <outlet property="eventsCount" destination="THc-E5-B1L" id="MXg-4w-7ka"/>
                 <outlet property="menuButton" destination="m6r-Rt-hDa" id="he9-3g-Dim"/>
                 <outlet property="nameLabel" destination="0zI-sj-gTS" id="Aai-Cd-sDl"/>
+                <outlet property="tableEvents" destination="iVb-FB-Hmx" id="til-aG-Q8d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -185,24 +187,33 @@
                         <color key="titleColor" red="0.89126098155975342" green="0.3545563817024231" blue="0.39968371391296387" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vininadin@hotmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1Y-PR-sbz">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vininadin@hotmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1Y-PR-sbz">
                     <rect key="frame" x="20" y="184" width="280" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="ChX-sj-BaD"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="15"/>
-                    <color key="textColor" red="0.51784205439999997" green="0.58159953360000005" blue="0.58617168659999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="0.63776220034246578" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iVb-FB-Hmx">
+                    <rect key="frame" x="0.0" y="266" width="320" height="214"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="RIJ-AS-fMy"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="iVb-FB-Hmx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1dB-9x-M2P"/>
                 <constraint firstItem="tH4-ed-lQs" firstAttribute="top" secondItem="gZF-EQ-3Jy" secondAttribute="bottom" constant="8" id="2GU-g6-PZu"/>
                 <constraint firstItem="Vtb-Nl-gkq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CM3-6A-jXD"/>
                 <constraint firstItem="uo7-w7-5op" firstAttribute="top" secondItem="Vtb-Nl-gkq" secondAttribute="bottom" constant="25" id="DsR-1Q-76y"/>
                 <constraint firstItem="Wog-2f-93h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gc9-Et-Nrk"/>
                 <constraint firstItem="gZF-EQ-3Jy" firstAttribute="top" secondItem="1Nc-95-eLs" secondAttribute="bottom" constant="8" id="HDw-VO-uul"/>
                 <constraint firstItem="0zI-sj-gTS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="MBq-Pt-53T"/>
+                <constraint firstAttribute="trailing" secondItem="iVb-FB-Hmx" secondAttribute="trailing" id="Ny6-xq-pez"/>
                 <constraint firstAttribute="trailing" secondItem="D1Y-PR-sbz" secondAttribute="trailing" constant="20" id="QIg-sC-sLK"/>
                 <constraint firstItem="D1Y-PR-sbz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="SJm-0F-1Db"/>
                 <constraint firstItem="0zI-sj-gTS" firstAttribute="top" secondItem="Wog-2f-93h" secondAttribute="bottom" constant="6" id="TG3-e8-Set"/>
@@ -210,6 +221,8 @@
                 <constraint firstItem="Vtb-Nl-gkq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WXm-3a-z5i"/>
                 <constraint firstItem="1Nc-95-eLs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="XOB-sy-Rej"/>
                 <constraint firstItem="gZF-EQ-3Jy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="YKB-jJ-tQd"/>
+                <constraint firstItem="iVb-FB-Hmx" firstAttribute="top" secondItem="tH4-ed-lQs" secondAttribute="bottom" id="aa1-A3-0uv"/>
+                <constraint firstAttribute="bottom" secondItem="iVb-FB-Hmx" secondAttribute="bottom" id="c32-zL-fur"/>
                 <constraint firstItem="D1Y-PR-sbz" firstAttribute="top" secondItem="0zI-sj-gTS" secondAttribute="bottom" constant="-5" id="eNl-qT-DFJ"/>
                 <constraint firstAttribute="trailing" secondItem="uo7-w7-5op" secondAttribute="trailing" constant="30" id="hL0-He-eRd"/>
                 <constraint firstAttribute="trailing" secondItem="1Nc-95-eLs" secondAttribute="trailing" constant="30" id="qqL-GQ-RAp"/>
