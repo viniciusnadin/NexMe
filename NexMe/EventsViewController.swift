@@ -19,7 +19,9 @@ class EventsViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var newEventButton: UIButton!
-    @IBOutlet weak var categoriesCollection: UICollectionView!
+    @IBOutlet weak var categoriesTable: UITableView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var mainCategorieImage: UIImageView!
     
     init(viewModel: EventsViewModel) {
         self.viewModel = viewModel
@@ -34,9 +36,10 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
-        
-        let cellNib = UINib(nibName: "CardCollectionViewCell", bundle: nil)
-        self.categoriesCollection.register(cellNib, forCellWithReuseIdentifier: "CardCell")
+        self.configureViews()
+        self.containerView.layer.borderWidth = 1
+        self.containerView.layer.borderColor = UIColor(red: 176/255, green: 182/255, blue: 187/255, alpha: 1.0).cgColor
+        self.mainCategorieImage.image = UIImage.fontAwesomeIcon(code: "fa-globe", textColor: UIColor(red: 82/255, green: 205.255, blue: 171/255, alpha: 1.0), size: CGSize(width: 50, height: 50))
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,43 +55,37 @@ class EventsViewController: UIViewController {
             self.viewModel.newEvent()
         }).disposed(by: self.viewModel.disposeBag)
         
-        self.viewModel.categories.asObservable().subscribe { _ in
-            self.categoriesCollection.reloadData()
-            }.disposed(by: self.viewModel.disposeBag)
+        self.viewModel.categories.asObservable().bind(to: categoriesTable.rx.items) { (table, row, categorie) in
+            return self.cellForCategorie(categorie: categorie)
+        }.disposed(by: viewModel.disposeBag)
     }
 
-}
-
-extension EventsViewController: UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.eventsByFilter(categorie: self.viewModel.categories.value[indexPath.row])
+    func configureViews() {
+        let cellNib = UINib(nibName: "CategorieTableViewCell", bundle: nil)
+        self.categoriesTable.register(cellNib, forCellReuseIdentifier: "CategorieCell")
+        self.categoriesTable.separatorColor = UIColor.clear
     }
 }
 
-extension EventsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.categories.value.count
+extension EventsViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.categoriesCollection.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
-        cell.categorieName.text = self.viewModel.categories.value[indexPath.row].name
-//        cell.contentView.layer.cornerRadius = 10.0
-//        cell.contentView.layer.borderWidth = 1.0
-//        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-//        cell.contentView.layer.masksToBounds = true;
-        
-//        cell.layer.shadowColor = UIColor.lightGray.cgColor
-//        cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
-//        cell.layer.shadowRadius = 2.0
-//        cell.layer.shadowOpacity = 1.0
-//        cell.layer.masksToBounds = false;
-//        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categorie = self.viewModel.categories.value[indexPath.row]
+        self.viewModel.eventsByFilter(categorie: categorie)
+    }
+    
+    func cellForCategorie(categorie: EventCategorie) -> CategorieTableViewCell {
+        let cell = self.categoriesTable.dequeueReusableCell(withIdentifier: "CategorieCell") as! CategorieTableViewCell
+        cell.categorieNameLabel.text = categorie.name
         return cell
     }
-    
-    
 }
+
+
 
 
 

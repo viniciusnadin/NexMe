@@ -56,15 +56,23 @@ class NewEventViewModel {
     func save(){
         self.loading.value = true
         let event = Event(title: self.eventName.value, coordinate: self.eventLocation, locationName: self.eventLocationName.value, date: self.date.value, description: self.eventDescription.value, categorie: self.categorie, ownerId: self.useCases.getUserId(), city: self.city)
-        self.useCases.createEvent(event: event, completion: { (result) in
-            do {
-                self.loading.value = false
-                try result.check()
-                self.successMessage.value = "Evento criado com sucesso!! :)"
-            } catch {
-                self.errorMessage.value = handleError(error: error as NSError)
+        let data = UIImageJPEGRepresentation(self.eventImage, 1.0)!
+        self.useCases.uploadEventImage(image: data) { (imageUrl) in
+            do{
+                event.image = try imageUrl.getValue()
+                self.useCases.createEvent(event: event, completion: { (result) in
+                    do {
+                        self.loading.value = false
+                        try result.check()
+                        self.successMessage.value = "Evento criado com sucesso!! :)"
+                    } catch {
+                        self.errorMessage.value = handleError(error: error as NSError)
+                    }
+                })
+            } catch{
+                print("Erro descompactar image")
             }
-        })
+        }
     }
     
     
