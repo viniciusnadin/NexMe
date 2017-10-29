@@ -30,6 +30,7 @@
                 <outlet property="backButton" destination="CM2-Ol-1X8" id="arC-Rx-vaQ"/>
                 <outlet property="chatButton" destination="6Eq-6J-54m" id="9lL-n8-f2D"/>
                 <outlet property="descriptionTextView" destination="btJ-Gk-wFv" id="3wr-LL-Ein"/>
+                <outlet property="envetLocationMap" destination="nX9-rD-s1W" id="w0h-mJ-ujJ"/>
                 <outlet property="eventImageView" destination="F0v-q8-NaT" id="cIz-7Q-5yM"/>
                 <outlet property="eventTitleLabel" destination="85N-rv-oyc" id="8bx-9k-XVB"/>
                 <outlet property="joinButton" destination="Sd9-UU-n8F" id="Urt-tU-fIk"/>
@@ -186,7 +187,7 @@
                                                 <constraint firstAttribute="width" constant="30" id="ktb-PJ-OmU"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R. Vicente Machado, 1997 - Centro, Guarapuava - PR, 85010-260, Brasil" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jb-yB-f8P">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R. Vicente Machado, 1997 - Centro, Guarapuava - PR, 85010-260, Brasil" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jb-yB-f8P">
                                             <rect key="frame" x="40" y="3" width="260" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="cjO-2D-UgP"/>

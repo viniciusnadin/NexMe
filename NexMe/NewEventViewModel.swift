@@ -55,7 +55,7 @@ class NewEventViewModel {
     
     func save(){
         self.loading.value = true
-        let event = Event(title: self.eventName.value, coordinate: self.eventLocation, locationName: self.eventLocationName.value, date: self.date.value, image: self.eventImage, description: self.eventDescription.value, categorie: self.categorie, ownerId: self.useCases.getUserId(), city: self.city)
+        let event = Event(title: self.eventName.value, coordinate: self.eventLocation, locationName: self.eventLocationName.value, date: self.date.value, description: self.eventDescription.value, categorie: self.categorie, ownerId: self.useCases.getUserId(), city: self.city)
         self.useCases.createEvent(event: event, completion: { (result) in
             do {
                 self.loading.value = false

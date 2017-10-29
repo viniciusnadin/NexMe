@@ -7,27 +7,33 @@
 //
 
 import UIKit
+import GooglePlaces
+import GoogleMaps
 
 class EventDetailViewController: UIViewController {
     // MARK:- PROPERTIES
     let viewModel: EventDetailViewModel
+    var googleMapsView : GMSMapView!
     
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var schedulerLabel: UILabel!
-    @IBOutlet weak var participantsCountLabel: UILabel!
-    @IBOutlet weak var participantsTable: UITableView!
     @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var ownerAvatar: UIImageView!
     @IBOutlet weak var ownerName: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var envetLocationMap: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.setupGoogleMapsView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,6 +84,19 @@ class EventDetailViewController: UIViewController {
         let months = dateFormatter.monthSymbols
         let monthSymbol = months![month-1]
         self.schedulerLabel.text = "\(day) de \(monthSymbol) de \(year) as \(hour)horas e \(minute) minutos"
+    }
+    
+    func setupGoogleMapsView(){
+        if self.googleMapsView == nil {
+            self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.envetLocationMap.frame.width, height: self.envetLocationMap.frame.height))
+            let position = self.viewModel.event.value.coordinate
+            let camera = GMSCameraPosition.camera(withLatitude: (position.latitude), longitude: (position.longitude), zoom: 18)
+            self.googleMapsView.camera = camera
+            let marker = GMSMarker(position: position)
+            marker.title = self.viewModel.event.value.locationName
+            marker.map = self.googleMapsView
+            self.envetLocationMap.addSubview(self.googleMapsView)
+        }
     }
 
 }
