@@ -96,12 +96,7 @@ extension EventChatViewController: UITableViewDelegate {
         }
         return cell
     }
-    
-    func estimateFrameForMessage(text: String) -> CGRect{
-        let size = CGSize(width: 100, height: 300)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: nil, context: nil)
-    }
+
     
     func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

@@ -61,17 +61,14 @@ class EventListViewController: UIViewController {
 }
 
 extension EventListViewController: UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 289
+        return 320
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let event = self.viewModel.events.value[indexPath.row]
         self.viewModel.presentEventDetail(event: event)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
     }
     
     func cellForEvent(event: Event) -> EventTableViewCell {

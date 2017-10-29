@@ -130,11 +130,6 @@ final class UseCases {
                 if error != nil {
                     failure(error!)
                 }
-//                let updateProfileImage = ["original" : metadata?.downloadURL()?.absoluteString as Any]
-//                let userId = Auth.auth().currentUser?.uid
-//                let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
-//                usersReference.updateChildValues(updateProfileImage)
-//                self.getUpdatedCurrentUser()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 success()
             })
@@ -291,7 +286,7 @@ final class UseCases {
             let city = (value.value["town"] as! String)
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
-            //        let image = (value.value["image"] as! String)
+            let imageUrl = (value.value["imageUrl"] as! URL)
             var eventCoordinate = CLLocationCoordinate2D()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
@@ -301,7 +296,8 @@ final class UseCases {
                 eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
             }
             let locationName = (value.value["locationName"] as! String)
-            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), image: #imageLiteral(resourceName: "profileImage"), description: description, categorie: categorie, ownerId: userID, city: city)
+            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie, ownerId: userID, city: city)
+            event.image = imageUrl
             event.id = eventId
             success(event)
         }
@@ -335,7 +331,7 @@ final class UseCases {
             let city = (value.value["town"] as! String)
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
-            //        let image = (value.value["image"] as! String)
+            let imageUrl = (value.value["imageUrl"] as! URL)
             var eventCoordinate = CLLocationCoordinate2D()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
@@ -348,7 +344,8 @@ final class UseCases {
             let categorieId = (value.value["categorie"] as! String)
             self.findCategorieById(id: categorieId, completion: { (categorie) in
                 do{
-                    let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), image: #imageLiteral(resourceName: "profileImage"), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
+                    let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
+                    event.image = imageUrl
                     event.id = eventId
                     success(event)
                 } catch {

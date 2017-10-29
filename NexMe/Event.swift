@@ -14,7 +14,7 @@ class Event {
     var coordinate : CLLocationCoordinate2D
     var locationName : String
     var date : Date
-    var image : UIImage
+    var image : URL?
     var description : String
     var categorie : EventCategorie
     var ownerId: String
@@ -22,12 +22,11 @@ class Event {
     var city: String
     var id: String?
     
-    init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, image: UIImage, description: String, categorie: EventCategorie, ownerId: String, city: String){
+    init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, description: String, categorie: EventCategorie, ownerId: String, city: String){
         self.title = title
         self.coordinate = coordinate
         self.locationName = locationName
         self.date = date
-        self.image = image
         self.description = description
         self.categorie = categorie
         self.ownerId = ownerId
