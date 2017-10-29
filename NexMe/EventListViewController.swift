@@ -73,24 +73,19 @@ extension EventListViewController: UITableViewDelegate{
     
     func cellForEvent(event: Event) -> EventTableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "EventTableCell") as! EventTableViewCell
-//        cell.eventImage.image = event.image
+        cell.eventImage.kf.setImage(with: event.image, placeholder: #imageLiteral(resourceName: "imagePlaceHolder"), options: nil, progressBlock: nil, completionHandler: nil)
         cell.eventLocationName.text = event.locationName
         cell.eventNameLabel.text = event.title
         cell.selectionStyle = .none
         let calendar = Calendar.current
         let month = calendar.component(.month, from: event.date)
         let day = calendar.component(.day, from: event.date)
-//        let hour = calendar.component(.hour, from: event.date)
         let dateFormatter: DateFormatter = DateFormatter()
         let months = dateFormatter.shortMonthSymbols
         let monthSymbol = months![month-1]
         cell.eventMonthLabel.text = monthSymbol
         cell.eventDayLabel.text = "\(day)"
-//        cell.text = "\(hour)h00"
         cell.updateConstraintsIfNeeded()
-//        cell.nameLabel.text = user.name.capitalized
-//        cell.avatar.kf.setImage(with: user.avatar?.original, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
-//        cell.updateConstraintsIfNeeded()
         return cell
     }
 }

@@ -123,15 +123,16 @@ final class UseCases {
         }
     }
     
-    func uploadEventImage(image: Data, completion: @escaping (Result<Void>) -> Void) {
+    func uploadEventImage(image: Data, completion: @escaping (Result<URL>) -> Void) {
         deliver(completion: completion) { success, failure in
             let imageName = NSUUID().uuidString
             Storage.storage().reference().child("event_images").child("\(imageName).png").putData(image, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     failure(error!)
                 }
+                let imageUrl = metadata?.downloadURL()?.absoluteURL
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                success()
+                success(imageUrl!)
             })
         }
     }
@@ -206,7 +207,7 @@ final class UseCases {
             let databaseReference = Database.database().reference()
             let eventsReference = databaseReference.child("event").child("events").childByAutoId()
             let values : [String : Any]!
-            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
+            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "imageUrl" : event.image!.absoluteString, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
             eventsReference.updateChildValues(values) { (error, reference) in
                 if error != nil {
                     failure(error!)
@@ -286,7 +287,7 @@ final class UseCases {
             let city = (value.value["town"] as! String)
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
-            let imageUrl = (value.value["imageUrl"] as! URL)
+            let imageUrl = (value.value["imageUrl"] as! String)
             var eventCoordinate = CLLocationCoordinate2D()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
@@ -297,7 +298,7 @@ final class UseCases {
             }
             let locationName = (value.value["locationName"] as! String)
             let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie, ownerId: userID, city: city)
-            event.image = imageUrl
+            event.image = URL(string: imageUrl)
             event.id = eventId
             success(event)
         }
@@ -331,7 +332,7 @@ final class UseCases {
             let city = (value.value["town"] as! String)
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
-            let imageUrl = (value.value["imageUrl"] as! URL)
+            let imageUrl = (value.value["imageUrl"] as! String)
             var eventCoordinate = CLLocationCoordinate2D()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
@@ -345,7 +346,7 @@ final class UseCases {
             self.findCategorieById(id: categorieId, completion: { (categorie) in
                 do{
                     let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
-                    event.image = imageUrl
+                    event.image = URL(string: imageUrl)
                     event.id = eventId
                     success(event)
                 } catch {

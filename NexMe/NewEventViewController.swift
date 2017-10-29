@@ -20,8 +20,6 @@ class NewEventViewController: UIViewController {
     let viewModel: NewEventViewModel
     var googleMapsView : GMSMapView!
     let imagePicker = ImagePicker()
-//    var eventLocation : CLLocationCoordinate2D!
-//    var eventLocationName : String!
     
     // MARK: - OUTLETS
     @IBOutlet weak var backButton: UIButton!
@@ -40,8 +38,6 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var eventImage: UIImageView!
     
-    
-    
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,14 +55,11 @@ class NewEventViewController: UIViewController {
         nameTextField.selectedTitleColor = overcastBlueColor
         nameTextField.selectedLineColor = overcastBlueColor
 
-        // Set icon properties
         nameTextField.iconColor = UIColor.lightGray
         nameTextField.selectedIconColor = overcastBlueColor
         nameTextField.iconFont = UIFont.fontAwesome(ofSize: 20)
-//        nameTextField.iconText = String.fontAwesomeIcon(code: "fa-upload")
         nameTextField.iconText = String.fontAwesomeIcon(code: "fa-wpforms")
-        nameTextField.iconMarginBottom = 2.0 // more precise icon positioning. Usually needed to tweak on a per font basis.
-//        nameTextField.iconRotationDegrees = 90 // rotate it 90 degrees
+        nameTextField.iconMarginBottom = 2.0
         nameTextField.iconMarginLeft = 2.0
         self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
         self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
@@ -134,8 +127,6 @@ class NewEventViewController: UIViewController {
                     let image = try result.getValue()
                     self.eventImage.image = image
                     self.viewModel.eventImage = image
-//                    self.placeHolderLabel.isHidden = true
-//                    self.viewModel.uploadImage(image: image)
                 } catch {
                     print(error)
                 }
