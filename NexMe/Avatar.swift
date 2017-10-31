@@ -1,13 +1,9 @@
-import Unbox
+import UIKit
 
-struct Avatar {
+class Avatar {
     let original: URL?
-//    let medium: URL?
-//    let thumb: URL?
-}
-
-extension Avatar: Unboxable {
-    init(unboxer: Unboxer) throws {
-        original = unboxer.unbox(key: "original")
+    
+    init(url: URL) {
+        self.original = url
     }
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gilroy-Bold.otf">
+            <string>Gilroy-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessagesViewController" customModule="NexMe" customModuleProvider="target">
+            <connections>
+                <outlet property="menuButton" destination="pcO-gI-WRM" id="kgd-tN-08l"/>
+                <outlet property="messagesTable" destination="Ay7-OS-bc7" id="ejv-sq-BcL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyP-E3-oia">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcO-gI-WRM">
+                            <rect key="frame" x="8" y="24" width="39" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="6Lj-1O-nqI"/>
+                                <constraint firstAttribute="width" constant="39" id="IS4-Sw-ESq"/>
+                            </constraints>
+                            <state key="normal" image="icon-menu"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagens" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAJ-bz-FGh">
+                            <rect key="frame" x="111" y="32.5" width="83" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="6cH-H7-j5A"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
+                            <color key="textColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="pcO-gI-WRM" firstAttribute="leading" secondItem="nyP-E3-oia" secondAttribute="leading" constant="8" id="2xD-2v-07B"/>
+                        <constraint firstAttribute="height" constant="68" id="Fkk-oi-RcD"/>
+                        <constraint firstItem="dAJ-bz-FGh" firstAttribute="leading" secondItem="pcO-gI-WRM" secondAttribute="trailing" constant="64" id="MPH-0U-Idc"/>
+                        <constraint firstItem="dAJ-bz-FGh" firstAttribute="centerY" secondItem="pcO-gI-WRM" secondAttribute="centerY" id="QDp-PS-PZ2"/>
+                        <constraint firstItem="pcO-gI-WRM" firstAttribute="top" secondItem="nyP-E3-oia" secondAttribute="top" constant="24" id="aUD-LZ-y1q"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-OS-bc7">
+                    <rect key="frame" x="0.0" y="68" width="320" height="412"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="x8Q-Nc-t4a"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ay7-OS-bc7" secondAttribute="trailing" id="EfU-xc-3gs"/>
+                <constraint firstItem="nyP-E3-oia" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Gne-5b-tFZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ay7-OS-bc7" secondAttribute="bottom" id="N0u-rW-MUW"/>
+                <constraint firstItem="nyP-E3-oia" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Wyb-oc-xnT"/>
+                <constraint firstItem="Ay7-OS-bc7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bHr-fw-vSd"/>
+                <constraint firstItem="Ay7-OS-bc7" firstAttribute="top" secondItem="nyP-E3-oia" secondAttribute="bottom" id="n72-Bb-ahn"/>
+                <constraint firstItem="nyP-E3-oia" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="yHd-3x-Zfu"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-menu" width="19" height="15"/>
+    </resources>
+</document>

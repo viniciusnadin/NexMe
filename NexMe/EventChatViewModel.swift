@@ -13,7 +13,7 @@ class EventChatViewModel {
     let disposeBag = DisposeBag()
     var event: Variable<Event>!
     let message = Variable<String>("")
-    var messages = Variable<[Message]>([])
+    var messages = Variable<[EventMessage]>([])
     
     func viewDidLoad() {
         self.useCases.messages.asObservable().subscribe({

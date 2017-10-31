@@ -87,11 +87,11 @@ extension EventChatViewController: UITableViewDelegate {
         //        self.viewModel.presentUserDetail(user: user)
     }
     
-    func cellForMessage(message: Message) -> UITableViewCell {
+    func cellForMessage(message: EventMessage) -> UITableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "ChatCell") as! ChatTableViewCell
         cell.message.text = message.message
         self.viewModel.useCases.fetchUserById(id: message.userId!) { (user) in
-            cell.userName.text = user.value?.name.capitalized
+            cell.userName.text = user.value?.name!.capitalized
             cell.userAvatar.kf.setImage(with: user.value?.avatar?.original, placeholder: #imageLiteral(resourceName: "placeHolder"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         return cell
