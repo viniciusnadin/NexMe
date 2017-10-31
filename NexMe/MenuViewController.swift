@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 import PopupDialog
 import Kingfisher
 import SlideMenuControllerSwift
@@ -22,7 +21,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var closeMenuButton: UIButton!
     @IBOutlet weak var usersButton: UIButton!
-    
+    @IBOutlet weak var messagesButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     
@@ -63,6 +62,10 @@ class MenuViewController: UIViewController {
         
         self.usersButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentUsersSearch()
+        }).disposed(by: self.viewModel.disposeBag)
+        
+        self.messagesButton.rx.tap.subscribe(onNext: {
+            self.viewModel.presentMessages()
         }).disposed(by: self.viewModel.disposeBag)
         
         self.closeMenuButton.rx.tap.subscribe(onNext: {

@@ -33,4 +33,8 @@ class EventDetailViewModel {
     func presentEventMessages() {
         self.router.presentEventMessages(event: self.event.value)
     }
+    
+    func subscribeOnEvent() {
+        
+    }
 }

@@ -65,6 +65,10 @@ class EventDetailViewController: UIViewController {
         self.chatButton.rx.tap.subscribe(onNext: {
             self.viewModel.presentEventMessages()
         }).disposed(by: self.viewModel.disposeBag)
+        
+        self.joinButton.rx.tap.subscribe(onNext: {
+            self.viewModel.subscribeOnEvent()
+        }).disposed(by: self.viewModel.disposeBag)
     }
     
     func setupLabels() {

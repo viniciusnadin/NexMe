@@ -83,7 +83,7 @@ extension UsersViewController: UITableViewDelegate{
     func cellForUser(user: User) -> CardTableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "CardCell") as! CardTableViewCell
     
-        cell.nameLabel.text = user.name.capitalized
+        cell.nameLabel.text = user.name!.capitalized
         cell.avatar.kf.setImage(with: user.avatar?.original, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
         cell.updateConstraintsIfNeeded()
         return cell

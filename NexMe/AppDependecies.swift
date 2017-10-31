@@ -13,7 +13,6 @@ struct AppDependecies {
     let window: UIWindow
     let authentication: Auth = Auth.auth()
     let database: Database = Database.database()
-    let store: PersistenceInterface = Store()
 
     // Use Cases
     let useCases: UseCases
@@ -31,12 +30,13 @@ struct AppDependecies {
     let eventListRouter: EventListRouter
     let eventDetailRouter: EventDetailRouter
     let eventChatRouter: EventChatRouter
+    let messagesRouter: MessagesRouter
     
     init(window: UIWindow) {
         self.window = window
         
         // UseCases
-        self.useCases = UseCases(authentication: self.authentication, database: self.database, store: self.store)
+        self.useCases = UseCases(authentication: self.authentication, database: self.database)
         
         // UI
         self.signInRouter = SignInRouter(window: self.window, useCases: self.useCases)
@@ -51,6 +51,7 @@ struct AppDependecies {
         self.eventListRouter = EventListRouter(useCases: self.useCases, window: self.window)
         self.eventDetailRouter = EventDetailRouter(useCases: self.useCases, window: self.window)
         self.eventChatRouter = EventChatRouter(useCases: self.useCases, window: self.window)
+        self.messagesRouter = MessagesRouter(window: self.window, useCases: self.useCases)
         
         // Routing
         self.signInRouter.mainRouter = self.mainRouter
@@ -61,6 +62,7 @@ struct AppDependecies {
         self.menuRouter.signInRouter = self.signInRouter
         self.menuRouter.profileRouter = self.profileRouter
         self.menuRouter.usersRouter = self.usersRouter
+        self.menuRouter.messagesRouter = self.messagesRouter
         self.mainRouter.menuRouter = menuRouter
         self.mainRouter.eventsRouter = self.eventsRouter
         self.eventsRouter.newEventRouter = self.newEventRouter
@@ -72,10 +74,6 @@ struct AppDependecies {
     func presentUI() {
         if useCases.userIsSignedIn {
             self.mainRouter.presentMain()
-            self.store.deleteCurrentUser()
-            self.useCases.fetchUser(completion: { (result) in
-                print(result)
-            })
         } else {
             self.signInRouter.presentSignIn()
         }

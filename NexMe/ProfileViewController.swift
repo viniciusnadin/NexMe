@@ -25,6 +25,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var tableEvents: UITableView!
     @IBOutlet weak var eventsCount: UIButton!
+    @IBOutlet weak var followersButton: UIButton!
+    @IBOutlet weak var followingButton: UIButton!
     
     // MARK :- Life Cicle
     override func viewDidLoad() {
@@ -63,6 +65,14 @@ class ProfileViewController: UIViewController {
         self.viewModel.name.asObservable()
             .bind(to: nameLabel.rx.text)
             .disposed(by: viewModel.disposeBag)
+        
+        self.viewModel.following.asObservable().subscribe({_ in
+            self.followingButton.setTitle("\(self.viewModel.following.value.count)", for: .normal)
+        }).disposed(by: self.viewModel.disposeBag)
+        
+        self.viewModel.followers.asObservable().subscribe({_ in
+            self.followersButton.setTitle("\(self.viewModel.followers.value.count)", for: .normal)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.events.asObservable().subscribe { (events) in
             self.eventsCount.setTitle("\(events.element!.count)", for: .normal)
@@ -123,12 +133,4 @@ extension ProfileViewController: UITableViewDelegate {
         return cell
     }
 }
-
-
-
-
-
-
-
-
 

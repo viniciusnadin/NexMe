@@ -17,12 +17,10 @@ import GoogleMaps
 final class UseCases {
     let authentication: Auth
     let database: Database
-    let store: PersistenceInterface
     
-    init(authentication: Auth, database: Database, store: PersistenceInterface) {
+    init(authentication: Auth, database: Database) {
         self.authentication = authentication
         self.database = database
-        self.store = store
     }
     
     var userIsSignedIn: Bool {
@@ -30,7 +28,7 @@ final class UseCases {
     }
     
     func passwordReset() {
-        Auth.auth().sendPasswordReset(withEmail: (store.getCurrentUser()?.email)!) { (response) in
+        Auth.auth().sendPasswordReset(withEmail: (LoggedUser.sharedInstance.user.email!)) { (response) in
             print(response ?? "error")
         }
     }
@@ -82,7 +80,7 @@ final class UseCases {
     func signOut() {
         do {
             try Auth.auth().signOut()
-            self.store.deleteCurrentUser()
+            LoggedUser.sharedInstance.user = User()
         } catch {
             print("Erro GuardLet UseCases SignUp")
         }
@@ -91,16 +89,11 @@ final class UseCases {
     func fetchUser(completion: @escaping (Result<Void>) -> Void) {
         deliver(completion: completion) { success, failure in
             Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
-                do {
-                    let data = snapShot.value as! NSMutableDictionary
-                    data.setObject((Auth.auth().currentUser?.uid)!, forKey: "id" as NSCopying)
-                    let data2 = data as NSDictionary
-                    let user = try parseUser(data: data2 as! UnboxableDictionary)
-                    self.store.saveCurrentUser(user: user)
-                    success()
-                } catch {
-                    failure(error)
+                if let value = snapShot.value as? [String : Any] {
+                    let user = self.parseUser(value: value, id: snapShot.key)
+                    LoggedUser.sharedInstance.user = user
                 }
+                success()
             })
         }
     }
@@ -167,17 +160,12 @@ final class UseCases {
                 }
                 for value in values{
                     if !((value.key as! String) == userId) {
-                        do {
                             searchUserDispatch.enter()
-                            let data = value.value as! NSMutableDictionary
-                            data.setObject(value.key, forKey: "id" as NSCopying)
-                            let data2 = data as NSDictionary
-                            let user = try parseUser(data: data2 as! UnboxableDictionary)
-                            arrayUsers.append(user)
-                            searchUserDispatch.leave()
-                        } catch {
-                            failure(error)
-                        }
+                            if let value2 = value.value as? [String : Any] {
+                                let user = self.parseUser(value: value2, id: value.key as! String)
+                                arrayUsers.append(user)
+                                searchUserDispatch.leave()
+                            }
                     }
                 }
                 searchUserDispatch.notify(queue: .main, execute: {
@@ -192,12 +180,11 @@ final class UseCases {
     }
     
     func getCurrentUser() -> User? {
-        return self.store.getCurrentUser()
+        return LoggedUser.sharedInstance.user
     }
     
     func getUpdatedCurrentUser(){
-        self.store.deleteCurrentUser()
-        self.fetchUser(completion: { (user) in
+        self.fetchUser(completion: { (result) in
             //nothing
         })
     }
@@ -399,18 +386,18 @@ final class UseCases {
     }
         
         
-    let messages = Variable<[Message]>([])
+    let messages = Variable<[EventMessage]>([])
     
     func sendMessage(event: Event, message: String) {
         let date = Int(Date().timeIntervalSince1970)
         let values = ["userId" : Auth.auth().currentUser!.uid, "date" : date, "message" : message] as [String : Any]
-        Database.database().reference().child("messages").child(event.id!).childByAutoId().updateChildValues(values)
+        Database.database().reference().child("event").child("messages").child(event.id!).childByAutoId().updateChildValues(values)
     }
     
     func observeMessages(eventId: String) {
-        Database.database().reference().child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
+        Database.database().reference().child("event").child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
             if let dictionary = snapShot.value as? [String : Any]{
-                let message = Message()
+                let message = EventMessage()
                 message.userId = (dictionary["userId"] as! String)
                 message.date = (dictionary["date"] as! Int)
                 message.message = (dictionary["message"] as! String)
@@ -421,26 +408,66 @@ final class UseCases {
         }
     }
     
+    func parseUser(value: [String: Any], id: String) -> User{
+        let email = (value["email"] as! String)
+        let name = (value["name"] as! String)
+        let user = User(id: id, name: name, email: email)
+        if let avatarReference = (value["avatar"] as? [String: String]){
+            let url = avatarReference.first!.value
+            let original = URL(string: url)!
+            user.avatar = Avatar(url: original)
+        }
+        
+        if let following = (value["following"] as? [String : AnyObject]){
+            for val in following {
+                let userKeys = UserKeys(key: val.key, id: val.value as! String)
+                user.following.append(userKeys)
+            }
+        }
+        if let followers = (value["followers"] as? [String : AnyObject]){
+            for val in followers {
+                let userKeys = UserKeys(key: val.key, id: val.value as! String)
+                user.followers.append(userKeys)
+            }
+        }
+        return user
+    }
+    
     func fetchUserById(id: String, completion: @escaping (Result<User>) -> Void) {
         deliver(completion: completion) { success, failure in
             Database.database().reference().child("users").child(id).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
-                do {
-                    let data = snapShot.value as! NSMutableDictionary
-                    data.setObject(id, forKey: "id" as NSCopying)
-                    let data2 = data as NSDictionary
-                    let user = try parseUser(data: data2 as! UnboxableDictionary)
+                if let value = snapShot.value as? [String : Any] {
+                    let user = self.parseUser(value: value, id: snapShot.key)
                     success(user)
-                } catch {
-                    failure(error)
                 }
             })
         }
     }
     
+    let messagesDictionary = Variable<[String: Message]>(["a":Message(dictionary: ["String" : "Any"])])
     
-    
-    
-    
+    func observeUserMessages() {
+        let uid = (Auth.auth().currentUser?.uid)!
+        Database.database().reference().child("user-messages").child(uid).observe(.childAdded, with: { (snapShot) in
+            let userId = snapShot.key
+            Database.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
+                let messageId = snapshot.key
+                self.fetchMessageWithMessageId(messageId)
+            })
+        })
+    }
+
+    fileprivate func fetchMessageWithMessageId(_ messageId: String) {
+        let messagesReference = Database.database().reference().child("messages").child(messageId)
+        messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message(dictionary: dictionary)
+                if let chatPartnerId = message.chatPartnerId() {
+                    self.messagesDictionary.value[chatPartnerId] = message
+                }
+            }
+        }, withCancel: nil)
+    }
     
     
 

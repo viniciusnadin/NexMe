@@ -19,7 +19,10 @@
 		D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51508691F9E8DB0003AC336 /* EventChatViewController.xib */; };
 		D515086D1F9E92B1003AC336 /* EventChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */; };
 		D515086F1F9E92F7003AC336 /* EventChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515086E1F9E92F7003AC336 /* EventChatRouter.swift */; };
-		D51508711F9E9AB8003AC336 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51508701F9E9AB8003AC336 /* Message.swift */; };
+		D51508711F9E9AB8003AC336 /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51508701F9E9AB8003AC336 /* EventMessage.swift */; };
+		D53F2A5B1FA7FC3900730C73 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F2A5A1FA7FC3900730C73 /* Message.swift */; };
+		D53F2A601FA7FF4200730C73 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F2A5F1FA7FF4200730C73 /* ChatMessageCell.swift */; };
+		D53F2A621FA800AB00730C73 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F2A611FA800AB00730C73 /* UserCell.swift */; };
 		D54DB02A1F9D0A6F0087D5E7 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB0281F9D0A6F0087D5E7 /* EventTableViewCell.swift */; };
 		D54DB02B1F9D0A6F0087D5E7 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54DB0291F9D0A6F0087D5E7 /* EventTableViewCell.xib */; };
 		D54DB0301F9D17A40087D5E7 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB02E1F9D17A40087D5E7 /* EventDetailViewController.swift */; };
@@ -35,7 +38,6 @@
 		D55229B01F984D46002B7AFC /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55229AF1F984D46002B7AFC /* UserDetailRouter.swift */; };
 		D574CDA61FA4F8AC00A3FB7D /* EventLesserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574CDA41FA4F8AC00A3FB7D /* EventLesserCell.swift */; };
 		D574CDA71FA4F8AC00A3FB7D /* EventLesserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574CDA51FA4F8AC00A3FB7D /* EventLesserCell.xib */; };
-		D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46D1F7C51D8001582D1 /* Parsers.swift */; };
 		D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46F1F7C636C001582D1 /* ImagePicker.swift */; };
 		D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A371F4F603000CDCE28 /* AppDelegate.swift */; };
 		D5B16A3F1F4F603000CDCE28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */; };
@@ -69,9 +71,6 @@
 		D5B16A901F674A6500CDCE28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A8E1F674A6500CDCE28 /* ProfileViewController.xib */; };
 		D5B16A921F674A6E00CDCE28 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A911F674A6E00CDCE28 /* ProfileRouter.swift */; };
 		D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A931F674A8600CDCE28 /* ProfileViewModel.swift */; };
-		D5B16A981F67577400CDCE28 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A971F67577400CDCE28 /* UserModel.swift */; };
-		D5B16A9A1F67578600CDCE28 /* AvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A991F67578600CDCE28 /* AvatarModel.swift */; };
-		D5B16A9C1F67579A00CDCE28 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A9B1F67579A00CDCE28 /* Store.swift */; };
 		D5B16A9F1F6757BB00CDCE28 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A9E1F6757BB00CDCE28 /* User.swift */; };
 		D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA01F6758C700CDCE28 /* Avatar.swift */; };
 		D5B16AA51F6758EE00CDCE28 /* PersistenceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA41F6758EE00CDCE28 /* PersistenceInterface.swift */; };
@@ -81,6 +80,12 @@
 		D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367BF1F984A7D00A5C2E0 /* UserDetailViewController.swift */; };
 		D5D367C21F984A7D00A5C2E0 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D367C01F984A7D00A5C2E0 /* UserDetailViewController.xib */; };
 		D5D367C41F984C1C00A5C2E0 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367C31F984C1C00A5C2E0 /* UserDetailViewModel.swift */; };
+		D5D4C8851FA7E36300C30B77 /* LoggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C8841FA7E36300C30B77 /* LoggedUser.swift */; };
+		D5D4C8891FA7F67E00C30B77 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C8871FA7F67E00C30B77 /* MessagesViewController.swift */; };
+		D5D4C88A1FA7F67E00C30B77 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */; };
+		D5D4C88C1FA7F74B00C30B77 /* MessagesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */; };
+		D5D4C88E1FA7F75500C30B77 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */; };
+		D5F0D4721FA81468004BC22F /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F0D4711FA81467004BC22F /* ChatLogController.swift */; };
 		D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */; };
 		D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */; };
 		D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC334F1FA1374B00321A10 /* TCPickerView.swift */; };
@@ -107,7 +112,10 @@
 		D51508691F9E8DB0003AC336 /* EventChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventChatViewController.xib; sourceTree = "<group>"; };
 		D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewModel.swift; sourceTree = "<group>"; };
 		D515086E1F9E92F7003AC336 /* EventChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatRouter.swift; sourceTree = "<group>"; };
-		D51508701F9E9AB8003AC336 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D51508701F9E9AB8003AC336 /* EventMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
+		D53F2A5A1FA7FC3900730C73 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D53F2A5F1FA7FF4200730C73 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		D53F2A611FA800AB00730C73 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D54DB0281F9D0A6F0087D5E7 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		D54DB0291F9D0A6F0087D5E7 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		D54DB02E1F9D17A40087D5E7 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +131,6 @@
 		D55229AF1F984D46002B7AFC /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
 		D574CDA41FA4F8AC00A3FB7D /* EventLesserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLesserCell.swift; sourceTree = "<group>"; };
 		D574CDA51FA4F8AC00A3FB7D /* EventLesserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventLesserCell.xib; sourceTree = "<group>"; };
-		D59CD46D1F7C51D8001582D1 /* Parsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsers.swift; sourceTree = "<group>"; };
 		D59CD46F1F7C636C001582D1 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5B16A341F4F603000CDCE28 /* NexMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NexMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B16A371F4F603000CDCE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,9 +166,6 @@
 		D5B16A8E1F674A6500CDCE28 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		D5B16A911F674A6E00CDCE28 /* ProfileRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		D5B16A931F674A8600CDCE28 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		D5B16A971F67577400CDCE28 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		D5B16A991F67578600CDCE28 /* AvatarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarModel.swift; sourceTree = "<group>"; };
-		D5B16A9B1F67579A00CDCE28 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D5B16A9E1F6757BB00CDCE28 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5B16AA01F6758C700CDCE28 /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		D5B16AA41F6758EE00CDCE28 /* PersistenceInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceInterface.swift; sourceTree = "<group>"; };
@@ -177,6 +181,12 @@
 		D5D367BF1F984A7D00A5C2E0 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		D5D367C01F984A7D00A5C2E0 /* UserDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
 		D5D367C31F984C1C00A5C2E0 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
+		D5D4C8841FA7E36300C30B77 /* LoggedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedUser.swift; sourceTree = "<group>"; };
+		D5D4C8871FA7F67E00C30B77 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
+		D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRouter.swift; sourceTree = "<group>"; };
+		D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		D5F0D4711FA81467004BC22F /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		D5FC334F1FA1374B00321A10 /* TCPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPickerView.swift; sourceTree = "<group>"; };
@@ -261,6 +271,14 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		D53F2A5E1FA7FF3600730C73 /* Chat Message Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D53F2A5F1FA7FF4200730C73 /* ChatMessageCell.swift */,
+			);
+			name = "Chat Message Cell";
+			sourceTree = "<group>";
+		};
 		D54DB0271F9D0A4E0087D5E7 /* Event Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,12 +341,10 @@
 			children = (
 				D5B16AA21F6758DE00CDCE28 /* App */,
 				D5B16A9D1F6757AD00CDCE28 /* Entities */,
-				D5B16A951F67576700CDCE28 /* Store */,
 				D5B16A6D1F65CE4400CDCE28 /* Dependencies */,
 				D5B16A601F5F6B3300CDCE28 /* Helpers */,
 				D5B16A491F4F623300CDCE28 /* UI */,
 				D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */,
-				D5B16A9B1F67579A00CDCE28 /* Store.swift */,
 				D5B16A371F4F603000CDCE28 /* AppDelegate.swift */,
 				D5B16A5B1F4F6B8C00CDCE28 /* ViewController.swift */,
 				D5B16A5C1F4F6B8C00CDCE28 /* Main.storyboard */,
@@ -353,7 +369,6 @@
 			children = (
 				D5B16A4B1F4F62A800CDCE28 /* AppDependecies.swift */,
 				D5B16A4D1F4F63E900CDCE28 /* UseCases.swift */,
-				D59CD46D1F7C51D8001582D1 /* Parsers.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -361,6 +376,7 @@
 		D5B16A511F4F65A100CDCE28 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D5D4C8861FA7F66300C30B77 /* Messages */,
 				D574CDA31FA4F87400A3FB7D /* Event Lesser Cell */,
 				D54DB0271F9D0A4E0087D5E7 /* Event Cell */,
 				D54F44071F96BEF7004328D8 /* Users */,
@@ -470,23 +486,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		D5B16A951F67576700CDCE28 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				D5B16A961F67576B00CDCE28 /* Models */,
-			);
-			name = Store;
-			sourceTree = "<group>";
-		};
-		D5B16A961F67576B00CDCE28 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D5B16A971F67577400CDCE28 /* UserModel.swift */,
-				D5B16A991F67578600CDCE28 /* AvatarModel.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		D5B16A9D1F6757AD00CDCE28 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,7 +493,9 @@
 				D5B16AA01F6758C700CDCE28 /* Avatar.swift */,
 				D500D3181F99810C00FBDB8E /* Event.swift */,
 				D500D31A1F9985EB00FBDB8E /* EventCategorie.swift */,
-				D51508701F9E9AB8003AC336 /* Message.swift */,
+				D51508701F9E9AB8003AC336 /* EventMessage.swift */,
+				D5D4C8841FA7E36300C30B77 /* LoggedUser.swift */,
+				D53F2A5A1FA7FC3900730C73 /* Message.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -557,6 +558,20 @@
 				D5D367C01F984A7D00A5C2E0 /* UserDetailViewController.xib */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+		D5D4C8861FA7F66300C30B77 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				D5F0D4711FA81467004BC22F /* ChatLogController.swift */,
+				D53F2A611FA800AB00730C73 /* UserCell.swift */,
+				D53F2A5E1FA7FF3600730C73 /* Chat Message Cell */,
+				D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */,
+				D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */,
+				D5D4C8871FA7F67E00C30B77 /* MessagesViewController.swift */,
+				D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */,
+			);
+			name = Messages;
 			sourceTree = "<group>";
 		};
 		D5F168651F9EB80D007E8681 /* Chat Cell */ = {
@@ -645,6 +660,7 @@
 				D5B16A901F674A6500CDCE28 /* ProfileViewController.xib in Resources */,
 				D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */,
 				D5D367C21F984A7D00A5C2E0 /* UserDetailViewController.xib in Resources */,
+				D5D4C88A1FA7F67E00C30B77 /* MessagesViewController.xib in Resources */,
 				D5B16A581F4F662D00CDCE28 /* SignInViewController.xib in Resources */,
 				D54F440B1F96BF0F004328D8 /* UsersViewController.xib in Resources */,
 				D54DB02B1F9D0A6F0087D5E7 /* EventTableViewCell.xib in Resources */,
@@ -721,7 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B16A621F5F6B7500CDCE28 /* PopupDialog.swift in Sources */,
-				D51508711F9E9AB8003AC336 /* Message.swift in Sources */,
+				D51508711F9E9AB8003AC336 /* EventMessage.swift in Sources */,
 				D500D3201F9BC13800FBDB8E /* NewEventViewController.swift in Sources */,
 				D5FFFEB71F9CFCBB00CA1FA2 /* EventListRouter.swift in Sources */,
 				D515086A1F9E8DB0003AC336 /* EventChatViewController.swift in Sources */,
@@ -729,12 +745,10 @@
 				D5B16A861F66120200CDCE28 /* EventsViewController.swift in Sources */,
 				D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */,
 				D5B16A7C1F660EF100CDCE28 /* MenuViewController.swift in Sources */,
-				D5B16A9C1F67579A00CDCE28 /* Store.swift in Sources */,
 				D54F44061F96B22F004328D8 /* CardView.swift in Sources */,
 				D5B16A7F1F660F0900CDCE28 /* MenuNavigationController.swift in Sources */,
 				D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */,
 				D5B16A831F660F3A00CDCE28 /* MenuViewModel.swift in Sources */,
-				D59CD46E1F7C51D8001582D1 /* Parsers.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,
 				D500D31B1F9985EB00FBDB8E /* EventCategorie.swift in Sources */,
@@ -742,7 +756,6 @@
 				D54DB02A1F9D0A6F0087D5E7 /* EventTableViewCell.swift in Sources */,
 				D5B16A8F1F674A6500CDCE28 /* ProfileViewController.swift in Sources */,
 				D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */,
-				D5B16A981F67577400CDCE28 /* UserModel.swift in Sources */,
 				D5B16A811F660F1600CDCE28 /* MenuRouter.swift in Sources */,
 				D515086F1F9E92F7003AC336 /* EventChatRouter.swift in Sources */,
 				D54DB0351F9D25420087D5E7 /* EventDetailRouter.swift in Sources */,
@@ -752,31 +765,38 @@
 				D5B16A5A1F4F66A300CDCE28 /* SignInViewModel.swift in Sources */,
 				D5B16A541F4F65D200CDCE28 /* SignInRouter.swift in Sources */,
 				D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */,
+				D5D4C88C1FA7F74B00C30B77 /* MessagesRouter.swift in Sources */,
 				D54F440F1F96BF42004328D8 /* UsersRouter.swift in Sources */,
+				D5D4C8891FA7F67E00C30B77 /* MessagesViewController.swift in Sources */,
 				D5B16A571F4F662D00CDCE28 /* SignInViewController.swift in Sources */,
 				D54DB0301F9D17A40087D5E7 /* EventDetailViewController.swift in Sources */,
 				D5B16A4E1F4F63E900CDCE28 /* UseCases.swift in Sources */,
 				D5B16A701F65D2DC00CDCE28 /* Functions.swift in Sources */,
 				D5B16A6A1F61C17700CDCE28 /* SignUpRouter.swift in Sources */,
-				D5B16A9A1F67578600CDCE28 /* AvatarModel.swift in Sources */,
 				D5B16AA51F6758EE00CDCE28 /* PersistenceInterface.swift in Sources */,
 				D5FFFEB21F9CFC5500CA1FA2 /* EventListViewController.swift in Sources */,
 				D5B16A9F1F6757BB00CDCE28 /* User.swift in Sources */,
+				D5D4C8851FA7E36300C30B77 /* LoggedUser.swift in Sources */,
 				D5B16A6C1F65CE3D00CDCE28 /* Result.swift in Sources */,
+				D5D4C88E1FA7F75500C30B77 /* MessagesViewModel.swift in Sources */,
 				D5B16A8B1F66121500CDCE28 /* EventsRouter.swift in Sources */,
 				D5FC33521FA1374B00321A10 /* TCPickerTableViewCell.swift in Sources */,
 				D5B16A5D1F4F6B8C00CDCE28 /* ViewController.swift in Sources */,
 				D5B16A681F61C12300CDCE28 /* SignUpViewModel.swift in Sources */,
 				D5D367B41F97F94000A5C2E0 /* CardTableViewCell.swift in Sources */,
+				D53F2A5B1FA7FC3900730C73 /* Message.swift in Sources */,
 				D5B16A651F61C11100CDCE28 /* SignUpViewController.swift in Sources */,
 				D54DB0331F9D24F70087D5E7 /* EventDetailViewModel.swift in Sources */,
 				D500D3231F9BC7F500FBDB8E /* NewEventViewModel.swift in Sources */,
 				D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */,
+				D53F2A621FA800AB00730C73 /* UserCell.swift in Sources */,
+				D53F2A601FA7FF4200730C73 /* ChatMessageCell.swift in Sources */,
 				D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */,
 				D55229B01F984D46002B7AFC /* UserDetailRouter.swift in Sources */,
 				D5B16A4C1F4F62A800CDCE28 /* AppDependecies.swift in Sources */,
 				D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */,
 				D5FFFEB51F9CFC7300CA1FA2 /* EventListViewModel.swift in Sources */,
+				D5F0D4721FA81468004BC22F /* ChatLogController.swift in Sources */,
 				D50F2EEE1FA6805500474945 /* CategorieTableViewCell.swift in Sources */,
 				D574CDA61FA4F8AC00A3FB7D /* EventLesserCell.swift in Sources */,
 				D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */,
