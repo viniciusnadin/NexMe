@@ -13,6 +13,7 @@ class MessagesRouter {
     let useCases: UseCases
     var viewController: MessagesViewController!
     var messagesRouter: MessagesRouter!
+    var chatRouter: ChatRouter!
     
     init(window: UIWindow, useCases: UseCases) {
         self.window = window
@@ -35,6 +36,10 @@ class MessagesRouter {
         
         viewController = MessagesViewController(viewModel: viewModel)
         return viewController
+    }
+    
+    func presentChat(user: User) {
+        self.chatRouter.presentChatFromViewController(presentingViewController: self.viewController, user: user)
     }
     
 }

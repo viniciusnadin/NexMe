@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class UserDetailViewController: UIViewController {
     
@@ -61,9 +62,7 @@ class UserDetailViewController: UIViewController {
     }
     
     @IBAction func sendMessage(_ sender: Any) {
-        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        chatLogController.user = self.viewModel.user
-        present(chatLogController, animated: true, completion: nil)
+        self.viewModel.router.presentChat(user: self.viewModel.user)
     }
     
     

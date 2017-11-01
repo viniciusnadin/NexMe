@@ -445,8 +445,28 @@ final class UseCases {
     }
     
     let messagesDictionary = Variable<[String: Message]>(["a":Message(dictionary: ["String" : "Any"])])
+    let chatMessages = Variable<[Message]>([])
+    
+    func observeChatMessages(user : User) {
+        self.chatMessages.value.removeAll()
+        let uid = Auth.auth().currentUser?.uid
+        let toId = user.id
+        let userMessagesRef = Database.database().reference().child("user-messages").child(uid!).child(toId!)
+            userMessagesRef.observe(.childAdded, with: { (snapshot) in
+                let messageId = snapshot.key
+                let messagesRef = Database.database().reference().child("messages").child(messageId)
+                messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                        return
+                    }
+                    let message = Message(dictionary: dictionary)
+                    self.chatMessages.value.append(message)
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
     
     func observeUserMessages() {
+        self.messagesDictionary.value.removeAll()
         let uid = (Auth.auth().currentUser?.uid)!
         Database.database().reference().child("user-messages").child(uid).observe(.childAdded, with: { (snapShot) in
             let userId = snapShot.key

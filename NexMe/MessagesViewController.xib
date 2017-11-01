@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,10 +39,7 @@
                             <state key="normal" image="icon-menu"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagens" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAJ-bz-FGh">
-                            <rect key="frame" x="111" y="32.5" width="83" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="6cH-H7-j5A"/>
-                            </constraints>
+                            <rect key="frame" x="118.5" y="33" width="83" height="19"/>
                             <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
                             <color key="textColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -51,10 +48,10 @@
                     <color key="backgroundColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="pcO-gI-WRM" firstAttribute="leading" secondItem="nyP-E3-oia" secondAttribute="leading" constant="8" id="2xD-2v-07B"/>
+                        <constraint firstItem="dAJ-bz-FGh" firstAttribute="centerY" secondItem="pcO-gI-WRM" secondAttribute="centerY" id="CvH-QE-Be1"/>
                         <constraint firstAttribute="height" constant="68" id="Fkk-oi-RcD"/>
-                        <constraint firstItem="dAJ-bz-FGh" firstAttribute="leading" secondItem="pcO-gI-WRM" secondAttribute="trailing" constant="64" id="MPH-0U-Idc"/>
-                        <constraint firstItem="dAJ-bz-FGh" firstAttribute="centerY" secondItem="pcO-gI-WRM" secondAttribute="centerY" id="QDp-PS-PZ2"/>
                         <constraint firstItem="pcO-gI-WRM" firstAttribute="top" secondItem="nyP-E3-oia" secondAttribute="top" constant="24" id="aUD-LZ-y1q"/>
+                        <constraint firstItem="dAJ-bz-FGh" firstAttribute="centerX" secondItem="nyP-E3-oia" secondAttribute="centerX" id="kkO-DM-Ha6"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-OS-bc7">

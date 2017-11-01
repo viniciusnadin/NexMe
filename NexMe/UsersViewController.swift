@@ -17,6 +17,7 @@ class UsersViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet var noItensView: UIView!
     
     
     // MARK :- Life Cicle
@@ -24,6 +25,7 @@ class UsersViewController: UIViewController {
         super.viewDidLoad()
         self.configureViews()
         self.configureBinds()
+        self.table.backgroundView = self.noItensView
         self.searchTextField.delegate = self
     }
 

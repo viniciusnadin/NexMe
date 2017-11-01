@@ -15,6 +15,11 @@
 		D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */; };
 		D50F2EEE1FA6805500474945 /* CategorieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50F2EEC1FA6805500474945 /* CategorieTableViewCell.swift */; };
 		D50F2EEF1FA6805500474945 /* CategorieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50F2EED1FA6805500474945 /* CategorieTableViewCell.xib */; };
+		D5103A4D1FA935E100DD4C33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5103A4C1FA935E100DD4C33 /* GoogleService-Info.plist */; };
+		D5103A511FA9385500DD4C33 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5103A4F1FA9385500DD4C33 /* ChatViewController.swift */; };
+		D5103A521FA9385500DD4C33 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5103A501FA9385500DD4C33 /* ChatViewController.xib */; };
+		D5103A541FA93EF500DD4C33 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5103A531FA93EF500DD4C33 /* ChatViewModel.swift */; };
+		D5103A571FA93F5400DD4C33 /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5103A561FA93F5400DD4C33 /* ChatRouter.swift */; };
 		D515086A1F9E8DB0003AC336 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51508681F9E8DB0003AC336 /* EventChatViewController.swift */; };
 		D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51508691F9E8DB0003AC336 /* EventChatViewController.xib */; };
 		D515086D1F9E92B1003AC336 /* EventChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */; };
@@ -29,7 +34,6 @@
 		D54DB0311F9D17A40087D5E7 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54DB02F1F9D17A40087D5E7 /* EventDetailViewController.xib */; };
 		D54DB0331F9D24F70087D5E7 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB0321F9D24F70087D5E7 /* EventDetailViewModel.swift */; };
 		D54DB0351F9D25420087D5E7 /* EventDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DB0341F9D25420087D5E7 /* EventDetailRouter.swift */; };
-		D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */; };
 		D54F44061F96B22F004328D8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44051F96B22F004328D8 /* CardView.swift */; };
 		D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F44081F96BF0F004328D8 /* UsersViewController.swift */; };
 		D54F440B1F96BF0F004328D8 /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54F44091F96BF0F004328D8 /* UsersViewController.xib */; };
@@ -85,7 +89,6 @@
 		D5D4C88A1FA7F67E00C30B77 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */; };
 		D5D4C88C1FA7F74B00C30B77 /* MessagesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */; };
 		D5D4C88E1FA7F75500C30B77 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */; };
-		D5F0D4721FA81468004BC22F /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F0D4711FA81467004BC22F /* ChatLogController.swift */; };
 		D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */; };
 		D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */; };
 		D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC334F1FA1374B00321A10 /* TCPickerView.swift */; };
@@ -108,6 +111,11 @@
 		D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRouter.swift; sourceTree = "<group>"; };
 		D50F2EEC1FA6805500474945 /* CategorieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieTableViewCell.swift; sourceTree = "<group>"; };
 		D50F2EED1FA6805500474945 /* CategorieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorieTableViewCell.xib; sourceTree = "<group>"; };
+		D5103A4C1FA935E100DD4C33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5103A4F1FA9385500DD4C33 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D5103A501FA9385500DD4C33 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		D5103A531FA93EF500DD4C33 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		D5103A561FA93F5400DD4C33 /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
 		D51508681F9E8DB0003AC336 /* EventChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
 		D51508691F9E8DB0003AC336 /* EventChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventChatViewController.xib; sourceTree = "<group>"; };
 		D515086C1F9E92B1003AC336 /* EventChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewModel.swift; sourceTree = "<group>"; };
@@ -122,7 +130,6 @@
 		D54DB02F1F9D17A40087D5E7 /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
 		D54DB0321F9D24F70087D5E7 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		D54DB0341F9D25420087D5E7 /* EventDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailRouter.swift; sourceTree = "<group>"; };
-		D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D54F44051F96B22F004328D8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D54F44081F96BF0F004328D8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		D54F44091F96BF0F004328D8 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
@@ -186,7 +193,6 @@
 		D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
 		D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRouter.swift; sourceTree = "<group>"; };
 		D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
-		D5F0D4711FA81467004BC22F /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		D5FC334F1FA1374B00321A10 /* TCPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPickerView.swift; sourceTree = "<group>"; };
@@ -257,6 +263,25 @@
 				D50F2EED1FA6805500474945 /* CategorieTableViewCell.xib */,
 			);
 			name = "Categorie Cell";
+			sourceTree = "<group>";
+		};
+		D5103A4E1FA9383B00DD4C33 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D5103A561FA93F5400DD4C33 /* ChatRouter.swift */,
+				D5103A531FA93EF500DD4C33 /* ChatViewModel.swift */,
+				D5103A4F1FA9385500DD4C33 /* ChatViewController.swift */,
+				D5103A501FA9385500DD4C33 /* ChatViewController.xib */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		D5103A551FA93F2900DD4C33 /* User Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D53F2A611FA800AB00730C73 /* UserCell.swift */,
+			);
+			name = "User Cell";
 			sourceTree = "<group>";
 		};
 		D51508671F9E8D95003AC336 /* Chat */ = {
@@ -350,7 +375,7 @@
 				D5B16A5C1F4F6B8C00CDCE28 /* Main.storyboard */,
 				D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */,
 				D5B16A431F4F603000CDCE28 /* Info.plist */,
-				D54F43FA1F957BD8004328D8 /* GoogleService-Info.plist */,
+				D5103A4C1FA935E100DD4C33 /* GoogleService-Info.plist */,
 			);
 			path = NexMe;
 			sourceTree = "<group>";
@@ -376,6 +401,7 @@
 		D5B16A511F4F65A100CDCE28 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D5103A4E1FA9383B00DD4C33 /* Chat */,
 				D5D4C8861FA7F66300C30B77 /* Messages */,
 				D574CDA31FA4F87400A3FB7D /* Event Lesser Cell */,
 				D54DB0271F9D0A4E0087D5E7 /* Event Cell */,
@@ -563,9 +589,8 @@
 		D5D4C8861FA7F66300C30B77 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				D5F0D4711FA81467004BC22F /* ChatLogController.swift */,
-				D53F2A611FA800AB00730C73 /* UserCell.swift */,
 				D53F2A5E1FA7FF3600730C73 /* Chat Message Cell */,
+				D5103A551FA93F2900DD4C33 /* User Cell */,
 				D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */,
 				D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */,
 				D5D4C8871FA7F67E00C30B77 /* MessagesViewController.swift */,
@@ -658,7 +683,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B16A901F674A6500CDCE28 /* ProfileViewController.xib in Resources */,
-				D54F43FB1F957BD8004328D8 /* GoogleService-Info.plist in Resources */,
 				D5D367C21F984A7D00A5C2E0 /* UserDetailViewController.xib in Resources */,
 				D5D4C88A1FA7F67E00C30B77 /* MessagesViewController.xib in Resources */,
 				D5B16A581F4F662D00CDCE28 /* SignInViewController.xib in Resources */,
@@ -674,8 +698,10 @@
 				D5B16A7D1F660EF100CDCE28 /* MenuViewController.xib in Resources */,
 				D500D3211F9BC13800FBDB8E /* NewEventViewController.xib in Resources */,
 				D574CDA71FA4F8AC00A3FB7D /* EventLesserCell.xib in Resources */,
+				D5103A521FA9385500DD4C33 /* ChatViewController.xib in Resources */,
 				D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */,
 				D50F2EEF1FA6805500474945 /* CategorieTableViewCell.xib in Resources */,
+				D5103A4D1FA935E100DD4C33 /* GoogleService-Info.plist in Resources */,
 				D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */,
 				D5D367B51F97F94000A5C2E0 /* CardTableViewCell.xib in Resources */,
 			);
@@ -690,9 +716,42 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NexMe/Pods-NexMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Unbox/Unbox.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -705,9 +764,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NexMe/Pods-NexMe-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -720,13 +783,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NexMe-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -742,6 +808,7 @@
 				D5FFFEB71F9CFCBB00CA1FA2 /* EventListRouter.swift in Sources */,
 				D515086A1F9E8DB0003AC336 /* EventChatViewController.swift in Sources */,
 				D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */,
+				D5103A541FA93EF500DD4C33 /* ChatViewModel.swift in Sources */,
 				D5B16A861F66120200CDCE28 /* EventsViewController.swift in Sources */,
 				D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */,
 				D5B16A7C1F660EF100CDCE28 /* MenuViewController.swift in Sources */,
@@ -751,6 +818,7 @@
 				D5B16A831F660F3A00CDCE28 /* MenuViewModel.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,
+				D5103A571FA93F5400DD4C33 /* ChatRouter.swift in Sources */,
 				D500D31B1F9985EB00FBDB8E /* EventCategorie.swift in Sources */,
 				D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */,
 				D54DB02A1F9D0A6F0087D5E7 /* EventTableViewCell.swift in Sources */,
@@ -780,6 +848,7 @@
 				D5B16A6C1F65CE3D00CDCE28 /* Result.swift in Sources */,
 				D5D4C88E1FA7F75500C30B77 /* MessagesViewModel.swift in Sources */,
 				D5B16A8B1F66121500CDCE28 /* EventsRouter.swift in Sources */,
+				D5103A511FA9385500DD4C33 /* ChatViewController.swift in Sources */,
 				D5FC33521FA1374B00321A10 /* TCPickerTableViewCell.swift in Sources */,
 				D5B16A5D1F4F6B8C00CDCE28 /* ViewController.swift in Sources */,
 				D5B16A681F61C12300CDCE28 /* SignUpViewModel.swift in Sources */,
@@ -796,7 +865,6 @@
 				D5B16A4C1F4F62A800CDCE28 /* AppDependecies.swift in Sources */,
 				D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */,
 				D5FFFEB51F9CFC7300CA1FA2 /* EventListViewModel.swift in Sources */,
-				D5F0D4721FA81468004BC22F /* ChatLogController.swift in Sources */,
 				D50F2EEE1FA6805500474945 /* CategorieTableViewCell.swift in Sources */,
 				D574CDA61FA4F8AC00A3FB7D /* EventLesserCell.swift in Sources */,
 				D54F440A1F96BF0F004328D8 /* UsersViewController.swift in Sources */,
