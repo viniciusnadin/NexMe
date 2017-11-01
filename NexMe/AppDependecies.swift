@@ -31,6 +31,7 @@ struct AppDependecies {
     let eventDetailRouter: EventDetailRouter
     let eventChatRouter: EventChatRouter
     let messagesRouter: MessagesRouter
+    let chatRouter: ChatRouter
     
     init(window: UIWindow) {
         self.window = window
@@ -52,12 +53,15 @@ struct AppDependecies {
         self.eventDetailRouter = EventDetailRouter(useCases: self.useCases, window: self.window)
         self.eventChatRouter = EventChatRouter(useCases: self.useCases, window: self.window)
         self.messagesRouter = MessagesRouter(window: self.window, useCases: self.useCases)
+        self.chatRouter = ChatRouter(window: self.window, useCases: self.useCases)
         
         // Routing
         self.signInRouter.mainRouter = self.mainRouter
         self.signInRouter.signUpRouter = self.signUpRouter
         self.signUpRouter.signInRouter = self.signInRouter
         self.usersRouter.userDetailRouter = self.userDetailRouter
+        self.userDetailRouter.chatRouter = self.chatRouter
+        self.messagesRouter.chatRouter = self.chatRouter
         self.menuRouter.eventsRouter = self.eventsRouter
         self.menuRouter.signInRouter = self.signInRouter
         self.menuRouter.profileRouter = self.profileRouter

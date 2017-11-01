@@ -65,8 +65,11 @@ extension MessagesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let categorie = self.viewModel.categories.value[indexPath.row]
-//        self.viewModel.eventsByFilter(categorie: categorie)
+        self.viewModel.useCases.fetchUserById(id: self.viewModel.messages.value[indexPath.row].chatPartnerId()!) { (result) in
+            do {
+                try self.viewModel.router.presentChat(user: result.getValue())
+            }catch{}
+        }
     }
     
     func cellForMessage(message: Message) -> UITableViewCell {
