@@ -15,6 +15,7 @@ class ChatViewModel {
     let messages = Variable<[Message]>([])
     var user: Variable<User>!
     let name = Variable<String>("")
+    let message = Variable<String>("")
     
     func viewDidLoad() {
         self.useCases.chatMessages.asObservable().subscribe({
@@ -30,6 +31,13 @@ class ChatViewModel {
     
     func close() {
         self.router.dismiss()
+    }
+    
+    func sendMessage() {
+        if !self.message.value.isEmpty {
+            self.useCases.sendMessage(message: message.value, user: user.value)
+            self.message.value = ""
+        }
     }
     
 }

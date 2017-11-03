@@ -26,10 +26,18 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var ownerName: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var envetLocationMap: UIView!
+    @IBOutlet weak var dateIcon: UIImageView!
+    @IBOutlet weak var participants: UIButton!
+    @IBOutlet weak var vacancies: UIButton!
+    @IBOutlet weak var locationIcon: UIImageView!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
+        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 40, height: 40))
+        self.locationIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,13 +77,18 @@ class EventDetailViewController: UIViewController {
         self.joinButton.rx.tap.subscribe(onNext: {
             self.viewModel.subscribeOnEvent()
         }).disposed(by: self.viewModel.disposeBag)
+        
+        self.viewModel.vacancies.asObservable().subscribe { (vacancies) in
+            self.vacancies.setTitle("\(vacancies.element!)", for: .normal)
+        }.disposed(by: self.viewModel.disposeBag)
     }
     
     func setupLabels() {
         self.eventTitleLabel.text = self.viewModel.event.value.title.uppercased()
         self.eventImageView.kf.setImage(with: self.viewModel.event.value.image, placeholder: #imageLiteral(resourceName: "imagePlaceHolder"), options: nil, progressBlock: nil, completionHandler: nil)
         self.locationLabel.text = self.viewModel.event.value.locationName
-        self.descriptionTextView.text = self.viewModel.event.value.description
+        self.descriptionTextView.font = UIFont.fontAwesome(ofSize: 20)
+        self.descriptionTextView.text = " " + String.fontAwesomeIcon(code: "fa-bookmark")! + "  " + self.viewModel.event.value.description
         let date = self.viewModel.event.value.date
         let calendar = Calendar.current
         let month = calendar.component(.month, from: date)
@@ -86,6 +99,8 @@ class EventDetailViewController: UIViewController {
         let dateFormatter: DateFormatter = DateFormatter()
         let months = dateFormatter.monthSymbols
         let monthSymbol = months![month-1]
+        self.monthLabel.text = dateFormatter.shortMonthSymbols![month-1]
+        self.dayLabel.text = "\(day)"
         self.schedulerLabel.text = "\(day) de \(monthSymbol) de \(year) as \(hour)horas e \(minute) minutos"
     }
     

@@ -14,6 +14,7 @@ class EventChatRouter {
     let window: UIWindow!
     var viewController : EventChatViewController!
     var presentingViewController: UIViewController!
+    var userDetailRouter: UserDetailRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
@@ -36,6 +37,10 @@ class EventChatRouter {
         self.viewController.isHeroEnabled = true
         self.viewController.heroModalAnimationType = .pull(direction: HeroDefaultAnimationType.Direction.right)
         self.viewController.hero_dismissViewController()
+    }
+    
+    func presentUserDetail(user: User) {
+        self.userDetailRouter.presentUserDetailFromViewController(presentingViewController: self.viewController, user: user)
     }
     
 }

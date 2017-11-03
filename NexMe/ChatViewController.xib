@@ -24,6 +24,7 @@
                 <outlet property="collectionView" destination="YLX-X5-UG6" id="6sE-dV-RNT"/>
                 <outlet property="containerView" destination="eRK-hS-gOy" id="t2b-ql-LOU"/>
                 <outlet property="messageTextField" destination="vyl-Vd-vNh" id="9KD-cT-wor"/>
+                <outlet property="sendButton" destination="ff5-z1-h2O" id="Hqn-bn-dtt"/>
                 <outlet property="userName" destination="CxT-oM-FNB" id="jTg-UQ-oND"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -92,9 +93,6 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="18"/>
                             <state key="normal" title="Enviar"/>
-                            <connections>
-                                <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="OXJ-yp-UHV"/>
-                            </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enviar mensagem..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vyl-Vd-vNh">
                             <rect key="frame" x="8" y="1" width="232" height="49"/>
