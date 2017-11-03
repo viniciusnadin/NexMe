@@ -27,7 +27,9 @@ class EventChatViewModel {
     }
     
     func sendMessage(){
-        self.useCases.sendMessage(event: self.event.value, message: self.message.value)
+        if !self.message.value.isEmpty {
+            self.useCases.sendMessage(event: self.event.value, message: self.message.value)
+        }
     }
     
     func close() {

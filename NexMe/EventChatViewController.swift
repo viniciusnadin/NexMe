@@ -83,8 +83,15 @@ class EventChatViewController: UIViewController {
 extension EventChatViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let user = self.viewModel.events.value[indexPath.row]
-        //        self.viewModel.presentUserDetail(user: user)
+                let id = self.viewModel.messages.value[indexPath.row].userId
+        self.viewModel.useCases.fetchUserById(id: id!) { (result) in
+            do{
+                let user = try result.getValue()
+                self.viewModel.router.presentUserDetail(user: user)
+            }catch{
+                print("Nao achou usuario")
+            }
+        }
     }
     
     func cellForMessage(message: EventMessage) -> UITableViewCell {

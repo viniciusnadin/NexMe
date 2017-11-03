@@ -24,6 +24,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -85,6 +86,15 @@ class ChatViewController: UIViewController {
         self.backButton.rx.tap.subscribe({_ in
             self.viewModel.close()
         }).disposed(by: self.viewModel.disposeBag)
+        
+        self.sendButton.rx.tap.subscribe(onNext:{
+            self.viewModel.sendMessage()
+            self.messageTextField.text = ""
+        }).disposed(by: self.viewModel.disposeBag)
+        
+        self.messageTextField.rx.text.orEmpty.map({$0})
+            .bind(to: viewModel.message)
+        .disposed(by: self.viewModel.disposeBag)
     }
     
     func setupKeyboardObservers() {
@@ -96,7 +106,7 @@ class ChatViewController: UIViewController {
         if let profileImageUrl = self.viewModel.user.value.avatar?.original {
             cell.profileImageView.kf.setImage(with: profileImageUrl)
         }
-        
+        cell.textView.isEditable = false
         if message.fromId == Auth.auth().currentUser?.uid {
             cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
             cell.textView.textColor = UIColor.white
@@ -120,36 +130,7 @@ class ChatViewController: UIViewController {
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
     }
-    
-    func handleSend() {
-        let ref = Database.database().reference().child("messages")
-        let childRef = ref.childByAutoId()
-        let toId = self.viewModel.user.value.id
-        let fromId = Auth.auth().currentUser!.uid
-        let timestamp = Int(Date().timeIntervalSince1970)
-        let values = ["text": messageTextField.text!, "toId": toId!, "fromId": fromId, "timestamp": timestamp] as [String : Any]
-        
-        childRef.updateChildValues(values) { (error, ref) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            self.messageTextField.text = nil
-            
-            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId!)
-            
-            let messageId = childRef.key
-            userMessagesRef.updateChildValues([messageId: 1])
-            
-            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId!).child(fromId)
-            recipientUserMessagesRef.updateChildValues([messageId: 1])
-        }
-    }
 
-    @IBAction func sendMessage(_ sender: Any) {
-        self.handleSend()
-    }
 }
 
 extension ChatViewController: UICollectionViewDelegateFlowLayout {
@@ -202,7 +183,8 @@ extension ChatViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        handleSend()
+        self.viewModel.sendMessage()
+        self.messageTextField.text = ""
         return true
     }
     

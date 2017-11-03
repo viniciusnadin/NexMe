@@ -194,7 +194,8 @@ final class UseCases {
             let databaseReference = Database.database().reference()
             let eventsReference = databaseReference.child("event").child("events").childByAutoId()
             let values : [String : Any]!
-            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "imageUrl" : event.image!.absoluteString, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
+            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "imageUrl" : event.image!.absoluteString, "locationName" : event.locationName, "categorie" : event.categorie.id!,
+                      "vacancies": event.vacancies as Any] as [String : Any]
             eventsReference.updateChildValues(values) { (error, reference) in
                 if error != nil {
                     failure(error!)
@@ -275,6 +276,7 @@ final class UseCases {
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
             let imageUrl = (value.value["imageUrl"] as! String)
+            let vacancies = (value.value["vacancies"] as! Int)
             var eventCoordinate = CLLocationCoordinate2D()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
@@ -284,7 +286,7 @@ final class UseCases {
                 eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
             }
             let locationName = (value.value["locationName"] as! String)
-            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie, ownerId: userID, city: city)
+            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie, ownerId: userID, city: city, vacancies: vacancies)
             event.image = URL(string: imageUrl)
             event.id = eventId
             success(event)
@@ -320,6 +322,7 @@ final class UseCases {
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
             let imageUrl = (value.value["imageUrl"] as! String)
+            let vacancies = (value.value["vacancies"] as! Int)
             var eventCoordinate = CLLocationCoordinate2D()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
@@ -332,7 +335,7 @@ final class UseCases {
             let categorieId = (value.value["categorie"] as! String)
             self.findCategorieById(id: categorieId, completion: { (categorie) in
                 do{
-                    let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
+                    let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie.getValue(), ownerId: userID, city: city, vacancies: vacancies)
                     event.image = URL(string: imageUrl)
                     event.id = eventId
                     success(event)
@@ -395,6 +398,7 @@ final class UseCases {
     }
     
     func observeMessages(eventId: String) {
+        self.messages.value.removeAll()
         Database.database().reference().child("event").child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
             if let dictionary = snapShot.value as? [String : Any]{
                 let message = EventMessage()
@@ -475,6 +479,30 @@ final class UseCases {
                 self.fetchMessageWithMessageId(messageId)
             })
         })
+    }
+    
+    func sendMessage(message: String, user: User) {
+        let ref = Database.database().reference().child("messages")
+        let childRef = ref.childByAutoId()
+        let toId = user.id
+        let fromId = Auth.auth().currentUser!.uid
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let values = ["text": message, "toId": toId!, "fromId": fromId, "timestamp": timestamp] as [String : Any]
+        
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId!)
+            
+            let messageId = childRef.key
+            userMessagesRef.updateChildValues([messageId: 1])
+            
+            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId!).child(fromId)
+            recipientUserMessagesRef.updateChildValues([messageId: 1])
+        }
     }
 
     fileprivate func fetchMessageWithMessageId(_ messageId: String) {

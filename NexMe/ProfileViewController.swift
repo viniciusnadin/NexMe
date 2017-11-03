@@ -105,8 +105,8 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let event = self.viewModel.events.value[indexPath.row]
-//        self.viewModel.presentEventDetail(event: event)
+        let event = self.viewModel.events.value[indexPath.row]
+        self.viewModel.router.presentEventDetail(event: event)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
