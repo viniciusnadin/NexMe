@@ -97,13 +97,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="755"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="uN7-ys-iwX">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="213.5"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="uN7-ys-iwX" secondAttribute="height" multiplier="8:5" id="Mgk-6s-DL4"/>
+                                        <constraint firstAttribute="width" secondItem="uN7-ys-iwX" secondAttribute="height" multiplier="3:2" id="Mgk-6s-DL4"/>
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome do evento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WeE-sE-wcm" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="30" y="210" width="260" height="40"/>
+                                    <rect key="frame" x="30" y="223.5" width="260" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="Igr-eG-bTr"/>
                                     </constraints>
@@ -117,7 +117,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ja5-mF-xrE">
-                                    <rect key="frame" x="30" y="260" width="260" height="55"/>
+                                    <rect key="frame" x="30" y="273.5" width="260" height="55"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIÇÃO DO EVENTO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5L-z3-UXe">
                                             <rect key="frame" x="0.0" y="0.0" width="260" height="20"/>
@@ -166,7 +166,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZP-Ts-YvQ">
-                                    <rect key="frame" x="30" y="325" width="260" height="60"/>
+                                    <rect key="frame" x="30" y="338.5" width="260" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATA DO EVENTO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNh-TW-Vxu">
                                             <rect key="frame" x="0.0" y="0.0" width="260" height="20"/>
@@ -223,7 +223,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dI-02-dy6">
-                                    <rect key="frame" x="30" y="395" width="260" height="60"/>
+                                    <rect key="frame" x="30" y="408.5" width="260" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvP-P1-wdh">
                                             <rect key="frame" x="0.0" y="0.0" width="260" height="20"/>
@@ -279,11 +279,11 @@
                                         <constraint firstAttribute="trailing" secondItem="hLo-Gr-gtt" secondAttribute="trailing" id="vaG-jG-XMF"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TwX-vP-bfu">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TwX-vP-bfu">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="223.5"/>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAd-dF-MLU">
-                                    <rect key="frame" x="30" y="465" width="260" height="197"/>
+                                    <rect key="frame" x="30" y="478.5" width="260" height="197"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCALIZAÇÃO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="580-W6-ILR">
                                             <rect key="frame" x="0.0" y="0.0" width="260" height="20"/>

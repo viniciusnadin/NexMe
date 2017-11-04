@@ -25,16 +25,33 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var envetLocationMap: UIView!
     @IBOutlet weak var dateIcon: UIImageView!
-    @IBOutlet weak var participants: UIButton!
     @IBOutlet weak var locationIcon: UIImageView!
-    @IBOutlet weak var monthLabel: UILabel!
-    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var participants: UILabel!
+    @IBOutlet weak var participantsIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
-        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 40, height: 40))
-        self.locationIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        let blueColor = UIColor(red: 82/255, green: 205/255, blue: 171/255, alpha: 1.0)
+        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: blueColor, size: CGSize(width: 40, height: 40))
+        self.locationIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: blueColor, size: CGSize(width: 40, height: 40))
+        self.participantsIcon.image = UIImage.fontAwesomeIcon(code: "fa-users", textColor: blueColor, size: CGSize(width: 40, height: 40))
+    }
+    
+    func addParallaxToView(vw: UIView) {
+        let amount = 100
+        
+        let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+        horizontal.minimumRelativeValue = -amount
+        horizontal.maximumRelativeValue = amount
+        
+        let vertical = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+        vertical.minimumRelativeValue = -amount
+        vertical.maximumRelativeValue = amount
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [horizontal, vertical]
+        vw.addMotionEffect(group)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,7 +98,7 @@ class EventDetailViewController: UIViewController {
         self.eventImageView.kf.setImage(with: self.viewModel.event.value.image, placeholder: #imageLiteral(resourceName: "imagePlaceHolder"), options: nil, progressBlock: nil, completionHandler: nil)
         self.locationLabel.text = self.viewModel.event.value.locationName
         self.descriptionTextView.font = UIFont.fontAwesome(ofSize: 20)
-        self.descriptionTextView.text = " " + String.fontAwesomeIcon(code: "fa-bookmark")! + "  " + self.viewModel.event.value.description
+        self.descriptionTextView.text = self.viewModel.event.value.description
         let date = self.viewModel.event.value.date
         let calendar = Calendar.current
         let month = calendar.component(.month, from: date)
@@ -92,9 +109,7 @@ class EventDetailViewController: UIViewController {
         let dateFormatter: DateFormatter = DateFormatter()
         let months = dateFormatter.monthSymbols
         let monthSymbol = months![month-1]
-        self.monthLabel.text = dateFormatter.shortMonthSymbols![month-1]
-        self.dayLabel.text = "\(day)"
-        self.schedulerLabel.text = "\(day) de \(monthSymbol) de \(year) as \(hour)horas e \(minute) minutos"
+        self.schedulerLabel.text = "\(day) de \(monthSymbol) de \(year) as \(hour):\(minute)"
     }
     
     func setupGoogleMapsView(){
