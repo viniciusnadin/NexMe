@@ -10,11 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SlideMenuControllerSwift
+import CoreLocation
+import GooglePlaces
 
 class EventsViewController: UIViewController {
     
     // MARK: - Properties
     let viewModel: EventsViewModel
+    let locationManager = CLLocationManager()
     
     // MARK: - Outlets
     @IBOutlet weak var menuButton: UIButton!
@@ -22,6 +25,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var categoriesTable: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var mainCategorieImage: UIImageView!
+    @IBOutlet weak var nearbyEvents: UIButton!
     
     init(viewModel: EventsViewModel) {
         self.viewModel = viewModel
@@ -38,8 +42,11 @@ class EventsViewController: UIViewController {
         self.configureBinds()
         self.configureViews()
         self.containerView.layer.borderWidth = 1
-        self.containerView.layer.borderColor = UIColor(red: 176/255, green: 182/255, blue: 187/255, alpha: 1.0).cgColor
-        self.mainCategorieImage.image = UIImage.fontAwesomeIcon(code: "fa-globe", textColor: UIColor(red: 82/255, green: 205.255, blue: 171/255, alpha: 1.0), size: CGSize(width: 50, height: 50))
+        self.containerView.layer.borderColor = UIColor(red: 40/255, green: 56/255, blue: 77/255, alpha: 0.4).cgColor
+        self.mainCategorieImage.image = UIImage.fontAwesomeIcon(code: "fa-globe", textColor: UIColor(red: 40/255, green: 56/255, blue: 77/255, alpha: 1.0), size: CGSize(width: 50, height: 50))
+        
+        self.locationManager.requestWhenInUseAuthorization()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,6 +65,32 @@ class EventsViewController: UIViewController {
         self.viewModel.categories.asObservable().bind(to: categoriesTable.rx.items) { (table, row, categorie) in
             return self.cellForCategorie(categorie: categorie)
         }.disposed(by: viewModel.disposeBag)
+        
+        self.nearbyEvents.rx.tap.subscribe(onNext: {
+            self.locationManager.requestWhenInUseAuthorization()
+            GMSPlacesClient.provideAPIKey("AIzaSyBjGjZ-8f2ys2LHIktgpMH3crZb1ljhpfg")
+            if CLLocationManager.locationServicesEnabled() {
+                GMSPlacesClient.shared().currentPlace { (places, error) in
+                    if let error = error {
+                        // TODO: Handle the error.
+                        print("Current Place error: \(error.localizedDescription)")
+                        return
+                    }
+                    if let likelihoodList = places {
+                        for likelihood in likelihoodList.likelihoods {
+                            let place = likelihood.place
+                            let fullAddress = place.addressComponents
+                            for address in fullAddress! {
+                                if (address.type == "administrative_area_level_2"){
+                                    self.viewModel.router.presentEventsByFilter(categorie: nil, city: address.name)
+                                    return
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }).disposed(by: self.viewModel.disposeBag)
     }
 
     func configureViews() {
@@ -70,12 +103,12 @@ class EventsViewController: UIViewController {
 extension EventsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categorie = self.viewModel.categories.value[indexPath.row]
-        self.viewModel.eventsByFilter(categorie: categorie)
+        self.viewModel.eventsByFilter(categorie: categorie, city: nil)
     }
     
     func cellForCategorie(categorie: EventCategorie) -> CategorieTableViewCell {
@@ -84,8 +117,6 @@ extension EventsViewController: UITableViewDelegate{
         return cell
     }
 }
-
-
 
 
 

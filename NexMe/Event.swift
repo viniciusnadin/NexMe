@@ -21,11 +21,10 @@ class Event {
     var owner: User?
     var city: String
     var id: String?
-    var vacancies: Int
     var participants = [String]()
     
     init(title: String, coordinate: CLLocationCoordinate2D, locationName: String, date: Date, description: String, categorie: EventCategorie,
-         ownerId: String, city: String, vacancies: Int){
+         ownerId: String, city: String){
         self.title = title
         self.coordinate = coordinate
         self.locationName = locationName
@@ -34,7 +33,6 @@ class Event {
         self.categorie = categorie
         self.ownerId = ownerId
         self.city = city
-        self.vacancies = vacancies
     }
     
 }

@@ -78,7 +78,6 @@
 		D5B16A9F1F6757BB00CDCE28 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A9E1F6757BB00CDCE28 /* User.swift */; };
 		D5B16AA11F6758C700CDCE28 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA01F6758C700CDCE28 /* Avatar.swift */; };
 		D5B16AA51F6758EE00CDCE28 /* PersistenceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AA41F6758EE00CDCE28 /* PersistenceInterface.swift */; };
-		D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16AAC1F6759A700CDCE28 /* FileStore.swift */; };
 		D5D367B41F97F94000A5C2E0 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367B21F97F94000A5C2E0 /* CardTableViewCell.swift */; };
 		D5D367B51F97F94000A5C2E0 /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D367B31F97F94000A5C2E0 /* CardTableViewCell.xib */; };
 		D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D367BF1F984A7D00A5C2E0 /* UserDetailViewController.swift */; };
@@ -176,7 +175,6 @@
 		D5B16A9E1F6757BB00CDCE28 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5B16AA01F6758C700CDCE28 /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		D5B16AA41F6758EE00CDCE28 /* PersistenceInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceInterface.swift; sourceTree = "<group>"; };
-		D5B16AAC1F6759A700CDCE28 /* FileStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStore.swift; sourceTree = "<group>"; };
 		D5D367B21F97F94000A5C2E0 /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		D5D367B31F97F94000A5C2E0 /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
 		D5D367B71F98200300A5C2E0 /* Gilroy-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.otf"; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 				D5FC33501FA1374B00321A10 /* TCPickerTableViewCell.swift */,
 				D5FC334F1FA1374B00321A10 /* TCPickerView.swift */,
 				D59CD46F1F7C636C001582D1 /* ImagePicker.swift */,
-				D5B16AAC1F6759A700CDCE28 /* FileStore.swift */,
 				D5B16A6B1F65CE3D00CDCE28 /* Result.swift */,
 				D5B16A6F1F65D2DC00CDCE28 /* Functions.swift */,
 			);
@@ -814,7 +811,6 @@
 				D5B16A7C1F660EF100CDCE28 /* MenuViewController.swift in Sources */,
 				D54F44061F96B22F004328D8 /* CardView.swift in Sources */,
 				D5B16A7F1F660F0900CDCE28 /* MenuNavigationController.swift in Sources */,
-				D5B16AAD1F6759A700CDCE28 /* FileStore.swift in Sources */,
 				D5B16A831F660F3A00CDCE28 /* MenuViewModel.swift in Sources */,
 				D5B16A891F66120C00CDCE28 /* EventsViewModel.swift in Sources */,
 				D5B16A941F674A8600CDCE28 /* ProfileViewModel.swift in Sources */,

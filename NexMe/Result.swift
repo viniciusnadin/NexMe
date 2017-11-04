@@ -216,42 +216,6 @@ extension Result {
         
         return Result<T>(error: ResultError.NoValue)
     }
-
-//    public func failure(@noescape f: ErrorType -> Void) -> Result<T> {
-//        if let errors = errors {
-//            for error in errors {
-//                f(error)
-//            }
-//        }
-//
-//        return self
-//    }
-//
-//    public func failure<E: ErrorType>(type: E.Type, @noescape f: E -> Void) -> Result<T> {
-//        if let errors = errors {
-//            for error in errors {
-//                if let error = error as? E {
-//                    f(error)
-//                }
-//            }
-//        }
-//
-//        return self
-//    }
-//
-//    public func success(@noescape f: T -> Void) -> Result<T> {
-//        if let value = value {
-//            f(value)
-//        }
-//
-//        return self
-//    }
-//
-//    public func finally(@noescape finally: Void -> Void) -> Result<T> {
-//        finally()
-//        return self
-//    }
-
 }
 
 // MARK: - Functional

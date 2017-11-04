@@ -14,7 +14,7 @@ func handleError(error: Error) -> String {
     }
     
     if (error as NSError).code == -1001 {
-        return "Servidor com problemas. =/ Logo voltamos!"
+        return "Nosso servidor está com problemas!"
     }
     
     if let errCode = AuthErrorCode(rawValue: error._code){

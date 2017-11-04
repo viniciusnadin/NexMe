@@ -21,13 +21,17 @@ class EventListRouter {
         self.window = window
     }
     
-    func presentEventsFromViewController(presentingViewController: UIViewController, categorie: EventCategorie){
+    func presentEventsFromViewController(presentingViewController: UIViewController, categorie: EventCategorie?, city: String?){
         self.presentingViewController = presentingViewController
         let viewModel = EventListViewModel()
         viewModel.useCases = useCases
         viewModel.router = self
-        viewModel.filter.value = categorie.name.uppercased()
-        viewModel.eventCategorie = categorie
+        if categorie != nil {
+            viewModel.filter.value = categorie!.name.uppercased()
+            viewModel.eventCategorie = categorie
+        } else{
+            viewModel.filter.value = city!
+        }
         viewController = EventListViewController(viewModel: viewModel)
         viewController.isHeroEnabled = true
         viewController.heroModalAnimationType = .push(direction: HeroDefaultAnimationType.Direction.left)
