@@ -22,13 +22,10 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var ownerAvatar: UIImageView!
-    @IBOutlet weak var ownerName: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var envetLocationMap: UIView!
     @IBOutlet weak var dateIcon: UIImageView!
     @IBOutlet weak var participants: UIButton!
-    @IBOutlet weak var vacancies: UIButton!
     @IBOutlet weak var locationIcon: UIImageView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
@@ -77,10 +74,6 @@ class EventDetailViewController: UIViewController {
         self.joinButton.rx.tap.subscribe(onNext: {
             self.viewModel.subscribeOnEvent()
         }).disposed(by: self.viewModel.disposeBag)
-        
-        self.viewModel.vacancies.asObservable().subscribe { (vacancies) in
-            self.vacancies.setTitle("\(vacancies.element!)", for: .normal)
-        }.disposed(by: self.viewModel.disposeBag)
     }
     
     func setupLabels() {

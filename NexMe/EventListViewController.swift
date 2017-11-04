@@ -75,7 +75,8 @@ extension EventListViewController: UITableViewDelegate{
         let cell = self.table.dequeueReusableCell(withIdentifier: "EventTableCell") as! EventTableViewCell
         cell.eventImage.kf.setImage(with: event.image, placeholder: #imageLiteral(resourceName: "imagePlaceHolder"), options: nil, progressBlock: nil, completionHandler: nil)
         cell.eventLocationName.text = event.locationName
-        cell.eventNameLabel.text = event.title
+        cell.eventNameLabel.text = event.title.uppercased()
+        cell.eventLocationName.adjustsFontSizeToFitWidth = true
         cell.selectionStyle = .none
         let calendar = Calendar.current
         let month = calendar.component(.month, from: event.date)

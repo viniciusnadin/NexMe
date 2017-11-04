@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 85
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -115,8 +115,7 @@ extension ProfileViewController: UITableViewDelegate {
     
     func cellForEvent(event: Event) -> EventLesserCell {
         let cell = self.tableEvents.dequeueReusableCell(withIdentifier: "EventCell") as! EventLesserCell
-        cell.nameLabel.text = event.title
-        cell.locationLabel.text = event.locationName
+        cell.nameLabel.text = event.title.uppercased()
         cell.selectionStyle = .none
         let calendar = Calendar.current
         let month = calendar.component(.month, from: event.date)
@@ -125,10 +124,8 @@ extension ProfileViewController: UITableViewDelegate {
         let months = dateFormatter.shortMonthSymbols
         let monthSymbol = months![month-1]
         dateFormatter.dateFormat = "HH:mm"
-        let date24 = dateFormatter.string(from: event.date)
         cell.monthLabel.text = monthSymbol
         cell.dayLabel.text = "\(day)"
-        cell.scheduleLabel.text = "\(date24)"
         cell.updateConstraintsIfNeeded()
         return cell
     }

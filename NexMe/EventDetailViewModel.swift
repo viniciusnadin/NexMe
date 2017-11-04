@@ -13,7 +13,6 @@ class EventDetailViewModel {
     var router: EventDetailRouter!
     let disposeBag = DisposeBag()
     var event: Variable<Event>!
-    var vacancies = Variable<Int>(1)
     
     func viewDidLoad() {
 //        self.useCases.findAllCategories(completion: { (categories) in
@@ -25,7 +24,6 @@ class EventDetailViewModel {
     
     func setEvent(event: Event) {
         self.event = Variable<Event>(event)
-        self.vacancies.value = event.vacancies
     }
     
     func close() {

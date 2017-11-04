@@ -41,7 +41,6 @@
                 <outlet property="monthLabel" destination="74K-Vx-5q8" id="lom-D4-L1b"/>
                 <outlet property="participants" destination="9s1-OD-mJX" id="5rV-Du-gz8"/>
                 <outlet property="schedulerLabel" destination="JLp-TU-wp2" id="lAa-eJ-9He"/>
-                <outlet property="vacancies" destination="cpE-bY-CFT" id="Zji-tY-T5i"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -209,10 +208,10 @@
                                     <rect key="frame" x="30" y="481" width="260" height="38"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="MR3-HU-Hc1">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="38"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="38"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9s1-OD-mJX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.5" id="baN-67-OUD"/>
                                                     </constraints>
@@ -222,33 +221,9 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="participantes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDE-u5-2uG">
-                                                    <rect key="frame" x="0.0" y="21" width="130" height="17"/>
+                                                    <rect key="frame" x="0.0" y="21" width="260" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="fcm-7H-nWn"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy" pointSize="14"/>
-                                                    <color key="textColor" red="0.62042565579999998" green="0.61742843039999995" blue="0.6234228812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="15S-oX-cxG">
-                                            <rect key="frame" x="130" y="0.5" width="130" height="37"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-bY-CFT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="GUo-5N-EnA"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Gilroy-SemiBold" family="Gilroy" pointSize="16"/>
-                                                    <state key="normal" title="0">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vagas totais" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sik-DA-cjh">
-                                                    <rect key="frame" x="0.0" y="20" width="130" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="F5F-DZ-QLw"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy" pointSize="14"/>
                                                     <color key="textColor" red="0.62042565579999998" green="0.61742843039999995" blue="0.6234228812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

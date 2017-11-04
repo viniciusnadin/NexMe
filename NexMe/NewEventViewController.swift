@@ -37,7 +37,6 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var mapIcon: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var vacanciesTextField: SkyFloatingLabelTextFieldWithIcon!
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
@@ -54,25 +53,13 @@ class NewEventViewController: UIViewController {
         nameTextField.tintColor = overcastBlueColor
         nameTextField.selectedTitleColor = overcastBlueColor
         nameTextField.selectedLineColor = overcastBlueColor
-
+    
         nameTextField.iconColor = UIColor.lightGray
         nameTextField.selectedIconColor = overcastBlueColor
         nameTextField.iconFont = UIFont.fontAwesome(ofSize: 20)
         nameTextField.iconText = String.fontAwesomeIcon(code: "fa-wpforms")
         nameTextField.iconMarginBottom = 2.0
         nameTextField.iconMarginLeft = 2.0
-        
-        vacanciesTextField.placeholder = "Numero de vagas"
-        vacanciesTextField.title = "Numero de vagas"
-        vacanciesTextField.tintColor = overcastBlueColor
-        vacanciesTextField.selectedTitleColor = overcastBlueColor
-        vacanciesTextField.selectedLineColor = overcastBlueColor
-        
-        vacanciesTextField.iconColor = UIColor.lightGray
-        vacanciesTextField.selectedIconColor = overcastBlueColor
-        vacanciesTextField.iconFont = UIFont.fontAwesome(ofSize: 15)
-        vacanciesTextField.iconText = String.fontAwesomeIcon(code: "fa-users")
-
         
         self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
         self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
@@ -121,10 +108,6 @@ class NewEventViewController: UIViewController {
         self.viewModel.eventLocationName.asObservable().subscribe(onNext: { name in
             self.locationTextField.text = name
         }).disposed(by: self.viewModel.disposeBag)
-        
-        self.vacanciesTextField.rx.text.orEmpty.map({Int($0)!})
-            .bind(to: self.viewModel.vacancies)
-            .disposed(by: self.viewModel.disposeBag)
         
         self.nameTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.eventName)
