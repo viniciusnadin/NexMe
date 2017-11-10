@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PopupDialog
+import Hero
 
 class SignInViewController: UIViewController {
     
@@ -33,13 +34,6 @@ class SignInViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if self.viewModel.router.successSignUp {
-            self.viewModel.router.successSignUp = false
-            self.viewModel.router.presentMain()
-        }
     }
 
     override func viewDidLoad() {

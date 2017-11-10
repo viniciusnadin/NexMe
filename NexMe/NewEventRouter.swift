@@ -31,6 +31,18 @@ class NewEventRouter {
         presentingViewController.present(viewController, animated: true, completion: nil)
     }
     
+    func presentEditEventFromViewController(presentingViewController: UIViewController, event: Event){
+        self.presentingViewController = presentingViewController
+        let viewModel = NewEventViewModel()
+        viewModel.useCases = useCases
+        viewModel.router = self
+        viewModel.setEvent(event: event)
+        viewController = NewEventViewController(viewModel: viewModel)
+        viewController.isHeroEnabled = true
+        viewController.heroModalAnimationType = .push(direction: HeroDefaultAnimationType.Direction.left)
+        presentingViewController.present(viewController, animated: true, completion: nil)
+    }
+    
     func getViewController() -> UIViewController {
         let viewModel = NewEventViewModel()
         viewModel.router = self
