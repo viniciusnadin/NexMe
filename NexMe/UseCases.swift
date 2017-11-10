@@ -195,7 +195,7 @@ final class UseCases {
     
     func getUpdatedCurrentUser(){
         self.fetchUser(completion: { (result) in
-            //nothing
+            //....
         })
     }
     

@@ -40,6 +40,8 @@ class EventsViewController: UIViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         NVActivityIndicatorView.DEFAULT_TYPE = .ballPulseSync
         self.startAnimating()
         self.configureBinds()
@@ -47,8 +49,6 @@ class EventsViewController: UIViewController, NVActivityIndicatorViewable {
         self.containerView.layer.borderWidth = 1
         self.containerView.layer.borderColor = UIColor(red: 40/255, green: 56/255, blue: 77/255, alpha: 0.4).cgColor
         self.mainCategorieImage.image = UIImage.fontAwesomeIcon(code: "fa-globe", textColor: UIColor(red: 40/255, green: 56/255, blue: 77/255, alpha: 1.0), size: CGSize(width: 50, height: 50))
-        
-        self.locationManager.requestWhenInUseAuthorization()
         
     }
 
@@ -76,8 +76,8 @@ class EventsViewController: UIViewController, NVActivityIndicatorViewable {
                 GMSPlacesClient.shared().currentPlace { (places, error) in
                     if error != nil {
                         self.stopAnimating()
+                        print(error)
                         PopUpDialog.present(title: "Ops...", message: "Você autorizou o app a utilizar a sua localização?", viewController: self)
-                        self.locationManager.requestWhenInUseAuthorization()
                         return
                     }
                     if let likelihoodList = places {

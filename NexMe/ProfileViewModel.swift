@@ -20,20 +20,21 @@ class ProfileViewModel {
     let following = Variable<[UserKeys]>([])
     
     func viewDidLoad() {
-        if let user = useCases.getCurrentUser() {
-            name.value = user.name!.capitalized
-            email.value = user.email!
-            followers.value = user.followers
-            following.value = user.following
-            self.avatarImageURL.value = user.avatar?.original
-            self.useCases.findEventsByUser(id: user.id!, completion: { (events) in
-                do {
-                    self.events.value = try events.getValue().sorted(by: { $0.date < $1.date })
-                } catch {
-                    print("Erro Eventos")
-                }
-            })
-        }
+        useCases.fetchUser { (result) in
+            if let user = self.useCases.getCurrentUser(){
+                self.name.value = user.name!.capitalized
+                self.email.value = user.email!
+                self.followers.value = user.followers
+                self.following.value = user.following
+                self.avatarImageURL.value = user.avatar?.original
+                self.useCases.findEventsByUser(id: user.id!, completion: { (events) in
+                    do {
+                        self.events.value = try events.getValue().sorted(by: { $0.date < $1.date })
+                    } catch {
+                        print("Erro Eventos")
+                    }
+                })
+            }}
         
     }
     
