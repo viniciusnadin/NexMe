@@ -42,7 +42,7 @@ class ProfileViewModel {
     }
     
     func passwordReset() {
-        self.useCases.passwordReset()
+        self.useCases.passwordReset(email: nil)
     }
     
     

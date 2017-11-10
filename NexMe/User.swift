@@ -8,6 +8,7 @@ class User {
     var avatar: Avatar?
     var following = [UserKeys]()
     var followers = [UserKeys]()
+    var eventsParticipating = [UserKeys]()
     
     fileprivate var keyUserFollowing : String!
     fileprivate var keySelfFollower : String!
@@ -21,13 +22,13 @@ class User {
     init() {
     }
     
-    func followAction(completion: @escaping () -> ()) {
+    func follow(completion: @escaping () -> ()) {
         let loggedUser = LoggedUser.sharedInstance.user
         let databaseReference = Database.database().reference()
         let key = Database.database().reference().child("users").childByAutoId().key
         let following = ["following/\(key)" : self.id!]
         let followers = ["followers/\(key)" : loggedUser.id!]
-        if self.isFollowing() {
+        if self.changeFollowState() {
             databaseReference.child("users").child(loggedUser.id!).child("following").child(keyUserFollowing).removeValue()
             databaseReference.child("users").child(self.id!).child("followers").child(keySelfFollower).removeValue()
             completion()
@@ -40,7 +41,7 @@ class User {
         }
     }
     
-    fileprivate func isFollowing() -> Bool {
+    fileprivate func changeFollowState() -> Bool {
         let loggedUser = LoggedUser.sharedInstance.user
         let fwing = loggedUser.following
         let fllwers = self.followers
@@ -64,7 +65,7 @@ class User {
         return following
     }
     
-    func isFollowingUser() -> Bool {
+    func isFollowing() -> Bool {
         let loggedUser = LoggedUser.sharedInstance.user
         for user in loggedUser.following{
             if user.id == self.id{
@@ -76,15 +77,4 @@ class User {
     
     
 }
-
-class UserKeys {
-    var key : String!
-    var id : String!
-
-    init(key: String, id: String) {
-        self.key = key
-        self.id = id
-    }
-}
-
 

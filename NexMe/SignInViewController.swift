@@ -24,6 +24,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var mailIcon: UIImageView!
     @IBOutlet weak var passwordIcon: UIImageView!
+    @IBOutlet weak var lostPasswordButton: UIButton!
     
     init(viewModel: SignInViewModel) {
         self.viewModel = viewModel
@@ -70,6 +71,21 @@ class SignInViewController: UIViewController {
         
         signUpButton.rx.tap.subscribe(onNext: {
             self.viewModel.signUp()
+        }).disposed(by: viewModel.disposeBag)
+        
+        lostPasswordButton.rx.tap.subscribe(onNext: {
+            let alert = UIAlertController(title: "Redefinir a senha", message: "Digite o seu email!", preferredStyle: .alert)
+            
+            //2. Add the text field. You can configure it however you need.
+            alert.addTextField { (textField) in
+                textField.text = ""
+            }
+            alert.addAction(UIAlertAction(title: "Redifinir", style: .default, handler: { [weak alert] (_) in
+                let textField = alert?.textFields![0]
+                self.viewModel.useCases.passwordReset(email: textField?.text)
+                PopUpDialog.present(title: "Redifinição de senha", message: "Enviamos um email com todas as instruções necessárias :)", viewController: self)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successLogin.asObservable().bind { (verify) in

@@ -24,7 +24,7 @@ class NewEventViewController: UIViewController {
     // MARK: - OUTLETS
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var nameTextField: SkyFloatingLabelTextFieldWithIcon!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var locationButton: UIButton!
@@ -37,6 +37,7 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var mapIcon: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var nameIcon: UIImageView!
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
@@ -47,26 +48,14 @@ class NewEventViewController: UIViewController {
         let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewEventViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapOnView)
         
-        nameTextField.placeholder = "Nome do evento"
-        nameTextField.title = "Nome do evento"
-        let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-        nameTextField.tintColor = overcastBlueColor
-        nameTextField.selectedTitleColor = overcastBlueColor
-        nameTextField.selectedLineColor = overcastBlueColor
-    
-        nameTextField.iconColor = UIColor.lightGray
-        nameTextField.selectedIconColor = overcastBlueColor
-        nameTextField.iconFont = UIFont.fontAwesome(ofSize: 20)
-        nameTextField.iconText = String.fontAwesomeIcon(code: "fa-wpforms")
-        nameTextField.iconMarginBottom = 2.0
-        nameTextField.iconMarginLeft = 2.0
+        let overcastBlueColor = UIColor(red: 82/255, green: 205/255, blue: 171/255, alpha: 1.0)
+        nameIcon.image = UIImage.fontAwesomeIcon(code: "fa-wpforms", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
         
-        self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
-        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        self.categorieIcon.image = UIImage.fontAwesomeIcon(code: "fa-bookmark", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
         
-        self.categorieIcon.image = UIImage.fontAwesomeIcon(code: "fa-bookmark", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
-        
-        self.mapIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        self.mapIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
     }
 
     override func didReceiveMemoryWarning() {
@@ -168,7 +157,7 @@ class NewEventViewController: UIViewController {
     }
     
     func showDatePicker() {
-        let picker = DateTimePicker.show()
+        let picker = DateTimePicker.show(selected: Date().add(minutes: 6), minimumDate: Date().add(minutes: 5), maximumDate: nil)
         picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
         picker.isDatePickerOnly = false
         picker.doneButtonTitle = "Concluido"
@@ -183,7 +172,7 @@ class NewEventViewController: UIViewController {
             let year = calendar.component(.year, from: date)
             let hour = calendar.component(.hour, from: date)
             let minute = calendar.component(.minute, from: date)
-            self.dateButton.setTitle("\(hour)h:\(minute)m  \(day)/\(month)/\(year)", for: .normal)
+            self.dateButton.setTitle("\(hour):\(minute)  \(day)/\(month)/\(year)", for: .normal)
         }
     }
 
@@ -250,4 +239,10 @@ extension NewEventViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+extension Date {
+    func add(minutes: Int) -> Date {
+        return Calendar(identifier: .gregorian).date(byAdding: .minute, value: minutes, to: self)!
+    }
 }

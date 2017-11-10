@@ -24,4 +24,5 @@ target 'NexMe' do
   pod 'SkyFloatingLabelTextField'
   pod 'FontAwesome.swift'
   pod 'DateTimePicker'
+  pod 'NVActivityIndicatorView'
 end

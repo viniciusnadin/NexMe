@@ -49,7 +49,7 @@ class UserDetailViewModel {
             followingThisUser.value = true
         }
         if (user.id! != LoggedUser.sharedInstance.user.id!) {
-            self.user.followAction(completion: {
+            self.user.follow(completion: {
                 self.followers.value = self.user.followers
                 self.following.value = self.user.following
             })

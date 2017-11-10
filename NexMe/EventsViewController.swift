@@ -12,8 +12,9 @@ import RxCocoa
 import SlideMenuControllerSwift
 import CoreLocation
 import GooglePlaces
+import NVActivityIndicatorView
 
-class EventsViewController: UIViewController {
+class EventsViewController: UIViewController, NVActivityIndicatorViewable {
     
     // MARK: - Properties
     let viewModel: EventsViewModel
@@ -39,6 +40,8 @@ class EventsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballPulseSync
+        self.startAnimating()
         self.configureBinds()
         self.configureViews()
         self.containerView.layer.borderWidth = 1
@@ -63,17 +66,18 @@ class EventsViewController: UIViewController {
         }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.categories.asObservable().bind(to: categoriesTable.rx.items) { (table, row, categorie) in
+            self.stopAnimating()
             return self.cellForCategorie(categorie: categorie)
         }.disposed(by: viewModel.disposeBag)
         
         self.nearbyEvents.rx.tap.subscribe(onNext: {
-            self.locationManager.requestWhenInUseAuthorization()
-            GMSPlacesClient.provideAPIKey("AIzaSyBjGjZ-8f2ys2LHIktgpMH3crZb1ljhpfg")
+            self.startAnimating()
             if CLLocationManager.locationServicesEnabled() {
                 GMSPlacesClient.shared().currentPlace { (places, error) in
-                    if let error = error {
-                        // TODO: Handle the error.
-                        print("Current Place error: \(error.localizedDescription)")
+                    if error != nil {
+                        self.stopAnimating()
+                        PopUpDialog.present(title: "Ops...", message: "Você autorizou o app a utilizar a sua localização?", viewController: self)
+                        self.locationManager.requestWhenInUseAuthorization()
                         return
                     }
                     if let likelihoodList = places {
@@ -82,6 +86,7 @@ class EventsViewController: UIViewController {
                             let fullAddress = place.addressComponents
                             for address in fullAddress! {
                                 if (address.type == "administrative_area_level_2"){
+                                    self.stopAnimating()
                                     self.viewModel.router.presentEventsByFilter(categorie: nil, city: address.name)
                                     return
                                 }
@@ -89,6 +94,10 @@ class EventsViewController: UIViewController {
                         }
                     }
                 }
+            } else {
+                self.stopAnimating()
+                PopUpDialog.present(title: "Ops...", message: "Por favor, autorize o app a utilizar a sua localização!", viewController: self)
+                self.locationManager.requestWhenInUseAuthorization()
             }
         }).disposed(by: self.viewModel.disposeBag)
     }

@@ -21,6 +21,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="0P6-eh-twn" id="WnS-4R-Izh"/>
                 <outlet property="emailTextField" destination="7hu-Vo-tBi" id="8vE-RV-Z91"/>
+                <outlet property="lostPasswordButton" destination="UDt-UE-6ya" id="Dr4-2g-PYF"/>
                 <outlet property="mailIcon" destination="Q4R-bp-qXu" id="tVL-A4-dAh"/>
                 <outlet property="passwordIcon" destination="Zf0-S2-JyL" id="1aU-rQ-pCv"/>
                 <outlet property="passwordTextField" destination="DmH-Qd-bGL" id="Sx3-Yf-Gxz"/>
@@ -171,12 +172,12 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDt-UE-6ya">
-                    <rect key="frame" x="85" y="398" width="151" height="30"/>
+                    <rect key="frame" x="87" y="398" width="147" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Awl-yU-QSz"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="15"/>
-                    <state key="normal" title="Esqueci minha senha.">
+                    <state key="normal" title="Esqueci minha senha">
                         <color key="titleColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>

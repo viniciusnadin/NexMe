@@ -35,6 +35,8 @@ class EventDetailViewModel {
     }
     
     func subscribeOnEvent() {
-        
+        self.event.value.participate {
+            print("foi")
+        }
     }
 }
