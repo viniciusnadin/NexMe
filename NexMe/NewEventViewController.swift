@@ -13,8 +13,9 @@ import PopupDialog
 import FontAwesome_swift
 import SkyFloatingLabelTextField
 import DateTimePicker
+import NVActivityIndicatorView
 
-class NewEventViewController: UIViewController {
+class NewEventViewController: UIViewController, NVActivityIndicatorViewable {
     
     // MARK: - Properties
     let viewModel: NewEventViewModel
@@ -49,13 +50,12 @@ class NewEventViewController: UIViewController {
         self.view.addGestureRecognizer(tapOnView)
         
         let overcastBlueColor = UIColor(red: 82/255, green: 205/255, blue: 171/255, alpha: 1.0)
-        nameIcon.image = UIImage.fontAwesomeIcon(code: "fa-wpforms", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.nameIcon.image = UIImage.fontAwesomeIcon(code: "fa-wpforms", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
         self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
         self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
-        
         self.categorieIcon.image = UIImage.fontAwesomeIcon(code: "fa-bookmark", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
-        
         self.mapIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.isEditAction()
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,6 +107,8 @@ class NewEventViewController: UIViewController {
             .disposed(by: self.viewModel.disposeBag)
         
         self.saveButton.rx.tap.subscribe(onNext: {
+            NVActivityIndicatorView.DEFAULT_TYPE = .ballPulseSync
+            self.startAnimating()
             self.viewModel.save()
         }).disposed(by: self.viewModel.disposeBag)
         
@@ -114,8 +116,8 @@ class NewEventViewController: UIViewController {
             self.imagePicker.pickImageFromViewController(viewController: self) { result in
                 do {
                     let image = try result.getValue()
-                    self.eventImage.image = image
                     self.viewModel.eventImage = image
+                    self.eventImage.image = image
                 } catch {
                     print(error)
                 }
@@ -128,12 +130,14 @@ class NewEventViewController: UIViewController {
         
         viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
+                self.stopAnimating()
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.successMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
-                let pop2 = PopupDialog(title: "Sucesso!", message: message, image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
+                self.stopAnimating()
+                let pop2 = PopupDialog(title: "Sucesso!!", message: message, image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
                     self.viewModel.successCreation.value = true
                 })
                 self.present(pop2, animated: true, completion: nil)
@@ -142,6 +146,27 @@ class NewEventViewController: UIViewController {
         self.viewModel.successCreation.asObservable().bind { (verify) in
             if verify{self.viewModel.close()}
             }.disposed(by: self.viewModel.disposeBag)
+    }
+    
+    func isEditAction() {
+        if self.viewModel.event != nil {
+            let event = self.viewModel.event
+            self.nameTextField.text = event!.title.capitalized
+            self.descriptionTextField.text = event!.description
+            self.locationTextField.text = event!.locationName
+            self.viewModel.eventLocationName.value = event!.locationName
+            self.viewModel.eventName.value = event!.title
+            self.categorieButton.setTitle(event?.categorie.name, for: .normal)
+            let date = event!.date
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            let year = calendar.component(.year, from: date)
+            let hour = calendar.component(.hour, from: date)
+            let minute = calendar.component(.minute, from: date)
+            self.dateButton.setTitle("\(hour):\(minute)  \(day)/\(month)/\(year)", for: .normal)
+            self.eventImage.kf.setImage(with: event!.image)
+        }
     }
     
     func showCategoriePicker() {
@@ -184,6 +209,15 @@ class NewEventViewController: UIViewController {
         if self.googleMapsView == nil {
             self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
             self.mapView.addSubview(self.googleMapsView)
+        }
+        if self.viewModel.event != nil {
+            let event = self.viewModel.event
+            let position = event!.coordinate
+            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 18)
+            self.googleMapsView.camera = camera
+            let marker = GMSMarker(position: position)
+            marker.title = event?.locationName
+            marker.map = self.googleMapsView
         }
     }
 }

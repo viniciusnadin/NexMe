@@ -36,6 +36,7 @@ class EventDetailViewController: UIViewController {
         self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: blueColor, size: CGSize(width: 40, height: 40))
         self.locationIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: blueColor, size: CGSize(width: 40, height: 40))
         self.participantsIcon.image = UIImage.fontAwesomeIcon(code: "fa-users", textColor: blueColor, size: CGSize(width: 40, height: 40))
+        self.participatingFunc(value: self.viewModel.participatingThisEvent.value)
     }
     
     func addParallaxToView(vw: UIView) {
@@ -89,8 +90,30 @@ class EventDetailViewController: UIViewController {
         }).disposed(by: self.viewModel.disposeBag)
         
         self.joinButton.rx.tap.subscribe(onNext: {
-            self.viewModel.subscribeOnEvent()
+            self.viewModel.tapOnJoin()
         }).disposed(by: self.viewModel.disposeBag)
+        
+        self.viewModel.participatingThisEvent.asObservable().subscribe({ value in
+            self.participatingFunc(value: value.element!)
+        }).disposed(by: self.viewModel.disposeBag)
+        
+        self.viewModel.participantsCount.asObservable().subscribe { (value) in
+            self.participants.text = "\(value.element!) participantes"
+        }.disposed(by: self.viewModel.disposeBag)
+    }
+    
+    func participatingFunc(value: Bool) {
+        if self.viewModel.selfEvent() {
+            self.joinButton.setTitle("Editar meu evento", for: .normal)
+            self.joinButton.backgroundColor = UIColor(red: 249/255, green: 154/255, blue: 0/255, alpha: 1.0)
+        }
+        else if value{
+            self.joinButton.setTitle("Sair", for: .normal)
+            self.joinButton.backgroundColor = UIColor(red: 227/255, green: 90/255, blue: 102/255, alpha: 1.0)
+        } else {
+            self.joinButton.setTitle("Participar", for: .normal)
+            self.joinButton.backgroundColor = UIColor(red: 82/255, green: 205/255, blue: 171/255, alpha: 1.0)
+        }
     }
     
     func setupLabels() {
@@ -125,19 +148,4 @@ class EventDetailViewController: UIViewController {
         }
     }
 
-}
-
-extension EventDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let user = self.viewModel.events.value[indexPath.row]
-        //        self.viewModel.presentUserDetail(user: user)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
-    }
 }

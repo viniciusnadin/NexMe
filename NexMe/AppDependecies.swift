@@ -76,6 +76,7 @@ struct AppDependecies {
         self.userDetailRouter.eventDetailRouter = self.eventDetailRouter
         self.profileRouter.eventDetailRouter = self.eventDetailRouter
         self.eventChatRouter.userDetailRouter = self.userDetailRouter
+        self.eventDetailRouter.editEventRouter = self.newEventRouter
     }
     
     func presentUI() {

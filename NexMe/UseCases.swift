@@ -202,7 +202,12 @@ final class UseCases {
     func createEvent(event : Event, completion: @escaping (Result<Void>) -> Void){
         deliver(completion: completion) { success, failure in
             let databaseReference = Database.database().reference()
-            let eventsReference = databaseReference.child("event").child("events").childByAutoId()
+            let eventsReference : DatabaseReference!
+            if event.id != nil {
+                eventsReference = databaseReference.child("event").child("events").child(event.id!)
+            } else {
+                eventsReference = databaseReference.child("event").child("events").childByAutoId()
+            }
             let values : [String : Any]!
             values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "imageUrl" : event.image!.absoluteString, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
             eventsReference.updateChildValues(values) { (error, reference) in
@@ -281,6 +286,7 @@ final class UseCases {
             let description = (value.value["description"] as! String)
             let imageUrl = (value.value["imageUrl"] as! String)
             var eventCoordinate = CLLocationCoordinate2D()
+            var participants = [UserKeys]()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
                 for val in location {
@@ -288,10 +294,16 @@ final class UseCases {
                 }
                 eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
             }
+            if let val = (value.value["participants"] as? [String:String]){
+                for value in val {
+                    participants.append(UserKeys(key: value.key, id: value.value))
+                }
+            }
             let locationName = (value.value["locationName"] as! String)
             let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie, ownerId: userID, city: city)
             event.image = URL(string: imageUrl)
             event.id = eventId
+            event.participants = participants
             success(event)
         }
     }
@@ -326,12 +338,18 @@ final class UseCases {
             let description = (value.value["description"] as! String)
             let imageUrl = (value.value["imageUrl"] as! String)
             var eventCoordinate = CLLocationCoordinate2D()
+            var participants = [UserKeys]()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
                 for val in location {
                     locationValues.append(val.value)
                 }
                 eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
+            }
+            if let val = (value.value["participants"] as? [String:String]){
+                for value in val {
+                    participants.append(UserKeys(key: value.key, id: value.value))
+                }
             }
             let locationName = (value.value["locationName"] as! String)
             let categorieId = (value.value["categorie"] as! String)
@@ -340,6 +358,7 @@ final class UseCases {
                     let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
                     event.image = URL(string: imageUrl)
                     event.id = eventId
+                    event.participants = participants
                     success(event)
                 } catch {
                     print("Erro put categorie in event")
@@ -426,7 +445,6 @@ final class UseCases {
     }
     
     func observeMessages(eventId: String) {
-        self.messages.value.removeAll()
         Database.database().reference().child("event").child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
             if let dictionary = snapShot.value as? [String : Any]{
                 let message = EventMessage()
@@ -495,7 +513,6 @@ final class UseCases {
     }
     
     func observeUserMessages() {
-        self.messagesDictionary.value.removeAll()
         let uid = (Auth.auth().currentUser?.uid)!
         Database.database().reference().child("user-messages").child(uid).observe(.childAdded, with: { (snapShot) in
             let userId = snapShot.key
