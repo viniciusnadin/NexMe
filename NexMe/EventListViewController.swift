@@ -63,7 +63,7 @@ class EventListViewController: UIViewController {
 extension EventListViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 320
+        return 380
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

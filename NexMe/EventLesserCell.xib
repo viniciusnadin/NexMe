@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="width" constant="50" id="lQf-GU-Aif"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Festa de abertura UTFPR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phm-kp-hjN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Festa de abertura UTFPR" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phm-kp-hjN">
                                 <rect key="frame" x="62" y="13" width="238" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="gQH-g3-pbU"/>

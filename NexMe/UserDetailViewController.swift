@@ -36,7 +36,7 @@ class UserDetailViewController: UIViewController {
         self.followButton.layer.borderColor = grayColor.cgColor
         self.followButton.layer.cornerRadius = 5
         self.messageButton.setImage(UIImage.fontAwesomeIcon(code: "fa-envelope", textColor: blackColor, size: CGSize(width: 35, height: 35)), for: .normal)
-        if self.viewModel.user.isFollowingUser(){
+        if self.viewModel.user.isFollowing(){
             self.viewModel.followingThisUser.value = true
             self.followButton.setTitle("seguindo", for: .normal)
         }else{
@@ -77,7 +77,7 @@ class UserDetailViewController: UIViewController {
             } else {
                 self.followButton.setTitle("seguir", for: .normal)
             }
-        })
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.followButton.rx.tap.subscribe(onNext: {
             self.viewModel.followUser()

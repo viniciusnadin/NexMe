@@ -15,7 +15,6 @@
 		D500D3251F9BC81100FBDB8E /* NewEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */; };
 		D50F2EEE1FA6805500474945 /* CategorieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50F2EEC1FA6805500474945 /* CategorieTableViewCell.swift */; };
 		D50F2EEF1FA6805500474945 /* CategorieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50F2EED1FA6805500474945 /* CategorieTableViewCell.xib */; };
-		D5103A4D1FA935E100DD4C33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5103A4C1FA935E100DD4C33 /* GoogleService-Info.plist */; };
 		D5103A511FA9385500DD4C33 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5103A4F1FA9385500DD4C33 /* ChatViewController.swift */; };
 		D5103A521FA9385500DD4C33 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5103A501FA9385500DD4C33 /* ChatViewController.xib */; };
 		D5103A541FA93EF500DD4C33 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5103A531FA93EF500DD4C33 /* ChatViewModel.swift */; };
@@ -40,9 +39,12 @@
 		D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F440C1F96BF1A004328D8 /* UsersViewModel.swift */; };
 		D54F440F1F96BF42004328D8 /* UsersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F440E1F96BF42004328D8 /* UsersRouter.swift */; };
 		D55229B01F984D46002B7AFC /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55229AF1F984D46002B7AFC /* UserDetailRouter.swift */; };
+		D55CDBF31FAE11C80008A305 /* UserKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CDBF21FAE11C80008A305 /* UserKeys.swift */; };
+		D55CDBF51FAE13890008A305 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CDBF41FAE13890008A305 /* Structs.swift */; };
 		D574CDA61FA4F8AC00A3FB7D /* EventLesserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574CDA41FA4F8AC00A3FB7D /* EventLesserCell.swift */; };
 		D574CDA71FA4F8AC00A3FB7D /* EventLesserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574CDA51FA4F8AC00A3FB7D /* EventLesserCell.xib */; };
 		D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46F1F7C636C001582D1 /* ImagePicker.swift */; };
+		D5B0A35A1FB52CF300F2D2DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B0A3591FB52CF300F2D2DE /* GoogleService-Info.plist */; };
 		D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A371F4F603000CDCE28 /* AppDelegate.swift */; };
 		D5B16A3F1F4F603000CDCE28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */; };
 		D5B16A421F4F603000CDCE28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */; };
@@ -110,7 +112,6 @@
 		D500D3241F9BC81100FBDB8E /* NewEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRouter.swift; sourceTree = "<group>"; };
 		D50F2EEC1FA6805500474945 /* CategorieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieTableViewCell.swift; sourceTree = "<group>"; };
 		D50F2EED1FA6805500474945 /* CategorieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorieTableViewCell.xib; sourceTree = "<group>"; };
-		D5103A4C1FA935E100DD4C33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5103A4F1FA9385500DD4C33 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D5103A501FA9385500DD4C33 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		D5103A531FA93EF500DD4C33 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -135,9 +136,12 @@
 		D54F440C1F96BF1A004328D8 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		D54F440E1F96BF42004328D8 /* UsersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRouter.swift; sourceTree = "<group>"; };
 		D55229AF1F984D46002B7AFC /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
+		D55CDBF21FAE11C80008A305 /* UserKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeys.swift; sourceTree = "<group>"; };
+		D55CDBF41FAE13890008A305 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		D574CDA41FA4F8AC00A3FB7D /* EventLesserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLesserCell.swift; sourceTree = "<group>"; };
 		D574CDA51FA4F8AC00A3FB7D /* EventLesserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventLesserCell.xib; sourceTree = "<group>"; };
 		D59CD46F1F7C636C001582D1 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D5B0A3591FB52CF300F2D2DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B16A341F4F603000CDCE28 /* NexMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NexMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B16A371F4F603000CDCE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -373,7 +377,7 @@
 				D5B16A5C1F4F6B8C00CDCE28 /* Main.storyboard */,
 				D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */,
 				D5B16A431F4F603000CDCE28 /* Info.plist */,
-				D5103A4C1FA935E100DD4C33 /* GoogleService-Info.plist */,
+				D5B0A3591FB52CF300F2D2DE /* GoogleService-Info.plist */,
 			);
 			path = NexMe;
 			sourceTree = "<group>";
@@ -441,6 +445,7 @@
 			children = (
 				D54F44051F96B22F004328D8 /* CardView.swift */,
 				D5B16A611F5F6B7500CDCE28 /* PopupDialog.swift */,
+				D55CDBF41FAE13890008A305 /* Structs.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 				D51508701F9E9AB8003AC336 /* EventMessage.swift */,
 				D5D4C8841FA7E36300C30B77 /* LoggedUser.swift */,
 				D53F2A5A1FA7FC3900730C73 /* Message.swift */,
+				D55CDBF21FAE11C80008A305 /* UserKeys.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -698,7 +704,7 @@
 				D5103A521FA9385500DD4C33 /* ChatViewController.xib in Resources */,
 				D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */,
 				D50F2EEF1FA6805500474945 /* CategorieTableViewCell.xib in Resources */,
-				D5103A4D1FA935E100DD4C33 /* GoogleService-Info.plist in Resources */,
+				D5B0A35A1FB52CF300F2D2DE /* GoogleService-Info.plist in Resources */,
 				D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */,
 				D5D367B51F97F94000A5C2E0 /* CardTableViewCell.xib in Resources */,
 			);
@@ -720,6 +726,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -739,6 +746,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -802,6 +810,7 @@
 				D5B16A621F5F6B7500CDCE28 /* PopupDialog.swift in Sources */,
 				D51508711F9E9AB8003AC336 /* EventMessage.swift in Sources */,
 				D500D3201F9BC13800FBDB8E /* NewEventViewController.swift in Sources */,
+				D55CDBF51FAE13890008A305 /* Structs.swift in Sources */,
 				D5FFFEB71F9CFCBB00CA1FA2 /* EventListRouter.swift in Sources */,
 				D515086A1F9E8DB0003AC336 /* EventChatViewController.swift in Sources */,
 				D54F440D1F96BF1A004328D8 /* UsersViewModel.swift in Sources */,
@@ -819,6 +828,7 @@
 				D5D367C11F984A7D00A5C2E0 /* UserDetailViewController.swift in Sources */,
 				D54DB02A1F9D0A6F0087D5E7 /* EventTableViewCell.swift in Sources */,
 				D5B16A8F1F674A6500CDCE28 /* ProfileViewController.swift in Sources */,
+				D55CDBF31FAE11C80008A305 /* UserKeys.swift in Sources */,
 				D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */,
 				D5B16A811F660F1600CDCE28 /* MenuRouter.swift in Sources */,
 				D515086F1F9E92F7003AC336 /* EventChatRouter.swift in Sources */,

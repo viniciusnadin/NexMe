@@ -51,7 +51,7 @@
                             <state key="normal" image="icon-menu"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MINHA CONTA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-Rh-zoo">
-                            <rect key="frame" x="105.5" y="33.5" width="109.5" height="19"/>
+                            <rect key="frame" x="106" y="34" width="109.5" height="19"/>
                             <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
                             <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Wog-2f-93h">
-                    <rect key="frame" x="126" y="84" width="69" height="69"/>
+                    <rect key="frame" x="125.5" y="84" width="69" height="69"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="69" id="19y-7L-BQx"/>
                         <constraint firstAttribute="height" constant="69" id="VtT-cO-ZkS"/>

@@ -16,9 +16,8 @@ class EventLesserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.containerView.layer.borderWidth = 1
-        self.containerView.layer.borderColor = UIColor(red: 176/255, green: 182/255, blue: 187/255, alpha: 0.5).cgColor
-        self.containerView.layer.cornerRadius = 3
+
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

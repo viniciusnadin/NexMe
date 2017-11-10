@@ -15,8 +15,12 @@ import GooglePlaces
 import GoogleMaps
 
 final class UseCases {
+    // MARK :- Properties
     let authentication: Auth
     let database: Database
+    let messages = Variable<[EventMessage]>([])
+    let messagesDictionary = Variable<[String: Message]>(["a":Message(dictionary: ["String" : "Any"])])
+    let chatMessages = Variable<[Message]>([])
     
     init(authentication: Auth, database: Database) {
         self.authentication = authentication
@@ -27,8 +31,14 @@ final class UseCases {
         return authentication.currentUser != nil
     }
     
-    func passwordReset() {
-        Auth.auth().sendPasswordReset(withEmail: (LoggedUser.sharedInstance.user.email!)) { (response) in
+    func passwordReset(email: String?) {
+        var sendEmail = ""
+        if email != nil{
+            sendEmail = email!
+        } else {
+            sendEmail = (Auth.auth().currentUser?.email!)!
+        }
+        Auth.auth().sendPasswordReset(withEmail: sendEmail) { (response) in
             print(response ?? "error")
         }
     }
@@ -261,11 +271,6 @@ final class UseCases {
         }
     }
     
-    struct snapValue {
-        var key : String
-        var value : [String : Any]
-    }
-    
     func createEventByValueWithCategorie(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
         deliver(completion: completion) { success, failure in
             let eventId = value.key 
@@ -413,9 +418,6 @@ final class UseCases {
             })
         }
     }
-        
-        
-    let messages = Variable<[EventMessage]>([])
     
     func sendMessage(event: Event, message: String) {
         let date = Int(Date().timeIntervalSince1970)
@@ -473,9 +475,6 @@ final class UseCases {
             })
         }
     }
-    
-    let messagesDictionary = Variable<[String: Message]>(["a":Message(dictionary: ["String" : "Any"])])
-    let chatMessages = Variable<[Message]>([])
     
     func observeChatMessages(user : User) {
         self.chatMessages.value.removeAll()

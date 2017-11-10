@@ -16,11 +16,13 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var eventMonthLabel: UILabel!
     @IBOutlet weak var eventDayLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var locationIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.containerView.layer.borderWidth = 1
-        self.containerView.layer.borderColor = UIColor(red: 176/255, green: 182/255, blue: 187/255, alpha: 1.0).cgColor
+        let blueColor = UIColor(red: 82/255, green: 205/255, blue: 171/255, alpha: 1.0)
+        self.locationIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: blueColor, size: CGSize(width: 40, height: 40))
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
