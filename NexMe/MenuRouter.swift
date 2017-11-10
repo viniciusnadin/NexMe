@@ -16,6 +16,7 @@ class MenuRouter {
     var signInRouter: SignInRouter!
     var profileRouter: ProfileRouter!
     var usersRouter: UsersRouter!
+    var messagesRouter: MessagesRouter!
     
     init(useCases: UseCases) {
         self.useCases = useCases
@@ -44,6 +45,10 @@ class MenuRouter {
     
     func presentUserSearch() {
         self.viewController.slideMenuController()?.changeMainViewController(self.usersRouter.getViewController(), close: true)
+    }
+    
+    func presentMessages() {
+        self.viewController.slideMenuController()?.changeMainViewController(self.messagesRouter.getViewController(), close: true)
     }
 }
 

@@ -12,6 +12,7 @@ class ProfileRouter {
     let useCases: UseCases!
     let window: UIWindow!
     var viewController : ProfileViewController!
+    var eventDetailRouter: EventDetailRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
@@ -35,5 +36,7 @@ class ProfileRouter {
         return self.viewController
     }
     
-    
+    func presentEventDetail(event: Event) {
+        self.eventDetailRouter.presentEventFromViewController(presentingViewController: self.viewController, event: event)
+    }
 }

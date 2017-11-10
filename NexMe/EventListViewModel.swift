@@ -14,13 +14,21 @@ class EventListViewModel {
     var disposeBag = DisposeBag()
     let events = Variable<[Event]>([])
     let filter = Variable<String>("")
-    var eventCategorie: EventCategorie!
+    var eventCategorie: EventCategorie?
     
     func viewDidLoad() {
-        self.useCases.findEventByCategorie(categorie: self.eventCategorie) { (events) in
-            let array = events.value!
-            self.events.value.removeAll()
-            self.events.value.append(contentsOf: array)
+        if eventCategorie != nil {
+            self.useCases.findEventByCategorie(categorie: self.eventCategorie!) { (events) in
+                let array = events.value!
+                self.events.value.removeAll()
+                self.events.value.append(contentsOf: array)
+            }
+        } else {
+            self.useCases.findEventsByCity(city: self.filter.value, completion: { (events) in
+                let array = events.value!
+                self.events.value.removeAll()
+                self.events.value.append(contentsOf: array)
+            })
         }
     }
     

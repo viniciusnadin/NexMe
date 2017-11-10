@@ -14,7 +14,7 @@ func handleError(error: Error) -> String {
     }
     
     if (error as NSError).code == -1001 {
-        return "Servidor com problemas. =/ Logo voltamos!"
+        return "Nosso servidor está com problemas!"
     }
     
     if let errCode = AuthErrorCode(rawValue: error._code){
@@ -39,4 +39,12 @@ func handleError(error: Error) -> String {
 
 func negate(bool: Bool) -> Bool {
     return !bool
+}
+
+extension UIColor {
+    
+    convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
+        self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
+    }
+    
 }

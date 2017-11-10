@@ -23,8 +23,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var titleView: UIView!
-    
+    @IBOutlet weak var nameIcon: UIImageView!
+    @IBOutlet weak var emailIcon: UIImageView!
+    @IBOutlet weak var passwordIcon: UIImageView!
     
     init(viewModel: SignUpViewModel) {
         self.viewModel = viewModel
@@ -38,6 +39,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureBinds()
+        self.configureIcons()
         let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapOnView)
     }
@@ -51,7 +53,6 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        self.setPastelView()
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -65,64 +66,57 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    func setPastelView() {
-        self.signUpButton.backgroundColor = UIColor(red: 175/255, green: 58/255, blue: 143/255, alpha: 0.8)
-        self.signUpButton.layer.cornerRadius = 4
-        
-        let pastelView = PastelView(frame: self.titleView.bounds)
-        pastelView.startPastelPoint = .bottomLeft
-        pastelView.endPastelPoint = .topRight
-        pastelView.animationDuration = 3.0
-        pastelView.setColors([UIColor(red: 98/255, green: 39/255, blue: 116/255, alpha: 1.0), UIColor(red: 197/255, green: 51/255, blue: 100/255, alpha: 1.0)])
-        pastelView.startAnimation()
-        self.titleView.insertSubview(pastelView, at: 0)
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
+    }
+    
+    func configureIcons() {
+        self.nameIcon.image = UIImage.fontAwesomeIcon(code: "fa-user-o", textColor: UIColor.white, size: CGSize(width: 30, height: 30))
+        self.emailIcon.image = UIImage.fontAwesomeIcon(code: "fa-envelope", textColor: UIColor.white, size: CGSize(width: 30, height: 30))
+        self.passwordIcon.image = UIImage.fontAwesomeIcon(code: "fa-lock", textColor: UIColor.white, size: CGSize(width: 30, height: 30))
     }
     
     func configureBinds() {
         self.signInButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         viewModel.loading.asObservable().map(negate)
             .bind(to:signUpButton.rx.isEnabled)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         viewModel.loading.asObservable()
             .bind(to: activityIndicator.rx.isAnimating)
-            .addDisposableTo(viewModel.disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         signUpButton.rx.tap.subscribe(onNext: {
             self.dismissKeyboard()
             self.viewModel.tryToSignUp()
-        }).addDisposableTo(viewModel.disposeBag)
+        }).disposed(by: viewModel.disposeBag)
         
         self.nameTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.name)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         emailTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.email)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         passwordTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.password)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.successFullSignUp.asObservable().bind { (verify) in
             if verify {
-                self.viewModel.useCases.signOut()
+                self.viewModel.router.signInRouter.successSignUp = true
                 self.viewModel.close()
             }
-        }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
-        }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
@@ -130,7 +124,7 @@ class SignUpViewController: UIViewController {
                     self.viewModel.successFullSignUp.value = true
                 })
                 self.present(pop2, animated: true, completion: nil)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
 
 }

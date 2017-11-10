@@ -15,18 +15,32 @@ import GooglePlaces
 import GoogleMaps
 
 final class UseCases {
+    // MARK :- Properties
     let authentication: Auth
     let database: Database
-    let store: PersistenceInterface
+    let messages = Variable<[EventMessage]>([])
+    let messagesDictionary = Variable<[String: Message]>(["a":Message(dictionary: ["String" : "Any"])])
+    let chatMessages = Variable<[Message]>([])
     
-    init(authentication: Auth, database: Database, store: PersistenceInterface) {
+    init(authentication: Auth, database: Database) {
         self.authentication = authentication
         self.database = database
-        self.store = store
     }
     
     var userIsSignedIn: Bool {
         return authentication.currentUser != nil
+    }
+    
+    func passwordReset(email: String?) {
+        var sendEmail = ""
+        if email != nil{
+            sendEmail = email!
+        } else {
+            sendEmail = (Auth.auth().currentUser?.email!)!
+        }
+        Auth.auth().sendPasswordReset(withEmail: sendEmail) { (response) in
+            print(response ?? "error")
+        }
     }
     
     func signIn(email: String, password: String, completion: @escaping (Result<Void>) -> Void) {
@@ -62,7 +76,9 @@ final class UseCases {
                         if err != nil {
                             failure(err!)
                         } else {
-                            success()
+                            self.fetchUser(completion: { (result) in
+                                success()
+                            })
                         }
                     })
                     success()
@@ -74,7 +90,7 @@ final class UseCases {
     func signOut() {
         do {
             try Auth.auth().signOut()
-            self.store.deleteCurrentUser()
+            LoggedUser.sharedInstance.user = User()
         } catch {
             print("Erro GuardLet UseCases SignUp")
         }
@@ -83,16 +99,11 @@ final class UseCases {
     func fetchUser(completion: @escaping (Result<Void>) -> Void) {
         deliver(completion: completion) { success, failure in
             Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
-                do {
-                    let data = snapShot.value as! NSMutableDictionary
-                    data.setObject((Auth.auth().currentUser?.uid)!, forKey: "id" as NSCopying)
-                    let data2 = data as NSDictionary
-                    let user = try parseUser(data: data2 as! UnboxableDictionary)
-                    self.store.saveCurrentUser(user: user)
-                    success()
-                } catch {
-                    failure(error)
+                if let value = snapShot.value as? [String : Any] {
+                    let user = self.parseUser(value: value, id: snapShot.key)
+                    LoggedUser.sharedInstance.user = user
                 }
+                success()
             })
         }
     }
@@ -115,20 +126,16 @@ final class UseCases {
         }
     }
     
-    func uploadEventImage(image: Data, completion: @escaping (Result<Void>) -> Void) {
+    func uploadEventImage(image: Data, completion: @escaping (Result<URL>) -> Void) {
         deliver(completion: completion) { success, failure in
             let imageName = NSUUID().uuidString
             Storage.storage().reference().child("event_images").child("\(imageName).png").putData(image, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     failure(error!)
                 }
-//                let updateProfileImage = ["original" : metadata?.downloadURL()?.absoluteString as Any]
-//                let userId = Auth.auth().currentUser?.uid
-//                let usersReference = Database.database().reference().child("users").child(userId!).child("avatar")
-//                usersReference.updateChildValues(updateProfileImage)
-//                self.getUpdatedCurrentUser()
+                let imageUrl = metadata?.downloadURL()?.absoluteURL
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                success()
+                success(imageUrl!)
             })
         }
     }
@@ -163,17 +170,12 @@ final class UseCases {
                 }
                 for value in values{
                     if !((value.key as! String) == userId) {
-                        do {
                             searchUserDispatch.enter()
-                            let data = value.value as! NSMutableDictionary
-                            data.setObject(value.key, forKey: "id" as NSCopying)
-                            let data2 = data as NSDictionary
-                            let user = try parseUser(data: data2 as! UnboxableDictionary)
-                            arrayUsers.append(user)
-                            searchUserDispatch.leave()
-                        } catch {
-                            failure(error)
-                        }
+                            if let value2 = value.value as? [String : Any] {
+                                let user = self.parseUser(value: value2, id: value.key as! String)
+                                arrayUsers.append(user)
+                                searchUserDispatch.leave()
+                            }
                     }
                 }
                 searchUserDispatch.notify(queue: .main, execute: {
@@ -188,12 +190,11 @@ final class UseCases {
     }
     
     func getCurrentUser() -> User? {
-        return self.store.getCurrentUser()
+        return LoggedUser.sharedInstance.user
     }
     
     func getUpdatedCurrentUser(){
-        self.store.deleteCurrentUser()
-        self.fetchUser(completion: { (user) in
+        self.fetchUser(completion: { (result) in
             //nothing
         })
     }
@@ -201,9 +202,14 @@ final class UseCases {
     func createEvent(event : Event, completion: @escaping (Result<Void>) -> Void){
         deliver(completion: completion) { success, failure in
             let databaseReference = Database.database().reference()
-            let eventsReference = databaseReference.child("event").child("events").childByAutoId()
+            let eventsReference : DatabaseReference!
+            if event.id != nil {
+                eventsReference = databaseReference.child("event").child("events").child(event.id!)
+            } else {
+                eventsReference = databaseReference.child("event").child("events").childByAutoId()
+            }
             let values : [String : Any]!
-            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
+            values = ["ownerId" : event.ownerId, "title" : event.title, "date" : Int((event.date.timeIntervalSince1970)), "description" : event.description, "image" : "party.jpg", "town" : event.city, "imageUrl" : event.image!.absoluteString, "locationName" : event.locationName, "categorie" : event.categorie.id! as Any] as [String : Any]
             eventsReference.updateChildValues(values) { (error, reference) in
                 if error != nil {
                     failure(error!)
@@ -270,21 +276,17 @@ final class UseCases {
         }
     }
     
-    struct snapValue {
-        var key : String
-        var value : [String : Any]
-    }
-    
-    func createEventByValue(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
+    func createEventByValueWithCategorie(value : snapValue, categorie: EventCategorie, completion: @escaping (Result<Event>) -> Void){
         deliver(completion: completion) { success, failure in
-            let eventId = value.key as! String
+            let eventId = value.key 
             let userID = (value.value["ownerId"] as! String)
             let title = (value.value["title"] as! String)
             let city = (value.value["town"] as! String)
             let date = (value.value["date"] as! Int)
             let description = (value.value["description"] as! String)
-            //        let image = (value.value["image"] as! String)
+            let imageUrl = (value.value["imageUrl"] as! String)
             var eventCoordinate = CLLocationCoordinate2D()
+            var participants = [UserKeys]()
             if let location = (value.value["location"] as? [String : CLLocationDegrees]){
                 var locationValues = [CLLocationDegrees]()
                 for val in location {
@@ -292,9 +294,16 @@ final class UseCases {
                 }
                 eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
             }
+            if let val = (value.value["participants"] as? [String:String]){
+                for value in val {
+                    participants.append(UserKeys(key: value.key, id: value.value))
+                }
+            }
             let locationName = (value.value["locationName"] as! String)
-            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), image: #imageLiteral(resourceName: "profileImage"), description: description, categorie: categorie, ownerId: userID, city: city)
+            let event = Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie, ownerId: userID, city: city)
+            event.image = URL(string: imageUrl)
             event.id = eventId
+            event.participants = participants
             success(event)
         }
     }
@@ -307,7 +316,7 @@ final class UseCases {
                 if let values = snapShot.value as? [String : [String : Any]]{
                     for value in values {
                         let snap = snapValue(key: value.key, value: value.value)
-                        self.createEventByValue(value: snap, categorie: categorie, completion: { (event) in
+                        self.createEventByValueWithCategorie(value: snap, categorie: categorie, completion: { (event) in
                             events.append(event.value!)
                         })
                     }
@@ -318,18 +327,127 @@ final class UseCases {
             })
         }
     }
-    let messages = Variable<[Message]>([])
+    
+    func createEventByValue(value : snapValue, completion: @escaping (Result<Event>) -> Void){
+        deliver(completion: completion) { success, failure in
+            let eventId = value.key
+            let userID = (value.value["ownerId"] as! String)
+            let title = (value.value["title"] as! String)
+            let city = (value.value["town"] as! String)
+            let date = (value.value["date"] as! Int)
+            let description = (value.value["description"] as! String)
+            let imageUrl = (value.value["imageUrl"] as! String)
+            var eventCoordinate = CLLocationCoordinate2D()
+            var participants = [UserKeys]()
+            if let location = (value.value["location"] as? [String : CLLocationDegrees]){
+                var locationValues = [CLLocationDegrees]()
+                for val in location {
+                    locationValues.append(val.value)
+                }
+                eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
+            }
+            if let val = (value.value["participants"] as? [String:String]){
+                for value in val {
+                    participants.append(UserKeys(key: value.key, id: value.value))
+                }
+            }
+            let locationName = (value.value["locationName"] as! String)
+            let categorieId = (value.value["categorie"] as! String)
+            self.findCategorieById(id: categorieId, completion: { (categorie) in
+                do{
+                    let event = try Event(title: title, coordinate: eventCoordinate, locationName: locationName, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, categorie: categorie.getValue(), ownerId: userID, city: city)
+                    event.image = URL(string: imageUrl)
+                    event.id = eventId
+                    event.participants = participants
+                    success(event)
+                } catch {
+                    print("Erro put categorie in event")
+                }
+            })
+        }
+    }
+    
+    func findEventsByCity(city: String, completion: @escaping (Result<[Event]>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            var events = [Event]()
+            let eventsDispatch = DispatchGroup()
+            let databaseReference = Database.database().reference().child("event").child("events")
+            databaseReference.queryOrdered(byChild: "town").queryEqual(toValue: city).observeSingleEvent(of: .value, with: { (snapShot) in
+                if let values = snapShot.value as? [String : [String : Any]]{
+                    for value in values {
+                        eventsDispatch.enter()
+                        let snap = snapValue(key: value.key, value: value.value)
+                        self.createEventByValue(value: snap, completion: { (event) in
+                            do{
+                                try events.append(event.getValue())
+                                eventsDispatch.leave()
+                            }catch{
+                                print("Erro append")
+                            }
+                        })
+                    }
+                    eventsDispatch.notify(queue: .main, execute: {
+                        success(events)
+                    })
+                } else {
+                    success(events)
+                }
+            })
+        }
+    }
+    
+    func findEventsByUser(id: String, completion: @escaping (Result<[Event]>) -> Void) {
+        deliver(completion: completion) { success, failure in
+            var events = [Event]()
+            let eventsDispatch = DispatchGroup()
+            let databaseReference = Database.database().reference().child("event").child("events")
+            databaseReference.queryOrdered(byChild: "ownerId").queryEqual(toValue: id).observeSingleEvent(of: .value, with: { (snapShot) in
+                if let values = snapShot.value as? [String : [String : Any]]{
+                    for value in values {
+                        eventsDispatch.enter()
+                        let snap = snapValue(key: value.key, value: value.value)
+                        self.createEventByValue(value: snap, completion: { (event) in
+                            do{
+                                try events.append(event.getValue())
+                                eventsDispatch.leave()
+                            }catch{
+                                print("Erro append")
+                            }
+                        })
+                    }
+                    eventsDispatch.notify(queue: .main, execute: {
+                        success(events)
+                    })
+                } else {
+                    success(events)
+                }
+            })
+        }
+    }
+    
+    func findCategorieById(id: String, completion: @escaping (Result<EventCategorie>) -> Void){
+        deliver(completion: completion) { success, failure in
+            Database.database().reference().child("event").child("categories").child(id).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
+                if let dictionary = snapShot.value as? [String : Any]{
+                    let name = (dictionary["name"] as! String)
+                    let categorie = EventCategorie(name: name)
+                    categorie.id = id
+                    success(categorie)
+                }
+            })
+        }
+    }
     
     func sendMessage(event: Event, message: String) {
         let date = Int(Date().timeIntervalSince1970)
         let values = ["userId" : Auth.auth().currentUser!.uid, "date" : date, "message" : message] as [String : Any]
-        Database.database().reference().child("messages").child(event.id!).childByAutoId().updateChildValues(values)
+        Database.database().reference().child("event").child("messages").child(event.id!).childByAutoId().updateChildValues(values)
     }
     
     func observeMessages(eventId: String) {
-        Database.database().reference().child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
+        Database.database().reference().child("event").child("messages").child(eventId).observe(.childAdded, with: { (snapShot) in
             if let dictionary = snapShot.value as? [String : Any]{
-                let message = Message()
+                let message = EventMessage()
                 message.userId = (dictionary["userId"] as! String)
                 message.date = (dictionary["date"] as! Int)
                 message.message = (dictionary["message"] as! String)
@@ -340,26 +458,106 @@ final class UseCases {
         }
     }
     
+    func parseUser(value: [String: Any], id: String) -> User{
+        let email = (value["email"] as! String)
+        let name = (value["name"] as! String)
+        let user = User(id: id, name: name, email: email)
+        if let avatarReference = (value["avatar"] as? [String: String]){
+            let url = avatarReference.first!.value
+            let original = URL(string: url)!
+            user.avatar = Avatar(url: original)
+        }
+        
+        if let following = (value["following"] as? [String : AnyObject]){
+            for val in following {
+                let userKeys = UserKeys(key: val.key, id: val.value as! String)
+                user.following.append(userKeys)
+            }
+        }
+        if let followers = (value["followers"] as? [String : AnyObject]){
+            for val in followers {
+                let userKeys = UserKeys(key: val.key, id: val.value as! String)
+                user.followers.append(userKeys)
+            }
+        }
+        return user
+    }
+    
     func fetchUserById(id: String, completion: @escaping (Result<User>) -> Void) {
         deliver(completion: completion) { success, failure in
             Database.database().reference().child("users").child(id).observeSingleEvent(of: DataEventType.value, with: { (snapShot) in
-                do {
-                    let data = snapShot.value as! NSMutableDictionary
-                    data.setObject(id, forKey: "id" as NSCopying)
-                    let data2 = data as NSDictionary
-                    let user = try parseUser(data: data2 as! UnboxableDictionary)
+                if let value = snapShot.value as? [String : Any] {
+                    let user = self.parseUser(value: value, id: snapShot.key)
                     success(user)
-                } catch {
-                    failure(error)
                 }
             })
         }
     }
     
+    func observeChatMessages(user : User) {
+        self.chatMessages.value.removeAll()
+        let uid = Auth.auth().currentUser?.uid
+        let toId = user.id
+        let userMessagesRef = Database.database().reference().child("user-messages").child(uid!).child(toId!)
+            userMessagesRef.observe(.childAdded, with: { (snapshot) in
+                let messageId = snapshot.key
+                let messagesRef = Database.database().reference().child("messages").child(messageId)
+                messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                        return
+                    }
+                    let message = Message(dictionary: dictionary)
+                    self.chatMessages.value.append(message)
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
     
+    func observeUserMessages() {
+        let uid = (Auth.auth().currentUser?.uid)!
+        Database.database().reference().child("user-messages").child(uid).observe(.childAdded, with: { (snapShot) in
+            let userId = snapShot.key
+            Database.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
+                let messageId = snapshot.key
+                self.fetchMessageWithMessageId(messageId)
+            })
+        })
+    }
     
-    
-    
+    func sendMessage(message: String, user: User) {
+        let ref = Database.database().reference().child("messages")
+        let childRef = ref.childByAutoId()
+        let toId = user.id
+        let fromId = Auth.auth().currentUser!.uid
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let values = ["text": message, "toId": toId!, "fromId": fromId, "timestamp": timestamp] as [String : Any]
+        
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId!)
+            
+            let messageId = childRef.key
+            userMessagesRef.updateChildValues([messageId: 1])
+            
+            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId!).child(fromId)
+            recipientUserMessagesRef.updateChildValues([messageId: 1])
+        }
+    }
+
+    fileprivate func fetchMessageWithMessageId(_ messageId: String) {
+        let messagesReference = Database.database().reference().child("messages").child(messageId)
+        messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message(dictionary: dictionary)
+                if let chatPartnerId = message.chatPartnerId() {
+                    self.messagesDictionary.value[chatPartnerId] = message
+                }
+            }
+        }, withCancel: nil)
+    }
     
     
 

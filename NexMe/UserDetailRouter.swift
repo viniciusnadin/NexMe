@@ -14,6 +14,8 @@ class UserDetailRouter {
     let window: UIWindow!
     var viewController : UserDetailViewController!
     var presentingViewController: UIViewController!
+    var chatRouter : ChatRouter!
+    var eventDetailRouter: EventDetailRouter!
     
     init(useCases: UseCases, window: UIWindow) {
         self.useCases = useCases
@@ -44,6 +46,14 @@ class UserDetailRouter {
         viewModel.useCases = self.useCases
         self.viewController = UserDetailViewController(viewModel: viewModel)
         return self.viewController
+    }
+    
+    func presentChat(user: User){
+        self.chatRouter.presentChatFromViewController(presentingViewController: self.viewController, user: user)
+    }
+    
+    func presentEventDetail(event: Event)  {
+        self.eventDetailRouter.presentEventFromViewController(presentingViewController: self.viewController, event: event)
     }
     
 }

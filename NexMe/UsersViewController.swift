@@ -17,6 +17,7 @@ class UsersViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet var noItensView: UIView!
     
     
     // MARK :- Life Cicle
@@ -24,9 +25,8 @@ class UsersViewController: UIViewController {
         super.viewDidLoad()
         self.configureViews()
         self.configureBinds()
+        self.table.backgroundView = self.noItensView
         self.searchTextField.delegate = self
-        let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UsersViewController.dismissKeyboard))
-        self.view.addGestureRecognizer(tapOnView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,15 +45,15 @@ class UsersViewController: UIViewController {
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.users.asObservable().bind(to: table.rx.items) { (table, row, user) in
             return self.cellForUser(user: user)
-        }.addDisposableTo(viewModel.disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         self.searchTextField.rx.text.orEmpty.map({$0})
         .bind(to: self.viewModel.textEntry)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
     }
     
     func configureViews() {
@@ -85,7 +85,7 @@ extension UsersViewController: UITableViewDelegate{
     func cellForUser(user: User) -> CardTableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "CardCell") as! CardTableViewCell
     
-        cell.nameLabel.text = user.name.capitalized
+        cell.nameLabel.text = user.name!.capitalized
         cell.avatar.kf.setImage(with: user.avatar?.original, placeholder: #imageLiteral(resourceName: "userProfile"), options: nil, progressBlock: nil, completionHandler: nil)
         cell.updateConstraintsIfNeeded()
         return cell

@@ -85,14 +85,14 @@ extension Result {
     }
 }
 
-public func strive<T>( f: @escaping (Void) throws -> T?) -> Result<T> {
+public func strive<T>( f: @escaping () throws -> T?) -> Result<T> {
     return Result<T>.strive(f: f)
 }
 
 public func strive<T>(completion: @escaping (Result<T>) -> Void,
     runQueue: DispatchQueue = DispatchQueue.global(qos: DispatchQoS.default.qosClass),
     resultQueue: DispatchQueue = DispatchQueue.main,
-    f: @escaping (Void) throws -> T?) {
+    f: @escaping () throws -> T?) {
         
     
     runQueue.async {
@@ -169,7 +169,7 @@ enum ResultError: Error {
 }
 
 extension Result {
-    public static func strive<T>( f: @escaping (Void) throws -> T?) -> Result<T> {
+    public static func strive<T>( f: @escaping () throws -> T?) -> Result<T> {
         let e: Error?
         let v: T?
 
@@ -216,42 +216,6 @@ extension Result {
         
         return Result<T>(error: ResultError.NoValue)
     }
-
-//    public func failure(@noescape f: ErrorType -> Void) -> Result<T> {
-//        if let errors = errors {
-//            for error in errors {
-//                f(error)
-//            }
-//        }
-//
-//        return self
-//    }
-//
-//    public func failure<E: ErrorType>(type: E.Type, @noescape f: E -> Void) -> Result<T> {
-//        if let errors = errors {
-//            for error in errors {
-//                if let error = error as? E {
-//                    f(error)
-//                }
-//            }
-//        }
-//
-//        return self
-//    }
-//
-//    public func success(@noescape f: T -> Void) -> Result<T> {
-//        if let value = value {
-//            f(value)
-//        }
-//
-//        return self
-//    }
-//
-//    public func finally(@noescape finally: Void -> Void) -> Result<T> {
-//        finally()
-//        return self
-//    }
-
 }
 
 // MARK: - Functional

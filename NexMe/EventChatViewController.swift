@@ -57,19 +57,19 @@ class EventChatViewController: UIViewController {
             if (lastRowIndex >= 0){
                 self.table.scrollToRow(at: pathToLastRow, at: UITableViewScrollPosition.none, animated: true)
             }
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.messageTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.message)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.messages.asObservable().bind(to: table.rx.items) { (table, row, message) in
             return self.cellForMessage(message: message)
-            }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
     }
     
     func configureViews() {
@@ -83,25 +83,27 @@ class EventChatViewController: UIViewController {
 extension EventChatViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let user = self.viewModel.events.value[indexPath.row]
-        //        self.viewModel.presentUserDetail(user: user)
+                let id = self.viewModel.messages.value[indexPath.row].userId
+        self.viewModel.useCases.fetchUserById(id: id!) { (result) in
+            do{
+                let user = try result.getValue()
+                self.viewModel.router.presentUserDetail(user: user)
+            }catch{
+                print("Nao achou usuario")
+            }
+        }
     }
     
-    func cellForMessage(message: Message) -> UITableViewCell {
+    func cellForMessage(message: EventMessage) -> UITableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "ChatCell") as! ChatTableViewCell
         cell.message.text = message.message
         self.viewModel.useCases.fetchUserById(id: message.userId!) { (user) in
-            cell.userName.text = user.value?.name.capitalized
+            cell.userName.text = user.value?.name!.capitalized
             cell.userAvatar.kf.setImage(with: user.value?.avatar?.original, placeholder: #imageLiteral(resourceName: "placeHolder"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         return cell
     }
-    
-    func estimateFrameForMessage(text: String) -> CGRect{
-        let size = CGSize(width: 100, height: 300)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: nil, context: nil)
-    }
+
     
     func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

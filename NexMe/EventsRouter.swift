@@ -42,8 +42,8 @@ class EventsRouter {
         self.newEventRouter.presentNewEventFromViewController(presentingViewController: self.viewController)
     }
     
-    func presentEventsByFilter(categorie: EventCategorie){
-        self.eventListRouter.presentEventsFromViewController(presentingViewController: self.viewController, categorie: categorie)
+    func presentEventsByFilter(categorie: EventCategorie?, city: String?){
+        self.eventListRouter.presentEventsFromViewController(presentingViewController: self.viewController, categorie: categorie, city: city)
     }
     
 }

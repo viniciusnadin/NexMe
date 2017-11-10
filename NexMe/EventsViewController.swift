@@ -10,16 +10,23 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SlideMenuControllerSwift
+import CoreLocation
+import GooglePlaces
+import NVActivityIndicatorView
 
-class EventsViewController: UIViewController {
+class EventsViewController: UIViewController, NVActivityIndicatorViewable {
     
     // MARK: - Properties
     let viewModel: EventsViewModel
+    let locationManager = CLLocationManager()
     
     // MARK: - Outlets
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var newEventButton: UIButton!
-    @IBOutlet weak var categoriesCollection: UICollectionView!
+    @IBOutlet weak var categoriesTable: UITableView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var mainCategorieImage: UIImageView!
+    @IBOutlet weak var nearbyEvents: UIButton!
     
     init(viewModel: EventsViewModel) {
         self.viewModel = viewModel
@@ -33,10 +40,16 @@ class EventsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballPulseSync
+        self.startAnimating()
         self.configureBinds()
+        self.configureViews()
+        self.containerView.layer.borderWidth = 1
+        self.containerView.layer.borderColor = UIColor(red: 40/255, green: 56/255, blue: 77/255, alpha: 0.4).cgColor
+        self.mainCategorieImage.image = UIImage.fontAwesomeIcon(code: "fa-globe", textColor: UIColor(red: 40/255, green: 56/255, blue: 77/255, alpha: 1.0), size: CGSize(width: 50, height: 50))
         
-        let cellNib = UINib(nibName: "CardCollectionViewCell", bundle: nil)
-        self.categoriesCollection.register(cellNib, forCellWithReuseIdentifier: "CardCell")
+        self.locationManager.requestWhenInUseAuthorization()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,48 +59,72 @@ class EventsViewController: UIViewController {
     func configureBinds() {
         self.menuButton.rx.tap.subscribe(onNext: {
             self.slideMenuController()?.openLeft()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.newEventButton.rx.tap.subscribe(onNext: {
             self.viewModel.newEvent()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
-        self.viewModel.categories.asObservable().subscribe { _ in
-            self.categoriesCollection.reloadData()
-        }.addDisposableTo(self.viewModel.disposeBag)
+        self.viewModel.categories.asObservable().bind(to: categoriesTable.rx.items) { (table, row, categorie) in
+            self.stopAnimating()
+            return self.cellForCategorie(categorie: categorie)
+        }.disposed(by: viewModel.disposeBag)
+        
+        self.nearbyEvents.rx.tap.subscribe(onNext: {
+            self.startAnimating()
+            if CLLocationManager.locationServicesEnabled() {
+                GMSPlacesClient.shared().currentPlace { (places, error) in
+                    if error != nil {
+                        self.stopAnimating()
+                        PopUpDialog.present(title: "Ops...", message: "Você autorizou o app a utilizar a sua localização?", viewController: self)
+                        self.locationManager.requestWhenInUseAuthorization()
+                        return
+                    }
+                    if let likelihoodList = places {
+                        for likelihood in likelihoodList.likelihoods {
+                            let place = likelihood.place
+                            let fullAddress = place.addressComponents
+                            for address in fullAddress! {
+                                if (address.type == "administrative_area_level_2"){
+                                    self.stopAnimating()
+                                    self.viewModel.router.presentEventsByFilter(categorie: nil, city: address.name)
+                                    return
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                self.stopAnimating()
+                PopUpDialog.present(title: "Ops...", message: "Por favor, autorize o app a utilizar a sua localização!", viewController: self)
+                self.locationManager.requestWhenInUseAuthorization()
+            }
+        }).disposed(by: self.viewModel.disposeBag)
     }
 
-}
-
-extension EventsViewController: UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.eventsByFilter(categorie: self.viewModel.categories.value[indexPath.row])
+    func configureViews() {
+        let cellNib = UINib(nibName: "CategorieTableViewCell", bundle: nil)
+        self.categoriesTable.register(cellNib, forCellReuseIdentifier: "CategorieCell")
+        self.categoriesTable.separatorColor = UIColor.clear
     }
 }
 
-extension EventsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.categories.value.count
+extension EventsViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.categoriesCollection.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
-        cell.categorieName.text = self.viewModel.categories.value[indexPath.row].name
-//        cell.contentView.layer.cornerRadius = 10.0
-//        cell.contentView.layer.borderWidth = 1.0
-//        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-//        cell.contentView.layer.masksToBounds = true;
-        
-//        cell.layer.shadowColor = UIColor.lightGray.cgColor
-//        cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
-//        cell.layer.shadowRadius = 2.0
-//        cell.layer.shadowOpacity = 1.0
-//        cell.layer.masksToBounds = false;
-//        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categorie = self.viewModel.categories.value[indexPath.row]
+        self.viewModel.eventsByFilter(categorie: categorie, city: nil)
+    }
+    
+    func cellForCategorie(categorie: EventCategorie) -> CategorieTableViewCell {
+        let cell = self.categoriesTable.dequeueReusableCell(withIdentifier: "CategorieCell") as! CategorieTableViewCell
+        cell.categorieNameLabel.text = categorie.name
         return cell
     }
-    
-    
 }
 
 

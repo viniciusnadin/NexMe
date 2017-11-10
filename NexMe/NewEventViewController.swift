@@ -13,20 +13,19 @@ import PopupDialog
 import FontAwesome_swift
 import SkyFloatingLabelTextField
 import DateTimePicker
+import NVActivityIndicatorView
 
-class NewEventViewController: UIViewController {
+class NewEventViewController: UIViewController, NVActivityIndicatorViewable {
     
     // MARK: - Properties
     let viewModel: NewEventViewModel
     var googleMapsView : GMSMapView!
     let imagePicker = ImagePicker()
-//    var eventLocation : CLLocationCoordinate2D!
-//    var eventLocationName : String!
     
     // MARK: - OUTLETS
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var nameTextField: SkyFloatingLabelTextFieldWithIcon!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var locationButton: UIButton!
@@ -39,9 +38,7 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var mapIcon: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var placeHolderLabel: UILabel!
-    
-    
+    @IBOutlet weak var nameIcon: UIImageView!
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
@@ -52,29 +49,13 @@ class NewEventViewController: UIViewController {
         let tapOnView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewEventViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapOnView)
         
-        
-        nameTextField.placeholder = "Nome do evento"
-        nameTextField.title = "Nome do evento"
-        let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-        nameTextField.tintColor = overcastBlueColor
-        nameTextField.selectedTitleColor = overcastBlueColor
-        nameTextField.selectedLineColor = overcastBlueColor
-
-        // Set icon properties
-        nameTextField.iconColor = UIColor.lightGray
-        nameTextField.selectedIconColor = overcastBlueColor
-        nameTextField.iconFont = UIFont.fontAwesome(ofSize: 20)
-//        nameTextField.iconText = String.fontAwesomeIcon(code: "fa-upload")
-        nameTextField.iconText = String.fontAwesomeIcon(code: "fa-wpforms")
-        nameTextField.iconMarginBottom = 2.0 // more precise icon positioning. Usually needed to tweak on a per font basis.
-//        nameTextField.iconRotationDegrees = 90 // rotate it 90 degrees
-        nameTextField.iconMarginLeft = 2.0
-        self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
-        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
-        
-        self.categorieIcon.image = UIImage.fontAwesomeIcon(code: "fa-bookmark", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
-        
-        self.mapIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: UIColor.lightGray, size: CGSize(width: 30, height: 30))
+        let overcastBlueColor = UIColor(red: 82/255, green: 205/255, blue: 171/255, alpha: 1.0)
+        self.nameIcon.image = UIImage.fontAwesomeIcon(code: "fa-wpforms", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.descriptionIcon.image = UIImage.fontAwesomeIcon(code: "fa-newspaper-o", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.dateIcon.image = UIImage.fontAwesomeIcon(code: "fa-calendar", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.categorieIcon.image = UIImage.fontAwesomeIcon(code: "fa-bookmark", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.mapIcon.image = UIImage.fontAwesomeIcon(code: "fa-map-marker", textColor: overcastBlueColor, size: CGSize(width: 30, height: 30))
+        self.isEditAction()
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,68 +82,91 @@ class NewEventViewController: UIViewController {
     func configurebinds() {
         self.backButton.rx.tap.subscribe(onNext: {
             self.viewModel.close()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.locationButton.rx.tap.subscribe(onNext: {
             let autocompleteController = GMSAutocompleteViewController()
             autocompleteController.delegate = self
             self.present(autocompleteController, animated: true, completion: nil)
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.dateButton.rx.tap.subscribe(onNext: {
             self.showDatePicker()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.eventLocationName.asObservable().subscribe(onNext: { name in
             self.locationTextField.text = name
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.nameTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.eventName)
-            .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.descriptionTextField.rx.text.orEmpty.map({$0})
             .bind(to: self.viewModel.eventDescription)
-        .addDisposableTo(self.viewModel.disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.saveButton.rx.tap.subscribe(onNext: {
+            NVActivityIndicatorView.DEFAULT_TYPE = .ballPulseSync
+            self.startAnimating()
             self.viewModel.save()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.pickButton.rx.tap.subscribe(onNext: {
             self.imagePicker.pickImageFromViewController(viewController: self) { result in
                 do {
                     let image = try result.getValue()
-                    self.eventImage.image = image
                     self.viewModel.eventImage = image
-                    self.placeHolderLabel.isHidden = true
-//                    self.viewModel.uploadImage(image: image)
+                    self.eventImage.image = image
                 } catch {
                     print(error)
                 }
             }
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         self.categorieButton.rx.tap.subscribe({_ in
             self.showCategoriePicker()
-        }).addDisposableTo(self.viewModel.disposeBag)
+        }).disposed(by: self.viewModel.disposeBag)
         
         viewModel.errorMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
+                self.stopAnimating()
                 PopUpDialog.present(title: "Ops!", message: message, viewController: self)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         viewModel.successMessage.asObservable().filter({!$0.isEmpty})
             .subscribe(onNext: { message in
-                let pop2 = PopupDialog(title: "Sucesso!", message: message, image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
+                self.stopAnimating()
+                let pop2 = PopupDialog(title: "Sucesso!!", message: message, image: nil, buttonAlignment: UILayoutConstraintAxis.horizontal, transitionStyle: PopupDialogTransitionStyle.fadeIn, gestureDismissal: true, completion: {
                     self.viewModel.successCreation.value = true
                 })
                 self.present(pop2, animated: true, completion: nil)
-            }).addDisposableTo(viewModel.disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         self.viewModel.successCreation.asObservable().bind { (verify) in
             if verify{self.viewModel.close()}
-            }.addDisposableTo(self.viewModel.disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
+    }
+    
+    func isEditAction() {
+        if self.viewModel.event != nil {
+            let event = self.viewModel.event
+            self.nameTextField.text = event!.title.capitalized
+            self.descriptionTextField.text = event!.description
+            self.locationTextField.text = event!.locationName
+            self.viewModel.eventLocationName.value = event!.locationName
+            self.viewModel.eventName.value = event!.title
+            self.categorieButton.setTitle(event?.categorie.name, for: .normal)
+            let date = event!.date
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            let year = calendar.component(.year, from: date)
+            let hour = calendar.component(.hour, from: date)
+            let minute = calendar.component(.minute, from: date)
+            self.dateButton.setTitle("\(hour):\(minute)  \(day)/\(month)/\(year)", for: .normal)
+            self.eventImage.kf.setImage(with: event!.image)
+        }
     }
     
     func showCategoriePicker() {
@@ -178,7 +182,7 @@ class NewEventViewController: UIViewController {
     }
     
     func showDatePicker() {
-        let picker = DateTimePicker.show()
+        let picker = DateTimePicker.show(selected: Date().add(minutes: 6), minimumDate: Date().add(minutes: 5), maximumDate: nil)
         picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
         picker.isDatePickerOnly = false
         picker.doneButtonTitle = "Concluido"
@@ -193,7 +197,7 @@ class NewEventViewController: UIViewController {
             let year = calendar.component(.year, from: date)
             let hour = calendar.component(.hour, from: date)
             let minute = calendar.component(.minute, from: date)
-            self.dateButton.setTitle("\(hour)h:\(minute)m  \(day)/\(month)/\(year)", for: .normal)
+            self.dateButton.setTitle("\(hour):\(minute)  \(day)/\(month)/\(year)", for: .normal)
         }
     }
 
@@ -205,6 +209,15 @@ class NewEventViewController: UIViewController {
         if self.googleMapsView == nil {
             self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
             self.mapView.addSubview(self.googleMapsView)
+        }
+        if self.viewModel.event != nil {
+            let event = self.viewModel.event
+            let position = event!.coordinate
+            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 18)
+            self.googleMapsView.camera = camera
+            let marker = GMSMarker(position: position)
+            marker.title = event?.locationName
+            marker.map = self.googleMapsView
         }
     }
 }
@@ -260,4 +273,10 @@ extension NewEventViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+extension Date {
+    func add(minutes: Int) -> Date {
+        return Calendar(identifier: .gregorian).date(byAdding: .minute, value: minutes, to: self)!
+    }
 }

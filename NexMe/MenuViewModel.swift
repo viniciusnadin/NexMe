@@ -19,11 +19,12 @@ class MenuViewModel {
     let avatarImageURL = Variable<URL?>(nil)
     
     func viewDidLoad() {
-        if let user = useCases.getCurrentUser() {
-            name.value = user.name.capitalized
-            email.value = user.email
+        self.useCases.fetchUser(completion: { (result) in
+            let user = LoggedUser.sharedInstance.user
+            self.name.value = user.name!.capitalized
+            self.email.value = user.email!
             self.avatarImageURL.value = user.avatar?.original
-        }
+        })
     }
     
     func presentEvents() {
@@ -41,6 +42,10 @@ class MenuViewModel {
     
     func presentUsersSearch() {
         self.router.presentUserSearch()
+    }
+    
+    func presentMessages() {
+        self.router.presentMessages()
     }
     
     func uploadImage(image: UIImage) {

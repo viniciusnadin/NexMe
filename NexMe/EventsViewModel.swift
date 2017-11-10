@@ -12,6 +12,7 @@ class EventsViewModel {
     var useCases: UseCases!
     var router: EventsRouter!
     let disposeBag = DisposeBag()
+    var city = ""
     
     let categories = Variable<[EventCategorie]>([])
     
@@ -34,8 +35,8 @@ class EventsViewModel {
         self.router.presentNewEvent()
     }
     
-    func eventsByFilter(categorie: EventCategorie) {
-        self.router.presentEventsByFilter(categorie: categorie)
+    func eventsByFilter(categorie: EventCategorie?, city: String?) {
+        self.router.presentEventsByFilter(categorie: categorie, city: city)
     }
     
 }

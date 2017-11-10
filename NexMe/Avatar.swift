@@ -1,13 +1,17 @@
-import Unbox
+//
+//  Avatar.swift
+//  NexMe
+//
+//  Created by Vinicius Nadin on 19/10/17.
+//  Copyright © 2017 Vinicius Nadin. All rights reserved.
+//
 
-struct Avatar {
+import UIKit
+
+class Avatar {
     let original: URL?
-//    let medium: URL?
-//    let thumb: URL?
-}
-
-extension Avatar: Unboxable {
-    init(unboxer: Unboxer) throws {
-        original = unboxer.unbox(key: "original")
+    
+    init(url: URL) {
+        self.original = url
     }
 }
