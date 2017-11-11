@@ -44,7 +44,6 @@
 		D574CDA61FA4F8AC00A3FB7D /* EventLesserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574CDA41FA4F8AC00A3FB7D /* EventLesserCell.swift */; };
 		D574CDA71FA4F8AC00A3FB7D /* EventLesserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574CDA51FA4F8AC00A3FB7D /* EventLesserCell.xib */; };
 		D59CD4701F7C636C001582D1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59CD46F1F7C636C001582D1 /* ImagePicker.swift */; };
-		D5B0A35A1FB52CF300F2D2DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B0A3591FB52CF300F2D2DE /* GoogleService-Info.plist */; };
 		D5B16A381F4F603000CDCE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B16A371F4F603000CDCE28 /* AppDelegate.swift */; };
 		D5B16A3F1F4F603000CDCE28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */; };
 		D5B16A421F4F603000CDCE28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */; };
@@ -90,6 +89,7 @@
 		D5D4C88A1FA7F67E00C30B77 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */; };
 		D5D4C88C1FA7F74B00C30B77 /* MessagesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */; };
 		D5D4C88E1FA7F75500C30B77 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */; };
+		D5F078561FB6768100586C5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5F078551FB6768100586C5F /* GoogleService-Info.plist */; };
 		D5F168681F9EB822007E8681 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */; };
 		D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */; };
 		D5FC33511FA1374B00321A10 /* TCPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC334F1FA1374B00321A10 /* TCPickerView.swift */; };
@@ -141,7 +141,6 @@
 		D574CDA41FA4F8AC00A3FB7D /* EventLesserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLesserCell.swift; sourceTree = "<group>"; };
 		D574CDA51FA4F8AC00A3FB7D /* EventLesserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventLesserCell.xib; sourceTree = "<group>"; };
 		D59CD46F1F7C636C001582D1 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		D5B0A3591FB52CF300F2D2DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B16A341F4F603000CDCE28 /* NexMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NexMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B16A371F4F603000CDCE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5B16A3E1F4F603000CDCE28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -195,6 +194,7 @@
 		D5D4C8881FA7F67E00C30B77 /* MessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
 		D5D4C88B1FA7F74B00C30B77 /* MessagesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRouter.swift; sourceTree = "<group>"; };
 		D5D4C88D1FA7F75500C30B77 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		D5F078551FB6768100586C5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5F168661F9EB822007E8681 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		D5F168671F9EB822007E8681 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		D5FC334F1FA1374B00321A10 /* TCPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPickerView.swift; sourceTree = "<group>"; };
@@ -348,6 +348,7 @@
 		D5B16A2B1F4F603000CDCE28 = {
 			isa = PBXGroup;
 			children = (
+				D5F078551FB6768100586C5F /* GoogleService-Info.plist */,
 				D5B16A361F4F603000CDCE28 /* NexMe */,
 				D5B16A351F4F603000CDCE28 /* Products */,
 				386A079F872ADEA53E6E9752 /* Pods */,
@@ -377,7 +378,6 @@
 				D5B16A5C1F4F6B8C00CDCE28 /* Main.storyboard */,
 				D5B16A401F4F603000CDCE28 /* LaunchScreen.storyboard */,
 				D5B16A431F4F603000CDCE28 /* Info.plist */,
-				D5B0A3591FB52CF300F2D2DE /* GoogleService-Info.plist */,
 			);
 			path = NexMe;
 			sourceTree = "<group>";
@@ -704,7 +704,7 @@
 				D5103A521FA9385500DD4C33 /* ChatViewController.xib in Resources */,
 				D5F168691F9EB822007E8681 /* ChatTableViewCell.xib in Resources */,
 				D50F2EEF1FA6805500474945 /* CategorieTableViewCell.xib in Resources */,
-				D5B0A35A1FB52CF300F2D2DE /* GoogleService-Info.plist in Resources */,
+				D5F078561FB6768100586C5F /* GoogleService-Info.plist in Resources */,
 				D515086B1F9E8DB0003AC336 /* EventChatViewController.xib in Resources */,
 				D5D367B51F97F94000A5C2E0 /* CardTableViewCell.xib in Resources */,
 			);
